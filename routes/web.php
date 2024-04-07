@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix'=>'login'], function(){
+    Route::get('/', [LoginController::class, 'index'])->name('login');
+});
+
+Route::group(['prefix'=>'dashboard'], function(){
+    Route::get('/', function () {
+        $activeMenu = 'dashboard';
+
+        return view('admin.dashboard.index',[
+            'activeMenu' => $activeMenu]);
+    });
 });

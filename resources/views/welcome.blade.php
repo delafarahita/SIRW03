@@ -25,7 +25,7 @@
                 background-image: url("{{ asset('asset/img/foto-main.jpg') }}");
                 background-repeat: no-repeat;
                 background-size: cover;
-                height: 100vh; 
+                height: 100vh;
                 width: 100%;
             }
             .font-s-128{
@@ -64,11 +64,11 @@
                           <a class="nav-link me-5" href="#">UMKM</a>
                           <a class="nav-link me-5" href="#">KEGIATAN</a>
                           <a class="nav-link me-5" href="#">KELUHAN</a>
-                          <a href="#login" class="btn btn-oren text-white px-3">LOGIN</a>
+                          <a href="{{route('login')}}" class="btn btn-oren text-white px-3">LOGIN</a>
                         </div>
                     </div>
                 </div>
-            </nav>       
+            </nav>
             <div class="container-fluid bg-foto-main d-flex flex-column justify-content-center align-items-center">
                 <div class="text-center mb-4">
                     <h1 class="text-white text-center fw-bolder font-s-128">RW 03</h1>
@@ -82,7 +82,7 @@
             </div>
         </main>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
