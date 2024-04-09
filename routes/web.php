@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DataPendudukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,15 @@ Route::group(['prefix'=>'dashboard'], function(){
         return view('admin.dashboard.index',[
             'activeMenu' => $activeMenu]);
     });
+});
+
+Route::group(['prefix' => 'DataPenduduk'], function(){
+    Route::get('/', [DataPendudukController::class, 'index']);
+    Route::post('/list', [DataPendudukController::class, 'list']);
+    Route::get('/create', [DataPendudukController::class, 'create']);
+    Route::post('/', [DataPendudukController::class, 'store']);
+    Route::get('/{id}', [DataPendudukController::class, 'show']);
+    Route::get('/{id}/edit', [DataPendudukController::class, 'edit']);
+    Route::put('/{id}', [DataPendudukController::class, 'update']);
+    Route::delete('/{id}', [DataPendudukController::class, 'destroy']);
 });
