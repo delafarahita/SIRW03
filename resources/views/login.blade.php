@@ -13,7 +13,7 @@
 <body style="background-color: #1F2937">
     <div class="row vh-100 w-100 ">
         <div class="col d-none d-md-block">
-            <img class="w-100 h-100 object-fit-cover" src="https://via.placeholder.com/2000x2000" />
+            <img class="w-100 h-100 object-fit-cover" src="{{asset('assets/img/login-image2.jpg')}}" />
         </div>
         <div class="col d-flex justify-content-center align-items-center bg">
             <div class="w-75 w-md-50">
@@ -33,8 +33,9 @@
                     </div>
                     <div class="d-flex justify-content-center align-items-center mt-3">
                         <div class="d-grid gap-2 col-6 justify-content-center">
-                            <button type="submit" class="btn btn-primary w-100"
-                                style="background-color: #FFA63E; border-color: #FFA63E;">SUBMIT</button>
+                            <button type="submit" class="btn btn-warning text-white fw-bold"
+                                >SUBMIT</button>
+                            <a href="{{url('/')}}" class="btn btn-danger">KEMBALI</a>
                         </div>
                     </div>
                 </form>

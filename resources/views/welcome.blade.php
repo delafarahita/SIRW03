@@ -48,9 +48,77 @@
                 margin-bottom: 20px;
             }
             .small-img {
-                height: auto;
+                height: 230px;
                 max-width: 100%;
             }
+            
+            .hovereffect {
+            height:auto;
+            float: right;;
+            overflow:hidden;
+            position:relative;
+            text-align:center;
+            cursor:default;
+            }
+
+            .hovereffect .overlay {
+            height:auto;
+            position:absolute;
+            overflow:hidden;
+            top:0;
+            left:0;
+            opacity:0;
+            background-color:rgba(0,0,0,0.5);
+            -webkit-transition:all .4s ease-in-out;
+            transition:all .4s ease-in-out
+            }
+
+            .hovereffect img {
+            display:block;
+            position:relative;
+            -webkit-transition:all .4s linear;
+            transition:all .4s linear;
+            }
+
+            .hovereffect h2 {
+            text-transform:uppercase;
+            color:#fff;
+            text-align:center;
+            position:relative;
+            font-size:17px;
+            background:rgba(0,0,0,0.6);
+            -webkit-transform:translatey(-100px);
+            -ms-transform:translatey(-100px);
+            transform:translatey(-100px);
+            -webkit-transition:all .2s ease-in-out;
+            transition:all .2s ease-in-out;
+            padding:10px;
+            }
+
+            .hovereffect:hover img {
+            -ms-transform:scale(1.2);
+            -webkit-transform:scale(1.2);
+            transform:scale(1.2);
+            }
+
+            .hovereffect:hover .overlay {
+            opacity:1;
+            filter:alpha(opacity=100);
+            }
+
+            .hovereffect:hover h2,.hovereffect:hover a.info {
+            opacity:1;
+            filter:alpha(opacity=100);
+            -ms-transform:translatey(0);
+            -webkit-transform:translatey(0);
+            transform:translatey(0);
+            }
+
+            .hovereffect:hover a.info {
+            -webkit-transition-delay:.2s;
+            transition-delay:.2s;
+            }
+
 
             @media (max-width: 576px) {
                 .font-s-128 {
@@ -80,7 +148,7 @@
                           <a class="nav-link me-5" aria-current="page" href="#"><span class="">ABOUT</span></a>
                           <a class="nav-link me-5" href="#umkm">UMKM</a>
                           <a class="nav-link me-5" href="#kegiatan">KEGIATAN</a>
-                          <a class="nav-link me-5" href="#">KELUHAN</a>
+                          <a class="nav-link me-5" href="#keluhan">KELUHAN</a>
                           <a href="{{route('login')}}" class="btn btn-oren text-white px-3">LOGIN</a>
                         </div>
                     </div>
@@ -94,9 +162,11 @@
                 <br><br><br>
                 <br><br><br>
                 <div class="">
-                    <a href="" class="btn btn-oren text-white fw-bolder"><span>Lihat lebih lanjut...</span></a>
+                    <a href="#umkm" class="btn btn-oren text-white fw-bolder"><span>Lihat lebih lanjut...</span></a>
                 </div>
             </div>
+
+            {{-- umkm  --}}
             <div class="container my-5" id="umkm">
                 <div>
                     <h1 class="bg-font-primary text-center fw-bold font-s-48 mb-3">UMKM</h1>
@@ -109,13 +179,25 @@
                     </div>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="https://via.placeholder.com/900x400" class="d-block w-100 px-2" alt="slide 1">
+                        <img src="{{('assets/img/umkm1.avif')}}" class="d-block w-100" style="height: 600px" alt="slide 1">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>UMKM 1</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
                       </div>
                       <div class="carousel-item">
-                        <img src="https://via.placeholder.com/900x400" class="d-block w-100 px-2" alt="slide 2">
+                        <img src="{{('assets/img/umkm2.jpg')}}" class="d-block w-100" style="height: 600px" alt="slide 2">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>UMKM 2</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
                       </div>
                       <div class="carousel-item">
-                        <img src="https://via.placeholder.com/900x400" class="d-block w-100 px-2" alt="slide 3">
+                        <img src="{{('assets/img/umkm3.jpg')}}" class="d-block w-100" style="height: 600px" alt="slide 3">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>UMKM 3</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
                       </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -128,28 +210,67 @@
                     </button>
                 </div>
             </div>
+
+            {{-- kegiatan  --}}
             <div class="container my-5" id="kegiatan">
                 <div>
                     <h1 class="bg-font-primary font-s-48 fw-bold text-center mb-3">INFO KEGIATAN</h1>
                 </div>
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-8">
-                            <img src="https://via.placeholder.com/900x500" alt="Activity 1" class="big-img mb-3">
+                        <div class="col-lg-8 hovereffect">
+                            <img src="{{asset('assets/img/kegiatan2.jpg')}}" alt="Activity 1" class="big-img img-responsive mb-3">
+                            <div class="overlay text-center">
+                                <h2 >Minggu Bersih</h2>
+                            </div>                    
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4">
                             <div class="col">
-                                <div class="col-lg-6">
-                                    <img src="https://via.placeholder.com/380x230" alt="Activity 2" class="small-img mb-3">
+                                <div class="col hovereffect">
+                                    <img src="{{asset('assets/img/kegiatan1.jpg')}}" alt="Activity 2" class="small-img mb-3">
+                                    <div class="overlay">
+                                        <h2>Pemungutan Suara</h2>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <img src="https://via.placeholder.com/380x230" alt="Activity 3" class="small-img mb-3">
+                                <div class="col hovereffect">
+                                    <img src="{{asset('assets/img/kegiatan4.jpg')}}" alt="Activity 3" class="small-img mb-3">
+                                    <div class="overlay">
+                                        <h2>Pembersihan TPU</h2>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+                <div class="container-fluid mt-5 p-5 bg-main" id="keluhan">
+                    <div class="container text-center">
+                        <div class="my-3">
+                            <h1 class="text-white fw-bold font-s-48">KELUHAN</h1>
+                        </div>
+                        <div class="">
+                            <form action="" method="post">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control my-2" id="floatingInput" placeholder="">
+                                    <label for="floatingInput">Nama</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control my-2" id="floatingInput" placeholder="" >
+                                    <label for="floatingInput">RT</label>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="" id="floatingTextarea" style="height: 200px"></textarea>
+                                    <label for="floatingTextarea">Pengaduan</label>
+                                </div>
+                                <div class="my-2">
+                                    <button type="submit" class="btn btn-oren text-white px-5">KIRIM</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
         </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
