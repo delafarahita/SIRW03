@@ -25,7 +25,7 @@
                 border: 1px solid #FFA63E;
             }
             .bg-foto-main{
-                background-image: url("{{ asset('asset/img/foto-main.jpg') }}");
+                background-image: url("{{ asset('assets/img/foto-main.jpg') }}");
                 background-repeat: no-repeat;
                 background-size: cover;
                 height: 100vh;
@@ -70,7 +70,7 @@
             <nav class="navbar sticky-top navbar-expand-lg bg-main "data-bs-theme="dark">
                 <div class="container-fluid">
                     <div class="mx-3">
-                        <a href="" class="navbar-brand text-white fw-bolder"><img src="{{asset('asset/img/logorw03.jpg')}}" alt="Logo" width="30" height="30" class="me-2 rounded-circle">SIRW03</a>
+                        <a href="" class="navbar-brand text-white fw-bolder"><img src="{{asset('assets/img/logorw03.jpg')}}" alt="Logo" width="30" height="30" class="me-2 rounded-circle">SIRW03</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
