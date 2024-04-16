@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataPendudukController;
+use App\Http\Controllers\UmkmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,4 +42,14 @@ Route::group(['prefix' => 'DataPenduduk'], function(){
     Route::get('/{id}/edit', [DataPendudukController::class, 'edit']);
     Route::put('/{id}', [DataPendudukController::class, 'update']);
     Route::delete('/{id}', [DataPendudukController::class, 'destroy']);
+});
+
+Route::group(['prefix' => 'umkm'], function(){
+    Route::get('/', [UmkmController::class, 'index'])->name('umkm.index');
+    Route::get('/create', [UmkmController::class, 'create'])->name('umkm.create');
+    Route::post('/', [UmkmController::class, 'store'])->name('umkm.store');
+    Route::get('/{id}', [UmkmController::class, 'show'])->name('umkm.show');
+    Route::get('/{id}/edit', [UmkmController::class, 'edit'])->name('umkm.edit');
+    Route::put('/{id}', [UmkmController::class, 'update'])->name('umkm.update');
+    Route::delete('/{id}', [UmkmController::class, 'destroy'])->name('umkm.destroy');
 });
