@@ -37,7 +37,7 @@
 
 
         <li class="nav-item {{ Request::segment(1) == 'data_penduduk' ? 'active' : '' }}">
-          <a href="{{ url('/data_penduduk') }}" class="nav-link">
+          <a href="{{ url('/DataPenduduk') }}" class="nav-link">
             <span class="sidebar-icon"><svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
