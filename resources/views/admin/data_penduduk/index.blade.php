@@ -1,11 +1,20 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        .custom-color-btn {
+            background-color: #FFA63E;
+            color: #fff;
+            border-color: #FFA63E;
+        }
+
+        .table-container {
+            margin-bottom: 20px;
+        }
+    </style>
     <div class="card card-outline card-primary">
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
-            <div class="card-tools">
-                <a class="btn btn-sm btn-primary mt-1" href="{{ url('DataPenduduk/create') }}">Tambah</a>
-            </div>
+
         </div>
         <div class="card-body">
             @if (session('success'))
@@ -14,33 +23,54 @@
             @if (session('error'))
                 <div class="alert alert-success">{{ session('error') }}</div>
             @endif
-            {{-- <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group row">
-                        <label class="col-1 control-label col-form-label">Filter:</label>
-                        <div class="col-3">
-                            <select class="form-control" id="level_id" name="level_id" required>
-                                <option value="">- Semua -</option>
-                                @foreach ($level as $item)
-                                    <option value="{{ $item->level_id }}">{{ $item->level_nama }}</option>
-                                @endforeach
-                            </select>
-                            <small class="form-text text-muted">Level Pengguna</small>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
 
-            <table class="table table-bordered table-striped table-hover table-sm" id="table_level">
-                <thead>
-                    <tr>
-                        <th>Level ID</th>
-                        <th>Level Kode</th>
-                        <th>Level Nama</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="table-container">
+                <table class="table table-bordered table-striped table-hover table-sm" id="table_dataPenduduk">
+                    <thead>
+                        <tr>
+                            <th>NIK</th>
+                            <th>Nama</th>
+                            <th>Tempat Lahir</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Gol. Darah</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1234567890</td>
+                            <td>John Doe</td>
+                            <td>Jakarta</td>
+                            <td>1990-05-15</td>
+                            <td>O</td>
+                            <td>Laki-laki</td>
+                            <td>
+                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-primary">Detail</a>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0987654321</td>
+                            <td>Jane Smith</td>
+                            <td>Bandung</td>
+                            <td>1995-10-20</td>
+                            <td>A</td>
+                            <td>Perempuan</td>
+                            <td>
+                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-primary">Detail</a>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-tools d-flex justify-content-between">
+                <a class="btn-sm custom-color-btn mt-1" href="{{ url('DataPenduduk/create') }}">Tambah</a>
+                <a class="btn-sm custom-color-btn mt-1" href="{{ url('DataPenduduk/create') }}">Download Seluruh Data</a>
+            </div>
         </div>
     </div>
 @endsection

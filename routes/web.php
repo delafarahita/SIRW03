@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataPendudukController;
+use App\Http\Controllers\UmkmController;
+use App\Http\Controllers\KeluhanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +44,22 @@ Route::group(['prefix' => 'DataPenduduk'], function(){
     Route::put('/{id}', [DataPendudukController::class, 'update']);
     Route::delete('/{id}', [DataPendudukController::class, 'destroy']);
 });
+
+Route::group(['prefix' => 'umkm'], function(){
+    Route::get('/', [UmkmController::class, 'index'])->name('umkm.index');
+    Route::get('/create', [UmkmController::class, 'create'])->name('umkm.create');
+    Route::post('/', [UmkmController::class, 'store'])->name('umkm.store');
+    Route::get('/{id}', [UmkmController::class, 'show'])->name('umkm.show');
+    Route::get('/{id}/edit', [UmkmController::class, 'edit'])->name('umkm.edit');
+    Route::put('/{id}', [UmkmController::class, 'update'])->name('umkm.update');
+    Route::delete('/{id}', [UmkmController::class, 'destroy'])->name('umkm.destroy');
+});
+Route::prefix('keluhan')->group(function () {
+    Route::get('/', [KeluhanController::class, 'index'])->name('keluhan.index');
+    Route::get('/create', [KeluhanController::class, 'create'])->name('keluhan.create');
+    Route::post('/store', [KeluhanController::class, 'store'])->name('keluhan.store');
+    Route::get('/{id}', [KeluhanController::class, 'show'])->name('keluhan.show');
+    Route::get('/{id}/reply', [KeluhanController::class, 'replyForm'])->name('keluhan.replyForm');
+    Route::post('/{id}/reply', [KeluhanController::class, 'reply'])->name('keluhan.reply');
+});
+
