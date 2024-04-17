@@ -127,7 +127,7 @@
         </li>
       <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
         <li class="nav-item {{ Request::segment(1) == 'dashboard' ? 'active' : '' }}">
-          <a href="/dashboard" class="nav-link">
+          <a href="{{url('/dashboard')}}" class="nav-link">
             <span class="sidebar-icon">
               <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
