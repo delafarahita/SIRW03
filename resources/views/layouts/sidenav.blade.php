@@ -194,6 +194,29 @@
             <span class="sidebar-text">Informasi Kegiatan</span>
           </a>
         </li>
+
+
+        <li class="nav-item {{ Request::segment(1) == 'inventaris' ? 'active' : '' }}">
+          <a href="{{url('/Inventaris')}}" class="nav-link">
+            <span class="sidebar-icon">
+              <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d=""></path>
+              </svg>
+            </span>
+            <span class="sidebar-text">Inventaris</span>
+          </a>
+        </li>
+
+        <li class="nav-item {{ Request::segment(1) == 'kas' ? 'active' : '' }}">
+          <a href="{{url('/Kas')}}" class="nav-link">
+            <span class="sidebar-icon">
+              <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d=""></path>
+              </svg>
+            </span>
+            <span class="sidebar-text">Kas</span>
+          </a>
+        </li>
       </ul>
     </div>
 </nav>

@@ -6,6 +6,8 @@ use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\KeluhanController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\KasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +77,26 @@ Route::group(['prefix' => 'Kegiatan'], function(){
     Route::put('/{id}', [KegiatanController::class, 'update']);
     Route::delete('/{id}', [KegiatanController::class, 'destroy']);
 });
+
+Route::group(['prefix' => 'Inventaris'], function(){
+    Route::get('/', [InventarisController::class, 'index']);
+    Route::post('/list', [InventarisController::class, 'list']);
+    Route::get('/create', [InventarisController::class, 'create']);
+    Route::post('/', [InventarisController::class, 'store']);
+    Route::get('/{id}', [InventarisController::class, 'show']);
+    Route::get('/{id}/edit', [InventarisController::class, 'edit']);
+    Route::put('/{id}', [InventarisController::class, 'update']);
+    Route::delete('/{id}', [InventarisController::class, 'destroy']);
+});
+
+Route::group(['prefix' => 'Kas'], function(){
+    Route::get('/', [KasController::class, 'index']);
+    Route::post('/list', [KasController::class, 'list']);
+    Route::get('/create', [KasController::class, 'create']);
+    Route::post('/', [KasController::class, 'store']);
+    Route::get('/{id}', [KasController::class, 'show']);
+    Route::get('/{id}/edit', [KasController::class, 'edit']);
+    Route::put('/{id}', [KasController::class, 'update']);
+    Route::delete('/{id}', [KasController::class, 'destroy']);
+});
+
