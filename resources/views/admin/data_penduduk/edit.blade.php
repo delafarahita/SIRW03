@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label class="control-label">Nama</label>
                             <input type="text" class="form-control" id="" name=""
-                                value="John Doe" required>
+                                value="Anto" required>
                             @error('')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

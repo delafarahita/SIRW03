@@ -1,16 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        .custom-color-btn {
-            background-color: #FFA63E;
-            color: #fff;
-            border-color: #FFA63E;
-        }
-
-        .table-container {
-            margin-bottom: 20px;
-        }
-    </style>
     <div class="card card-outline card-primary">
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
@@ -39,27 +28,27 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1234567890</td>
-                            <td>John Doe</td>
-                            <td>Jakarta</td>
+                            <td>10203040506070809</td>
+                            <td>Anto</td>
+                            <td>Malang</td>
                             <td>1990-05-15</td>
                             <td>O</td>
                             <td>Laki-laki</td>
                             <td>
-                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-primary">Detail</a>
-                                <button class="btn btn-danger">Delete</button>
+                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-info">Detail</a>
+                                <button class="btn btn-danger">Hapus</button>
                             </td>
                         </tr>
                         <tr>
-                            <td>0987654321</td>
-                            <td>Jane Smith</td>
-                            <td>Bandung</td>
+                            <td>10908070605040302</td>
+                            <td>Ana</td>
+                            <td>Malang</td>
                             <td>1995-10-20</td>
                             <td>A</td>
                             <td>Perempuan</td>
                             <td>
-                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-primary">Detail</a>
-                                <button class="btn btn-danger">Delete</button>
+                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-info">Detail</a>
+                                <button class="btn btn-danger">Hapus</button>
                             </td>
                         </tr>
 
@@ -75,6 +64,17 @@
     </div>
 @endsection
 @push('css')
+<style>
+    .custom-color-btn {
+        background-color: #FFA63E;
+        color: #fff;
+        border-color: #FFA63E;
+    }
+
+    .table-container {
+        margin-bottom: 20px;
+    }
+</style>
 @endpush
 @push('js')
     {{-- <script>

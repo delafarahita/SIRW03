@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataPendudukController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\KeluhanController;
+use App\Http\Controllers\KegiatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,7 @@ Route::group(['prefix' => 'umkm'], function(){
     Route::put('/{id}', [UmkmController::class, 'update'])->name('umkm.update');
     Route::delete('/{id}', [UmkmController::class, 'destroy'])->name('umkm.destroy');
 });
+
 Route::prefix('keluhan')->group(function () {
     Route::get('/', [KeluhanController::class, 'index'])->name('keluhan.index');
     Route::get('/create', [KeluhanController::class, 'create'])->name('keluhan.create');
@@ -63,3 +65,13 @@ Route::prefix('keluhan')->group(function () {
     Route::post('/{id}/reply', [KeluhanController::class, 'reply'])->name('keluhan.reply');
 });
 
+Route::group(['prefix' => 'Kegiatan'], function(){
+    Route::get('/', [KegiatanController::class, 'index']);
+    Route::post('/list', [KegiatanController::class, 'list']);
+    Route::get('/create', [KegiatanController::class, 'create']);
+    Route::post('/', [KegiatanController::class, 'store']);
+    Route::get('/{id}', [KegiatanController::class, 'show']);
+    Route::get('/{id}/edit', [KegiatanController::class, 'edit']);
+    Route::put('/{id}', [KegiatanController::class, 'update']);
+    Route::delete('/{id}', [KegiatanController::class, 'destroy']);
+});

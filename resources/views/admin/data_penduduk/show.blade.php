@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label class="control-label">Nama</label>
                             <input type="text" class="form-control" id="" name=""
-                                value="John Doe" required disabled style="background-color: #f2f2f2; color: #777;">
+                                value="Anto" required disabled style="background-color: #f2f2f2; color: #777;">
                         </div>
                         <div class="form-group">
                             <label class="control-label">Tempat Lahir</label>
@@ -110,6 +110,12 @@
 <style>
     .btn-block {
         width: auto;
+    }
+
+    .custom-color-btn {
+        background-color: #FFA63E;
+        color: #fff;
+        border-color: #FFA63E;
     }
 
 </style>
