@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        .custom-color-btn {
+            background-color: #FFA63E;
+            color: #fff;
+            border-color: #FFA63E;
+        }
+
+        .table-container {
+            margin-bottom: 20px;
+        }
+    </style>
     <div class="card card-outline card-primary">
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
@@ -64,17 +75,6 @@
     </div>
 @endsection
 @push('css')
-<style>
-    .custom-color-btn {
-        background-color: #FFA63E;
-        color: #fff;
-        border-color: #FFA63E;
-    }
-
-    .table-container {
-        margin-bottom: 20px;
-    }
-</style>
 @endpush
 @push('js')
     {{-- <script>
