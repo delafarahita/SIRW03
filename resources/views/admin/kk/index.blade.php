@@ -48,32 +48,29 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            let dataTransaksi = $('#table_dataKK').DataTable({
+            var dataKk = $('#table_dataKK').DataTable({
                 serverSide: true,
                 ajax: {
                     url: "{{ url('admin/data_kk/list') }}",
-                    type: "POST",
                     dataType: "json",
-                    serverSide: true,
+                    type: "POST",
+                    
                 },
                 columns: [{
                     data: "DT_RowIndex",
                     className: "text-center",
-                    orderable: true,
+                    orderable: false,
                     searchable: false
                 }, {
                     data: "no_kk",
-                    className: "",
                     orderable: true,
                     searchable: true
                 }, {
                     data: "kepala_keluarga",
-                    className: "",
                     orderable: true,
                     searchable: true
                 }, {
                     data: "aksi",
-                    className: "",
                     orderable: false,
                     searchable: false
                 }]

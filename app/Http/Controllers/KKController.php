@@ -26,12 +26,12 @@ class KKController extends Controller
 
     public function list(Request $request)
     {
-        $kk = KKModel::select('no_kk', 'kepala_keluarga');
+        $kks = KKModel::select('no_kk', 'kepala_keluarga');
 
-        return DataTables::of($kk)
+        return DataTables::of($kks)
             ->addIndexColumn()
             ->addColumn('aksi', function ($kk) {
-                $btn = '<a href="' . url('admin/data_kk/' . $kk->no_kk) . '" class="btn btn-info btn-sm">Detail</a> ';
+               $btn = '<a href="' . url('admin/data_kk/' . $kk->no_kk) . '" class="btn btn-info btn-sm">Detail</a> ';
                 $btn .= '<a href="' . url('admin/data_kk/' . $kk->no_kk . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_kk/' . $kk->no_kk) . '">'
                     . csrf_field() . method_field('DELETE') .
