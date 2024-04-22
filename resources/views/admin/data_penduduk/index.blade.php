@@ -29,21 +29,21 @@
                     <thead>
                         <tr>
                             <th>NIK</th>
-                            <th>No. KK</th>
+                            {{-- <th>No. KK</th> --}}
                             <th>Nama</th>
                             <th>Tempat Lahir</th>
                             <th>Tanggal Lahir</th>
                             <th>Gol. Darah</th>
                             <th>Jenis Kelamin</th>
-                            <th>Alamat</th>
-                            <th>RT</th>
-                            <th>RT</th>
-                            <th>Kelurahan</th>
-                            <th>Kecamatan</th>
-                            <th>Kewarganegaraan</th>
-                            <th>Pekerjaan</th>
-                            <th>Agama</th>
-                            <th>Domisili</th>
+                            {{-- <th>Alamat</th> --}}
+                            {{-- <th>RT</th> --}}
+                            {{-- <th>RT</th> --}}
+                            {{-- <th>Kelurahan</th> --}}
+                            {{-- <th>Kecamatan</th> --}}
+                            {{-- <th>Kewarganegaraan</th> --}}
+                            {{-- <th>Pekerjaan</th> --}}
+                            {{-- <th>Agama</th> --}}
+                            {{-- <th>Domisili</th> --}}
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -80,7 +80,6 @@
 
             <div class="card-tools d-flex justify-content-between">
                 <a class="btn-sm custom-color-btn mt-1" href="{{ route('data_penduduk.create') }}">Tambah Penduduk</a>
-                <a class="btn-sm custom-color-btn mt-1" href="{{ url('DataPenduduk/create') }}">Tambah KK</a>
                 <a class="btn-sm custom-color-btn mt-1" href="{{ url('DataPenduduk/create') }}">Download Seluruh Data</a>
             </div>
         </div>

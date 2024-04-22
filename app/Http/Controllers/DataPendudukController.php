@@ -25,7 +25,12 @@ class DataPendudukController extends Controller
         $activeMenu = 'Data Penduduk'; // set menu yang sedang aktif
         // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
 
-        return view('admin.data_penduduk.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.data_penduduk.index', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown
+        ]);
     }
 
     public function create()

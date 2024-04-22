@@ -11,6 +11,7 @@ class KKModel extends Model
     use HasFactory;
     public $table = 'kk';
     public $primaryKey = 'no_kk';
+    public $timestamps = false;
     protected $fillable = [
         'no_kk',
         'kepala_keluarga',

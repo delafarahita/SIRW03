@@ -23,6 +23,8 @@
         <meta  property="og:site_name" content="Themesberg"></meta>
     @endif
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="{{asset('assets/img/favicon/apple-touch-icon.png')}}" sizes="180x180">
     <link rel="icon" href="{{('assets/img/favicon/favicon-32x32.png')}}" sizes="32x32" type="image/png">
@@ -53,6 +55,12 @@
 
     <!-- Volt CSS -->
     <link type="text/css" href="{{asset('/css/volt.css')}}" rel="stylesheet">
+
+    {{-- data tables --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.min.css">
+
 
 
     <!-- Core -->
@@ -95,6 +103,16 @@
 
     <!-- Volt JS -->
     <script src="{{asset('/assets/js/volt.js')}}"></script>
+
+    {{-- data tables --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.min.js"></script>
 
     @if(env('IS_DEMO'))
         <!-- Global site tag (gtag.js) - Google Analytics -->
