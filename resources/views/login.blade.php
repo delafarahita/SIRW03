@@ -21,11 +21,11 @@
                 <form>
                     <div class="mb-3">
                         <label for="username" class="form-label text-white ">USERNAME</label>
-                        <input type="text" class="form-control" id="username" placeholder="">
+                        <input type="text" class="form-control" id="username" placeholder="masukan username">
                     </div>
                     <div class="">
                         <label for="password" class="form-label text-white ">PASSWORD</label>
-                        <input type="password" class="form-control" id="password" placeholder="">
+                        <input type="password" class="form-control" id="password" placeholder="masukan password">
                     </div>
                     <div class="mb-3">
                         <a href="#" class="text-white"
