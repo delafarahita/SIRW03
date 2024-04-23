@@ -18,11 +18,18 @@ class UmkmController extends Controller
         $page = (object) [
             'title' => 'Data UMKM yang terdaftar dalam sistem'
         ];
-
-        $activeMenu = 'Data UMKM'; // set menu yang sedang aktif
+        $dropdown = 'd_umkm';
+        $activeMenu = 'Data UMKM';
         // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
 
-        return view('admin.umkm.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.umkm.index', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown
+
+
+        ]);
     }
 
     public function create()

@@ -31,7 +31,7 @@ class KKController extends Controller
         return DataTables::of($kks)
             ->addIndexColumn()
             ->addColumn('aksi', function ($kk) {
-               $btn = '<a href="' . url('admin/data_kk/' . $kk->no_kk) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn = '<a href="' . url('admin/data_kk/' . $kk->no_kk) . '" class="btn btn-info btn-sm">Detail</a> ';
                 $btn .= '<a href="' . url('admin/data_kk/' . $kk->no_kk . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_kk/' . $kk->no_kk) . '">'
                     . csrf_field() . method_field('DELETE') .
@@ -42,7 +42,8 @@ class KKController extends Controller
             ->make(true);
     }
 
-    public function create(){
+    public function create()
+    {
         $page = (object) [
             'title' => 'Tambah Kartu Keluarga Baru',
         ];
@@ -57,7 +58,8 @@ class KKController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validated = $request->validate([
             'no_kk' => 'required|unique:kk',
             'kepala_keluarga' => 'required',
@@ -69,5 +71,56 @@ class KKController extends Controller
         ]);
 
         return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil ditambahkan!');
+    }
+
+    // public function show($id){
+    //     $page = (object) [
+    //         'title' => 'Detail Kartu Keluarga',
+    //     ];
+    //     $activeMenu = 'kartu_keluarga';
+    //     $dropdown = 'd_penduduk';
+    //     $kk = KKModel::find($id);
+    //     return view('admin.kk.show', [
+    //         'page' => $page,
+    //         'kk' => $kk,
+    //         'activeMenu' => $activeMenu,
+    //         'dropdown' => $dropdown
+    //     ]);
+    // }
+
+    public function edit($id)
+    {
+        $page = (object) [
+            'title' => 'Edit Kartu Keluarga',
+        ];
+        $activeMenu = 'kartu_keluarga';
+        $dropdown = 'd_penduduk';
+        $kk = KKModel::find($id);
+        return view('admin.kk.edit', [
+            'page' => $page,
+            'kk' => $kk,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'no_kk' => 'required',
+            'kepala_keluarga' => 'required',
+        ]);
+        $kk = KKModel::find($id)->update([
+            'no_kk' => $request->no_kk,
+            'kepala_keluarga' => $request->kepala_keluarga,
+        ]);
+        return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil diupdate!');
+    }
+
+    public function destroy($id)
+    {
+        $kk = KKModel::find($id);
+        $kk->delete();
+        return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil dihapus!');
     }
 }
