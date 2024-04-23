@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataPendudukController;
@@ -9,6 +10,8 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\KasController;
 use App\Http\Controllers\KKController;
+use App\Http\Controllers\RTController;
+use App\Http\Controllers\RWController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,3 +121,23 @@ Route::group(['prefix'=>'admin'], function(){
         Route::delete('/{id}', [KasController::class, 'destroy']);
     });
 });
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+// Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+// Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::group(['middleware' => 'cek_login:1'], function () {
+        Route::resource('rw', RWController::class);
+    });
+
+    Route::group(['middleware' => 'cek_login:2'], function () {
+        Route::resource('rt', RTController::class);
+    });
+
+});
+

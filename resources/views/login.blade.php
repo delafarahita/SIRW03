@@ -18,15 +18,35 @@
         <div class="col d-flex justify-content-center align-items-center bg">
             <div class="w-75 w-md-50">
                 <h3 class="mb-3 text-center text-white">LOGIN</h3>
-                <form>
+                @error('login_gagal')
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span class="alert-inner--text"><strong>Warning!</strong>{{ $message }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @enderror
+                <form method="POST" action="{{url('proses_login')}}">
+                    @csrf
                     <div class="mb-3">
                         <label for="username" class="form-label text-white ">USERNAME</label>
-                        <input type="text" class="form-control" id="username" placeholder="masukan username">
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" placeholder="masukan username" value="{{ old('username') }}">
                     </div>
+                    @error('username')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
                     <div class="">
                         <label for="password" class="form-label text-white ">PASSWORD</label>
-                        <input type="password" class="form-control" id="password" placeholder="masukan password">
+                        <input type="password" class="form-control @error('username') is-invalid @enderror" id="password" name="password" value="{{old('password')}}" placeholder="masukan password">
                     </div>
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <div class="mb-3">
                         <a href="#" class="text-white"
                             style="text-decoration: none; font-style: italic; font-size: 0.8rem;">Lupa Password?</a>

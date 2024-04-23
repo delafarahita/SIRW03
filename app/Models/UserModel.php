@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
-class UserModel extends Model
+class UserModel extends \Illuminate\Foundation\Auth\User
 {
     use HasFactory;
 
