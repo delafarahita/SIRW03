@@ -122,10 +122,10 @@ class DataPendudukModel extends Model
         "Wiraswasta"
     ];
 
-    // public function rt(): BelongsTo
-    // {
-    //     return $this->belongsTo(RtModel::class, 'id_rt', 'id');
-    // }
+    public function rt(): BelongsTo
+    {
+        return $this->belongsTo(RtModel::class, 'id_rt', 'id');
+    }
     public function kk(): BelongsTo
     {
         return $this->belongsTo(KKModel::class, 'no_kk', 'no_kk');

@@ -6,6 +6,8 @@ use App\Models\DataPendudukModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use App\Models\RTModel;
+use App\Models\KKModel;
 
 class DataPendudukController extends Controller
 {
@@ -23,18 +25,48 @@ class DataPendudukController extends Controller
         $dropdown = 'd_penduduk';
 
         $activeMenu = 'Data Penduduk'; // set menu yang sedang aktif
-        // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
+        $rt = RTModel::all();
+        $kk = KKModel::all();
 
         return view('admin.data_penduduk.index', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
-            'dropdown' => $dropdown
+            'dropdown' => $dropdown,
+            'kk' => $kk,
+            'rt' => $rt
         ]);
+    }
+
+    public function list(Request $request)
+    {
+        $penduduk = DataPendudukModel::select(
+            'nik',
+            'nama',
+            'tempat_lahir',
+            'tanggal_lahir',
+            'gol_darah',
+            'jenis_kelamin',
+        )->with('rt')
+            ->with('kk');
+
+        return DataTables::of($penduduk)
+            ->addColumn('aksi', function ($penduduk) {
+                $btn = '<a href="' . url('admin/data_penduduk/' . $penduduk->nik) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('admin/data_penduduk/' . $penduduk->nik . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_penduduk/' . $penduduk->nik) . '">'
+                    . csrf_field() . method_field('DELETE') .
+                    '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
+                return $btn;
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
     }
 
     public function create()
     {
+        $kk = KKModel::all();
+        $rt = RTModel::all();
         $breadcrumb = (object) [
             'title' => 'Data Penduduk',
             'list' => ['Home', 'Data Penduduk', 'Tambah']
@@ -45,52 +77,63 @@ class DataPendudukController extends Controller
         ];
 
         $pekerjaan = DataPendudukModel::$pekerjaan;
+        $activeMenu = 'data_penduduk';
+        $dropdown = 'd_penduduk';
 
-        $activeMenu = 'data_penduduk'; 
-
-        return view('admin.data_penduduk.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'pekerjaan' => $pekerjaan]);
+        return view('admin.data_penduduk.create', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
+            'pekerjaan' => $pekerjaan,
+            'kk' => $kk,
+            'rt' => $rt
+        ]);
     }
 
-    public function list(Request $request)
-    {
-        // $kategoris = KategoriModel::select('kategori_id', 'kategori_kode', 'kategori_nama');
-
-        // // Filter data user berdasarkan kategori_id
-        // if ($request->kategori_id) {
-        //     $kategoris->where('kategori_id', $request->kategori_id);
-        // }
-
-        // return DataTables::of($kategoris)
-        //     ->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
-        //     ->addColumn('aksi', function ($kategori) { // menambahkan kolom aksi
-        //         $btn = '<a href="' . url('/kategori/' . $kategori->kategori_id) . '" class="btn btn-info btn-sm">Detail</a> ';
-        //         $btn .= '<a href="' . url('/kategori/' . $kategori->kategori_id . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-        //         $btn .= '<form class="d-inline-block" method="POST" action="' . url('/kategori/' . $kategori->kategori_id) . '">'
-        //             . csrf_field() . method_field('DELETE') .
-        //             '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
-        //         return $btn;
-        //     })
-        //     ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
-        //     ->make(true);
-    }
-
-    // Menyimpan data user baru
     public function store(Request $request)
     {
-        $request->validate([
-            // 'kategori_kode' => 'required|string|min:3|unique:m_kategoris,kategori_kode',
-            // 'kategori_nama' => 'required|string|min:3'
+        $validated = $request->validate([
+            'nik' => 'required|unique:data_penduduk',
+            'no_kk' => 'required',
+            'nama' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'gol_darah' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'rw' => 'required',
+            'id_rt' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'kewarganegaraan' => 'required',
+            'pekerjaan' => 'required',
+            'agama' => 'required',
+            'domisili' => 'required'
         ]);
 
-        // KategoriModel::create([
-        //     'kategori_kode' => $request->kategori_kode,
-        //     'kategori_nama' => $request->kategori_nama
-        // ]);
+        DataPendudukModel::create([
+            'nik' => $request->nik,
+            'no_kk' => $request->no_kk,
+            'nama' => $request->nama,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'gol_darah' => $request->gol_darah,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'rw' => $request->rw,
+            'id_rt' => $request->id_rt,
+            'kelurahan' => $request->kelurahan,
+            'kecamatan' => $request->kecamatan,
+            'kewarganegaraan' => $request->kewarganegaraan,
+            'pekerjaan' => $request->pekerjaan,
+            'agama' => $request->agama,
+            'domisili' => $request->domisili
+        ]);
 
-        return redirect('/DataPenduduk')->with('success', 'Data Penduduk berhasil disimpan');
+        return redirect('/admin/data_penduduk')->with('success', 'Data Penduduk berhasil disimpan');
     }
 
-    // Menampilkan detail user
     public function show(string $id)
     {
         //$kategori = KategoriModel::with('kategori')->find($id);
@@ -110,11 +153,11 @@ class DataPendudukController extends Controller
         return view('admin.data_penduduk.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
-    // Menampilkan halaman form edit user
     public function edit(string $id)
     {
-        // $kategori = KategoriModel::find($id);
-        // $kategoris = KategoriModel::all(); // Melewatkan data kategori ke view
+        $penduduk = DataPendudukModel::find($id);
+        $kk = KKModel::all();
+        $rt = RTModel::all();
 
         $breadcrumb = (object) [
             'title' => 'Edit Data Penduduk',
@@ -124,43 +167,74 @@ class DataPendudukController extends Controller
         $page = (object) [
             'title' => 'Edit Data Penduduk'
         ];
+        $activeMenu = 'dataPenduduk';
+        $dropdown = 'd_penduduk';
 
-        $activeMenu = 'dataPenduduk'; // set menu yang sedang aktif
-
-        return view('admin.data_penduduk.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]); // Memasukkan variabel $kategoris ke dalam view
+        return view('admin.data_penduduk.edit', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
+            'pekerjaan' => DataPendudukModel::$pekerjaan,
+            'penduduk' => $penduduk,
+            'kk' => $kk,
+            'rt' => $rt
+        ]);
     }
 
-
-    // Menyimpan perubahan data user
     public function update(Request $request, string $id)
     {
         $request->validate([
-            // 'kategori_kode' => 'required|string|min:3|unique:m_kategoris,kategori_kode,' . $id . ',kategori_id',
-            // 'kategori_nama' => 'required|string|min:3'
+            'nik'               => 'required|unique:data_penduduk',
+            'no_kk'             => 'required',
+            'nama'              => 'required',
+            'tempat_lahir'      => 'required',
+            'tanggal_lahir'     => 'required',
+            'gol_darah'         => 'required',
+            'jenis_kelamin'     => 'required',
+            'alamat'            => 'required',
+            'rw'                => 'required',
+            'id_rt'             => 'required',
+            'kelurahan'         => 'required',
+            'kecamatan'         => 'required',
+            'kewarganegaraan'   => 'required',
+            'pekerjaan'         => 'required',
+            'agama'             => 'required',
+            'domisili'          => 'required'
         ]);
 
-        // KategoriModel::find($id)->update([
-        //     'kategori_kode' => $request->kategori_kode,
-        //     'kategori_nama' => $request->kategori_nama
-        // ]);
+        DataPendudukModel::find($id)->update([
+            'nik'           => $request->nik,
+            'no_kk'         => $request->no_kk,
+            'nama'          => $request->nama,
+            'tempat_lahir'  => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'gol_darah'     => $request->gol_darah,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat'        => $request->alamat,
+            'rw'            => $request->rw,
+            'id_rt'         => $request->id_rt,
+            'kelurahan'     => $request->kelurahan,
+            'kecamatan'     => $request->kecamatan,
+            'kewarganegaraan' => $request->kewarganegaraan,
+            'pekerjaan'     => $request->pekerjaan,
+            'agama'         => $request->agama,
+            'domisili'      => $request->domisili
+        ]);
 
-        return redirect('/DataPenduduk')->with('success', 'Data Penduduk berhasil diubah');
+        return redirect('/admin/data_penduduk')->with('success', 'Data Penduduk berhasil diubah');
     }
 
-    // Menghapus data user
     public function destroy(string $id)
     {
         $check = DataPendudukModel::find($id);
         if (!$check) {  // untuk mengecek apakah data user dengan id yang dimaksud ada atau tidak
             return redirect('/DataPenduduk')->with('error', 'Data Penduduk tidak ditemukan');
         }
-
         try {
             DataPendudukModel::destroy($id); // Hapus data kategori
-
             return redirect('/DataPenduduk')->with('success', 'Data Penduduk berhasil dihapus');
         } catch (\Illuminate\Database\QueryException $e) {
-
             // Jika terjadi error ketika menghapus data, redirect kembali ke halaman dengan membawa pesan error
             return redirect('/DataPenduduk')->with('error', 'Data Penduduk gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }

@@ -47,34 +47,6 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {{-- <tr>
-                            <td>10203040506070809</td>
-                            <td>Anto</td>
-                            <td>Malang</td>
-                            <td>1990-05-15</td>
-                            <td>O</td>
-                            <td>Laki-laki</td>
-                            <td>
-                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-info">Detail</a>
-                                <button class="btn btn-danger">Hapus</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10908070605040302</td>
-                            <td>Ana</td>
-                            <td>Malang</td>
-                            <td>1995-10-20</td>
-                            <td>A</td>
-                            <td>Perempuan</td>
-                            <td>
-                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-info">Detail</a>
-                                <button class="btn btn-danger">Hapus</button>
-                            </td>
-                        </tr> --}}
-
-
-                    </tbody>
                 </table>
             </div>
 
@@ -88,49 +60,5 @@
 @push('css')
 @endpush
 @push('js')
-    {{-- <script>
-        $(document).ready(function() {
-            var dataUser = $('#table_level').DataTable({
-                serverSide: true, // serverSide: true, jika ingin menggunakan server side processing
-                ajax: {
-                    "url": "{{ url('level/list') }}",
-                    "dataType": "json",
-                    "type": "POST",
-                    "data": function(d) {
-                        d.level_id = $('#level_id').val();
-                    }
-                },
-                columns: [{
-                        data: "DT_RowIndex",
-                        className: "text-center",
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: "level_kode", // Menggunakan level_kode langsung dari hasil query
-                        className: "",
-                        orderable: true,
-                        searchable: true
-                    },
-                    {
-                        data: "level_nama", // Menggunakan level_nama langsung dari hasil query
-                        className: "",
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: "aksi",
-                        className: "",
-                        orderable: false,
-                        searchable: false
-                    }
-                ]
-
-            });
-            $('#level_id').on('change', function() {
-                dataUser.ajax.reload();
-            });
-
-        });
-    </script> --}}
+    
 @endpush

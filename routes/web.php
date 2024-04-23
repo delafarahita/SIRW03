@@ -65,6 +65,17 @@ Route::group(['prefix'=>'admin'], function(){
         Route::delete('/{id}', [KKController::class, 'destroy'])->name('data_kk.destroy');
     });
 
+    Route::group(['prefix' => 'data_rt'], function(){
+        Route::get('/', [RTController::class, 'index'])->name('data_rt.index');
+        Route::post('/list', [RTController::class, 'list'])->name('data_rt.list');
+        Route::get('/create', [RTController::class, 'create'])->name('data_rt.create');
+        Route::post('/', [RTController::class, 'store'])->name('data_rt.store');
+        Route::get('/{id}', [RTController::class, 'show'])->name('data_rt.show');
+        Route::get('/{id}/edit', [RTController::class, 'edit'])->name('data_rt.edit');
+        Route::put('/{id}', [RTController::class, 'update'])->name('data_rt.update');
+        Route::delete('/{id}', [RTController::class, 'destroy'])->name('data_rt.destroy');
+    });
+
     Route::group(['prefix' => 'bantuan_sosial'], function(){
         Route::get('/', [DataPendudukController::class, 'index'])->name('bantuan_sosial.index');
     });

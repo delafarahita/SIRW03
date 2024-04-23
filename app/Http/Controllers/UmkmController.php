@@ -27,8 +27,6 @@ class UmkmController extends Controller
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown
-
-
         ]);
     }
 

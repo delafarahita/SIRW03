@@ -11,16 +11,16 @@
                 {!! method_field('PUT') !!}
 
                 <div class="form-group row">
-                    <label for="no_kk">No KK</label>
-                    <input type="text" class="form-control" id="no_kk" name="no_kk" value="{{ $kk->no_kk }}">
+                    <label for="no_kk" class="col-sm-2 col-form-label">Nomor KK</label>
+                    <input type="text" class="form-control col-sm-10" id="no_kk" name="no_kk" value="{{ $kk->no_kk }}">
                     @error('no_kk')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="form-group row">
-                    <label for="kepala_keluarga">Kepala Keluarga</label>
-                    <input type="text" class="form-control" id="kepala_keluarga" name="kepala_keluarga"
+                    <label for="kepala_keluarga " class="col-sm-2 col-form-label">Kepala Keluarga</label>
+                    <input type="text" class="form-control col-sm-10" id="kepala_keluarga" name="kepala_keluarga"
                         value="{{ $kk->kepala_keluarga }}">
                     @error('kepala_keluarga')
                         <span class="invalid-feedback">{{ $message }}</span>

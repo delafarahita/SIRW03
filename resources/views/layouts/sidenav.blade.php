@@ -168,7 +168,7 @@
                             <a class="nav-link" href="{{ route('data_kk.index')}}">Data KK</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Data RT</a>
+                            <a class="nav-link" href="{{ route('data_rt.index')}}">Data RT</a>
                         </li>
                     </ul>
                 </div>
