@@ -20,7 +20,7 @@
                 <h3 class="mb-3 text-center text-white fw-bold">LOGIN</h3>
                 @error('login_gagal')
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <span class="alert-inner--text"><strong>Warning!</strong>{{ $message }}</span>
+                        <span class="alert-inner-text"><strong>Warning!</strong>{{ $message }}</span>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

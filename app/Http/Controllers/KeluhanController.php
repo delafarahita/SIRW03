@@ -40,13 +40,22 @@ class KeluhanController extends Controller
 
 public function store(Request $request)
 {
+    // echo '<pre>';
+    // print_r($request->all());
     // Validasi data yang dikirim dari form
-    $validatedData = $request->validate([
-        'nama_penduduk' => 'required|string|max:255',
-        'rt' => 'required|string|max:255',
-        'keluhan' => 'required|string',
+    $validated = $request->validate([
+        'nama_penduduk' => 'required',
+        'rt' => 'required',
+        'keluhan' => 'required',
     ]);
+        
 
+    Keluhan::create([
+        'nama_penduduk' => $request->nama_penduduk,
+        'rt' => $request->rt,
+        'keluhan' => $request->keluhan,
+    ]);
+    return redirect()->intended('/');
     // Simpan data ke database
     // $keluhan = new Keluhan();
     // $keluhan->nama_penduduk = $validatedData['nama'];
@@ -54,12 +63,6 @@ public function store(Request $request)
     // $keluhan->keluhan = $validatedData['keluhan'];
     // $keluhan->save();
 
-    Keluhan::create([
-        'nama_penduduk' => $request->nama_penduduk,
-        'rt' => $request->rt,
-        'keluhan' => $request->keluhan,
-    ]);
 
-    return view('welcome');
     }
 }
