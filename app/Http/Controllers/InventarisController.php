@@ -13,8 +13,10 @@ class InventarisController extends Controller
             'title' => 'INVENTARIS'
         ];
         $activeMenu = 'inventaris';
+        $dropdown = 'dropdown';
         return view('admin.inventaris.index', [
             'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
             'page' => $page
         ]);
     }
