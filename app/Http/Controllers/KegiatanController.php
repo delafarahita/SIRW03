@@ -23,9 +23,15 @@ class KegiatanController extends Controller
         ];
 
         $activeMenu = 'Info Kegiatan'; // set menu yang sedang aktif
+        $dropdown = '';
         // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
 
-        return view('admin.kegiatan.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.kegiatan.index', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown
+        ]);
     }
 
     /**

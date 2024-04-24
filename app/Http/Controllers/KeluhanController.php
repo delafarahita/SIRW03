@@ -20,6 +20,7 @@ class KeluhanController extends Controller
     ];
 
     $activeMenu = 'Keluhan Penduduk'; // set menu yang sedang aktif
+    $dropdown = '';
 
     // Simulasi data keluhan (Anda akan menggantinya dengan data sebenarnya)
     $keluhans = [
@@ -28,7 +29,13 @@ class KeluhanController extends Controller
         (object) ['nama_penduduk' => 'Alice Smith', 'asal_rt' => 'RT 03', 'keluhan' => 'Lorem ipsum dolor sit amet consectetur.', 'is_private' => false, 'reply' => 'Balasan 3', 'id' => 3],
     ];
 
-    return view('admin.keluhan.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'keluhans' => $keluhans]);
+    return view('admin.keluhan.index', [
+        'breadcrumb' => $breadcrumb,
+        'page' => $page,
+        'activeMenu' => $activeMenu,
+        'dropdown' => $dropdown,
+        'keluhans' => $keluhans
+    ]);
 }
 
 public function store(Request $request)
