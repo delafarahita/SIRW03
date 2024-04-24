@@ -47,8 +47,7 @@ class DataPendudukController extends Controller
             'tanggal_lahir',
             'gol_darah',
             'jenis_kelamin',
-        )->with('rt')
-            ->with('kk');
+        );
 
         return DataTables::of($penduduk)
             ->addColumn('aksi', function ($penduduk) {
@@ -67,6 +66,12 @@ class DataPendudukController extends Controller
     {
         $kk = KKModel::all();
         $rt = RTModel::all();
+        $pekerjaan = DataPendudukModel::$pekerjaan;
+        $gol_darah = DataPEndudukModel::$gol_darah;
+        $jenis_kelamin = DataPendudukModel::$jenis_kelamin;
+        $kewarganegaraan = DataPendudukModel::$kewarganegaraan;
+        $agama     = DataPendudukModel::$agama;
+        $domisili     = DataPendudukModel::$domisili;
         $breadcrumb = (object) [
             'title' => 'Data Penduduk',
             'list' => ['Home', 'Data Penduduk', 'Tambah']
@@ -76,7 +81,6 @@ class DataPendudukController extends Controller
             'title' => 'Tambah Data Penduduk Baru'
         ];
 
-        $pekerjaan = DataPendudukModel::$pekerjaan;
         $activeMenu = 'data_penduduk';
         $dropdown = 'd_penduduk';
 
@@ -87,7 +91,12 @@ class DataPendudukController extends Controller
             'dropdown' => $dropdown,
             'pekerjaan' => $pekerjaan,
             'kk' => $kk,
-            'rt' => $rt
+            'rt' => $rt,
+            'gol_darah' => $gol_darah,
+            'jenis_kelamin' => $jenis_kelamin,
+            'kewarganegaraan' => $kewarganegaraan,
+            'agama' => $agama,
+            'domisili' => $domisili
         ]);
     }
 
@@ -158,6 +167,12 @@ class DataPendudukController extends Controller
         $penduduk = DataPendudukModel::find($id);
         $kk = KKModel::all();
         $rt = RTModel::all();
+        $pekerjaan = DataPendudukModel::$pekerjaan;
+        $gol_darah = DataPEndudukModel::$gol_darah;
+        $jenis_kelamin = DataPendudukModel::$jenis_kelamin;
+        $kewarganegaraan = DataPendudukModel::$kewarganegaraan;
+        $agama     = DataPendudukModel::$agama;
+        $domisili     = DataPendudukModel::$domisili;
 
         $breadcrumb = (object) [
             'title' => 'Edit Data Penduduk',
@@ -175,10 +190,15 @@ class DataPendudukController extends Controller
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown,
-            'pekerjaan' => DataPendudukModel::$pekerjaan,
+            'pekerjaan' => $pekerjaan,
             'penduduk' => $penduduk,
             'kk' => $kk,
-            'rt' => $rt
+            'rt' => $rt,
+            'gol_darah' => $gol_darah,
+            'jenis_kelamin' => $jenis_kelamin,
+            'kewarganegaraan' => $kewarganegaraan,
+            'agama' => $agama,
+            'domisili' => $domisili
         ]);
     }
 
@@ -229,14 +249,14 @@ class DataPendudukController extends Controller
     {
         $check = DataPendudukModel::find($id);
         if (!$check) {  // untuk mengecek apakah data user dengan id yang dimaksud ada atau tidak
-            return redirect('/DataPenduduk')->with('error', 'Data Penduduk tidak ditemukan');
+            return redirect('/admin/data_penduduk')->with('error', 'Data Penduduk tidak ditemukan');
         }
         try {
             DataPendudukModel::destroy($id); // Hapus data kategori
-            return redirect('/DataPenduduk')->with('success', 'Data Penduduk berhasil dihapus');
+            return redirect('/admin/data_penduduk')->with('success', 'Data Penduduk berhasil dihapus');
         } catch (\Illuminate\Database\QueryException $e) {
             // Jika terjadi error ketika menghapus data, redirect kembali ke halaman dengan membawa pesan error
-            return redirect('/DataPenduduk')->with('error', 'Data Penduduk gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+            return redirect('/admin/data_penduduk')->with('error', 'Data Penduduk gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
     }
 }

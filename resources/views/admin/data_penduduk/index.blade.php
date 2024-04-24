@@ -60,5 +60,52 @@
 @push('css')
 @endpush
 @push('js')
-    
+    <script>
+        $(documet).ready(function() {
+            var dataPenduduk = $('#table_dataPenduduk').DataTable({
+                serverSide: true,
+                ajax: {
+                    url: "{{ url('admin/data_penduduk/list') }}",
+                    dataType: "json",
+                    type: "POST",
+                },
+                columns: [{
+                    data: "nik",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true,
+                }, {
+                    data: "nama",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true,
+                }, {
+                    data: "tempat_lahir",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
+                }, {
+                    data: "tanggal_lahir",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
+                }, {
+                    data: "gol_darah",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
+                }, {
+                    data: "jenis_kelamin",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
+                }, {
+                    data: "aksi",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
+                }]
+            });
+        });
+    </script>
 @endpush

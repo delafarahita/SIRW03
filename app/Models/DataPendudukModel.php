@@ -11,6 +11,7 @@ class DataPendudukModel extends Model
     use HasFactory;
     public $table = 'data_penduduk';
     public $primaryKey = 'NIK';
+    public $timestamps = false;
 
     protected $fillable = [
         'nik',
@@ -120,6 +121,22 @@ class DataPendudukModel extends Model
         "Kepala Desa",
         "Biarawati",
         "Wiraswasta"
+    ];
+
+    public static $gol_darah =[
+        "A","AB","B","O"
+    ];
+    public static $jenis_kelamin =[
+        "L","P"
+    ];
+    public static $kewarganegaraan =[
+        "WNI","WNA"
+    ];
+    public static $agama =[
+        'islam', 'katolik', 'protestan', 'hindu', 'budha', 'konghucu'
+    ];
+    public static $domisili =[
+        'penduduk setempat' , 'penduduk setempat berdomisili di tempat lain', 'penduduk dari luar'
     ];
 
     public function rt(): BelongsTo

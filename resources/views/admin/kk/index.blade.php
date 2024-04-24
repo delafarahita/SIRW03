@@ -54,7 +54,6 @@
                     url: "{{ url('admin/data_kk/list') }}",
                     dataType: "json",
                     type: "POST",
-                    
                 },
                 columns: [{
                     data: "DT_RowIndex",

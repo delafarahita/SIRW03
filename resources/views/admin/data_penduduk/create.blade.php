@@ -20,8 +20,14 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">No. KK</label>
-                            <input type="number" class="form-control" id="no_kk" name="no_kk"
-                                value="{{ old('no_kk') }}" required>
+                            {{-- <input type="number" class="form-control" id="no_kk" name="no_kk"
+                                value="{{ old('no_kk') }}" required> --}}
+                            <select class="form-control" id="no_kk" name="no_kk" required>
+                                <option value="">- Pilih Level -</option>
+                                @foreach ($kk as $item)
+                                    <option value="{{ $item->no_kk }}">{{ $item->no_kk }}</option>
+                                @endforeach
+                            </select>
                             @error('no_kk')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -54,10 +60,9 @@
                             <label class="control-label">Gol. Darah</label>
                             <select class="form-control" id="gol_darah" name="gol_darah" required>
                                 <option value="">- PILIH -</option>
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="AB">AB</option>
-                                <option value="O">O</option>
+                                @foreach ($gol_darah as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
                             </select>
                             @error('gol_darah')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -67,8 +72,9 @@
                             <label class="control-label">Jenis Kelamin</label>
                             <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
                                 <option value="">- PILIH -</option>
-                                <option value="L">LAKI-LAKI</option>
-                                <option value="P">PEREMPUAN</option>
+                                @foreach ($jenis_kelamin as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
                             </select>
                             @error('jenis_kelamin')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -94,8 +100,12 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">RT</label>
-                            <input type="number" class="form-control" id="id_rt" name="id_rt"
-                                value="{{ old('id_rt') }}" required>
+                            <select class="form-control" name="id_rt" id="id_rt" required>
+                                <option value="">- Pilih</option>
+                                @foreach ($rt as $item)
+                                    <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
+                                @endforeach
+                            </select>
                             @error('id_rt')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -120,8 +130,9 @@
                             <label class="control-label">Kewarganegaraan</label>
                             <select class="form-control" id="kewarganegaraan" name="kewarganegaraan" required>
                                 <option value="">- PILIH -</option>
-                                <option value="WNI">WNI</option>
-                                <option value="WNA">WNA</option>
+                                @foreach ($kewarganegaraan as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
                             </select>
                             @error('kewarganegaraan')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -144,12 +155,9 @@
                             <label class="control-label">Agama</label>
                             <select class="form-control" id="agama" name="agama" required>
                                 <option value="">- PILIH -</option>
-                                <option value="ISLAM">ISLAM</option>
-                                <option value="KRISTEN">KRISTEN</option>
-                                <option value="KATOLIK">KATOLIK</option>
-                                <option value="HINDU">HINDU</option>
-                                <option value="BUDHA">BUDHA</option>
-                                <option value="KONGHUCU">KONGHUCU</option>
+                                @foreach ($agama as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
                             </select>
                             @error('agama')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -159,8 +167,9 @@
                             <label class="control-label">Domisili</label>
                             <select class="form-control" id="domisili" name="domisili" required>
                                 <option value="">- PILIH -</option>
-                                <option value="Tetap">Tetap</option>
-                                <option value="Tidak Tetap">Tidak Tetap</option>
+                                @foreach ($domisili as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
                             </select>
                             @error('domisili')
                                 <small class="form-text text-danger">{{ $message }}</small>
@@ -172,7 +181,8 @@
                 <div class="form-group row mt-3">
                     <div class="col-12">
                         <button type="submit" class="btn btn-info btn-sm btn-block">Simpan</button>
-                        <a href="{{ route('data_penduduk.index') }}" class="btn btn-danger btn-sm btn-block">Kembali</a"></a>
+                        <a href="{{ route('data_penduduk.index') }}" class="btn btn-danger btn-sm btn-block">Kembali</a">
+                        </a>
                     </div>
                 </div>
             </form>
