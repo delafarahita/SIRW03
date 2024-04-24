@@ -61,7 +61,7 @@
 @endpush
 @push('js')
     <script>
-        $(documet).ready(function() {
+        $(document).ready(function() {
             var dataPenduduk = $('#table_dataPenduduk').DataTable({
                 serverSide: true,
                 ajax: {
@@ -102,8 +102,8 @@
                 }, {
                     data: "aksi",
                     className: "text-center",
-                    orderable: true,
-                    searchable: true
+                    orderable: false,
+                    searchable: false
                 }]
             });
         });

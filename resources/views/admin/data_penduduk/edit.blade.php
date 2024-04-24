@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label class="control-label">NIK</label>
                             <input type="number" class="form-control" id="nik" name="nik"
-                                value="{{ old('nik') }}" required>
+                                value="{{ $penduduk->nik }}" required>
                             @error('nik')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label class="control-label">Nama</label>
                             <input type="text" class="form-control" id="nama" name="nama"
-                                value="{{ old('nama') }}" required>
+                                value="{{ $penduduk->nama }}" required>
                             @error('nama')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label class="control-label">Tempat Lahir</label>
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
-                                value="{{ old('tempat_lahir') }}" required>
+                                value="{{ $penduduk->tempat_lahir }}" required>
                             @error('tempat_lahir')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label class="control-label">Tanggal Lahir</label>
                             <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                                value="{{ old('tanggal_lahir') }}" required>
+                                value="{{ $penduduk->tanggal_lahir }}" required>
                             @error('tanggal_lahir')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <label class="control-label">Alamat</label>
                             <input type="text" class="form-control" id="alamat" name="alamat"
-                                value="{{ old('alamat') }}" required>
+                                value="{{ $penduduk->alamat }}" required>
                             @error('alamat')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -96,7 +96,7 @@
                         <div class="form-group">
                             <label class="control-label">RW</label>
                             <input type="number" class="form-control" id="rw" name="rw"
-                                value="{{ old('rw') }}" required>
+                                value="{{ $penduduk->nik }}" required>
                             @error('rw')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -116,7 +116,7 @@
                         <div class="form-group">
                             <label class="control-label">Kel/Desa</label>
                             <input type="text" class="form-control" id="kelurahan" name="kelurahan"
-                                value="{{ old('kelurahan') }}" required>
+                                value="{{ $penduduk->kelurahan }}" required>
                             @error('kelurahan')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -124,7 +124,7 @@
                         <div class="form-group">
                             <label class="control-label">Kecamatan</label>
                             <input type="text" class="form-control" id="kecamatan" name="kecamatan"
-                                value="{{ old('kecamatan') }}" required>
+                                value="{{ $penduduk->kecamatan }}" required>
                             @error('kecamatan')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
