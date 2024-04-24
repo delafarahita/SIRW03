@@ -251,17 +251,17 @@
                             <h1 class="text-white fw-bold font-s-48">KELUHAN</h1>
                         </div>
                         <div class="">
-                            <form action="" method="post">
+                            <form action="{{route('keluhan.store')}}" method="POST">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control my-2" id="floatingInput" placeholder="">
+                                    <input type="text" class="form-control my-2" name="nama_penduduk" id="floatingInput" placeholder="">
                                     <label for="floatingInput">Nama</label>
                                 </div>
                                 <div class="form-floating">
-                                    <input type="text" class="form-control my-2" id="floatingInput" placeholder="" >
+                                    <input type="text" class="form-control my-2" name="rt" id="floatingInput" placeholder="" >
                                     <label for="floatingInput">RT</label>
                                 </div>
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="" id="floatingTextarea" style="height: 200px"></textarea>
+                                    <textarea class="form-control" placeholder="" name="keluhan" id="floatingTextarea" style="height: 200px"></textarea>
                                     <label for="floatingTextarea">Pengaduan</label>
                                 </div>
                                 <div class="my-2">

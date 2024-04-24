@@ -42,19 +42,24 @@ public function store(Request $request)
 {
     // Validasi data yang dikirim dari form
     $validatedData = $request->validate([
-        'nama' => 'required|string|max:255',
+        'nama_penduduk' => 'required|string|max:255',
         'rt' => 'required|string|max:255',
         'keluhan' => 'required|string',
     ]);
 
     // Simpan data ke database
-    $keluhan = new Keluhan();
-    $keluhan->nama_penduduk = $validatedData['nama'];
-    $keluhan->asal_rt = $validatedData['rt'];
-    $keluhan->keluhan = $validatedData['keluhan'];
-    $keluhan->save();
+    // $keluhan = new Keluhan();
+    // $keluhan->nama_penduduk = $validatedData['nama'];
+    // $keluhan->asal_rt = $validatedData['rt'];
+    // $keluhan->keluhan = $validatedData['keluhan'];
+    // $keluhan->save();
 
-    // Redirect ke halaman lain atau tampilkan pesan sukses
-    return redirect()->route('keluhan.index')->with('success', 'Keluhan berhasil dikirim!');
-}
+    Keluhan::create([
+        'nama_penduduk' => $request->nama_penduduk,
+        'rt' => $request->rt,
+        'keluhan' => $request->keluhan,
+    ]);
+
+    return view('welcome');
+    }
 }

@@ -93,7 +93,7 @@ Route::group(['prefix'=>'admin'], function(){
     Route::group(['prefix' => 'keluhan'], function () {
         Route::get('/', [KeluhanController::class, 'index'])->name('keluhan.index');
         Route::get('/create', [KeluhanController::class, 'create'])->name('keluhan.create');
-        Route::post('/store', [KeluhanController::class, 'store'])->name('keluhan.store');
+        Route::post('/', [KeluhanController::class, 'store'])->name('keluhan.store');
         Route::get('/{id}', [KeluhanController::class, 'show'])->name('keluhan.show');
         Route::get('/{id}/reply', [KeluhanController::class, 'replyForm'])->name('keluhan.replyForm');
         Route::post('/{id}/reply', [KeluhanController::class, 'reply'])->name('keluhan.reply');
