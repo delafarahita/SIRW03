@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UmkmModel;
+use App\Models\RTModel;
 
 class UmkmController extends Controller
 {
@@ -16,9 +17,10 @@ class UmkmController extends Controller
         ];
 
         $page = (object) [
-            'title' => 'Data UMKM yang terdaftar dalam sistem'
+            'title' => 'Data UMKM'
         ];
-        $dropdown = 'd_umkm';
+
+        $dropdown = 'umkm';
         $activeMenu = 'Data UMKM';
         // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
 
@@ -32,7 +34,28 @@ class UmkmController extends Controller
 
     public function create()
     {
-        return view('admin.umkm.create');
+        $breadcrumb = (object) [
+            'title' => 'UMKM',
+            'list' => ['Home', 'UMKM']
+        ];
+
+        $page = (object) [
+            'title' => 'UMKM'
+        ];
+
+        $dropdown = 'umkm';
+
+        $rt = RTModel::all();
+
+        $activeMenu = 'umkm'; // set menu yang sedang aktif
+
+        return view('admin.umkm.create', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
+            'rt' => $rt,
+        ]);
     }
 
     public function store(Request $request)
@@ -44,7 +67,30 @@ class UmkmController extends Controller
     public function show($id)
     {
         $umkm = UmkmModel::findOrFail($id);
-        return view('admin.umkm.show', compact('umkm'));
+
+        $breadcrumb = (object) [
+            'title' => 'Detail UMKM',
+            'list' => ['Home', 'UMKM', 'Detail']
+        ];
+
+        $page = (object) [
+            'title' => 'Detail UMKM'
+        ];
+
+
+        $dropdown = 'umkm';
+
+        $rt = RTModel::all();
+
+        $activeMenu = 'umkm'; // set menu yang sedang aktif
+        
+        return view('admin.umkm.show', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
+            'rt' => $rt,
+        ]);
     }
 
     public function edit($id)
