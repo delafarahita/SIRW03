@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('data_kriteria', function (Blueprint $table) {
+            $table->id('id_kriteria');
+            $table->string('kode_kriteria');
+            $table->string('nama_kriteria');
+            $table->decimal('bobot');
+            $table->enum('jenis', ['Benefit', 'Cost']);
+        });
     }
 
     /**
@@ -19,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('data_kriteria');
     }
 };
