@@ -12,7 +12,7 @@ use App\Http\Controllers\KasController;
 use App\Http\Controllers\KKController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\RWController;
-
+use App\Http\Controllers\BantuanSosialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,7 +77,7 @@ Route::group(['prefix'=>'admin'], function(){
     });
 
     Route::group(['prefix' => 'bantuan_sosial'], function(){
-        Route::get('/', [DataPendudukController::class, 'index'])->name('bantuan_sosial.index');
+        Route::get('/', [BantuanSosialController::class, 'index'])->name('bantuan_sosial.index');
     });
 
     Route::group(['prefix' => 'umkm'], function(){
