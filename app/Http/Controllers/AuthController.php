@@ -17,6 +17,9 @@ class AuthController extends Controller
             if($user->id_level == '1'){
                 return redirect()->intended('admin/dashboard/');
             }
+            else if ($user->id_level == '2') {
+                return redirect()->intended('admin/dashboard/');
+            }
         }
         return view('login');
     }
@@ -36,9 +39,9 @@ class AuthController extends Controller
                 return redirect()->intended('admin/dashboard/');
             }
             
-            // else if($user->id_level == '2'){
-            //     return redirect()->intended('manager');
-            // }
+            else if($user->id_level == '2'){
+                return redirect()->intended('admin/dashboard/');
+            }
             return redirect()->intended('/');
         }
 
