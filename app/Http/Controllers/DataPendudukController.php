@@ -145,8 +145,8 @@ class DataPendudukController extends Controller
 
     public function show(string $id)
     {
-        //$kategori = KategoriModel::with('kategori')->find($id);
-        //$kategori = KategoriModel::find($id);
+        //$penduduk = DataPendudukModel::with('data_penduduk')->find($id);
+        $penduduk = DataPendudukModel::find($id);
 
         $breadcrumb = (object) [
             'title' => 'Detail Data Penduduk',
@@ -157,11 +157,12 @@ class DataPendudukController extends Controller
             'title' => 'Detail Data Penduduk'
         ];
 
-        $dropdown = '';
+
+        $dropdown = 'd_penduduk';
 
         $activeMenu = 'dataPenduduk'; // set menu yang sedang aktif
 
-        return view('admin.data_penduduk.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.data_penduduk.show', ['penduduk' => $penduduk, 'breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'dropdown' => $dropdown]);
     }
 
     public function edit(string $id)
