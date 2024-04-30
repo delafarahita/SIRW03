@@ -17,7 +17,7 @@ class DataKriteriaController extends Controller
         $activeMenu = 'bantuan_sosial';
         $dropdown = '';
 
-        return view('admin.bantuan_sosial.index', [
+        return view('admin.data_kriteria.index', [
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown
@@ -26,7 +26,7 @@ class DataKriteriaController extends Controller
 
     public function list(Request $request)
     {
-        $kriterias = DataKriteriaModel::select('no_kk', 'kepala_keluarga');
+        $kriterias = DataKriteriaModel::select('kode_kriteria', 'nama_kriteria', 'bobot', 'jenis');
 
         return DataTables::of($kriterias)
             ->addIndexColumn()
@@ -51,7 +51,7 @@ class DataKriteriaController extends Controller
         $activeMenu = 'bantuan_sosial';
         $dropdown = '';
 
-        return view('admin.bantuan_sosial.create', [
+        return view('admin.data_kriteria.create', [
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown
@@ -100,9 +100,9 @@ class DataKriteriaController extends Controller
         $activeMenu = 'bantuan_sosial';
         $dropdown = '';
         $kriteria = DataKriteriaModel::find($id);
-        return view('admin.bantuan_sosial.edit', [
+        return view('admin.data_kriteria.edit', [
             'page' => $page,
-            'kk' => $kriteria,
+            'kriteria' => $kriteria,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown
         ]);
@@ -117,16 +117,18 @@ class DataKriteriaController extends Controller
             'jenis' => 'required'
         ]);
         $kriteria = DataKriteriaModel::find($id)->update([
-            'kode_kriteria' => $request->no_kk,
-            'kepala_keluarga' => $request->kepala_keluarga,
+            'kode_kriteria' => $request->kode_kriteria,
+            'nama_kriteria' => $request->nama_kriteria,
+            'bobot' => $request->bobot,
+            'jenis' => $request->jenis,
         ]);
-        return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil diupdate!');
+        return redirect('admin.data_kriteria')->with('success', 'Data Kriteria berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        $kk = DataKriteriaModel::find($id);
-        $kk->delete();
-        return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil dihapus!');
+        $kriteria = DataKriteriaModel::find($id);
+        $kriteria->delete();
+        return redirect('admin/data_kriteria')->with('success', 'Data Kriteria berhasil dihapus!');
     }
 }

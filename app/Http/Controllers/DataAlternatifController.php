@@ -11,13 +11,13 @@ class DataAlternatifController extends Controller
     public function index()
     {
         $page = (object) [
-            'title' => 'Daftar Kriteria Bantuan Sosial',
+            'title' => 'Daftar Alternatif Bantuan Sosial',
         ];
 
         $activeMenu = 'bantuan_sosial';
         $dropdown = '';
 
-        return view('admin.bantuan_sosial.index', [
+        return view('admin.data_alternatif.index', [
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown
@@ -26,14 +26,14 @@ class DataAlternatifController extends Controller
 
     public function list(Request $request)
     {
-        $kriterias = DataAlternatifModel::select('no_kk', 'kepala_keluarga');
+        $alternatifs = DataAlternatifModel::select( 'id_alternatif' , 'nama_alternatif');
 
-        return DataTables::of($kriterias)
+        return DataTables::of($alternatifs)
             ->addIndexColumn()
-            ->addColumn('aksi', function ($kriteria) {
-                $btn = '<a href="' . url('admin/data_kk/' . $kriteria->no_kk) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('admin/data_kk/' . $kriteria->no_kk . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_kk/' . $kriteria->no_kk) . '">'
+            ->addColumn('aksi', function ($alternatif) {
+                $btn = '<a href="' . url('admin/data_alternatif/' . $alternatif->id_alternatif) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('admin/data_alternatif/' . $alternatif->id_alternatif . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_alternatif/' . $alternatif->id_alternatif) . '">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
@@ -45,13 +45,13 @@ class DataAlternatifController extends Controller
     public function create()
     {
         $page = (object) [
-            'title' => 'Tambah Kriteria Baru',
+            'title' => 'Tambah Alternatif Baru',
         ];
 
         $activeMenu = 'bantuan_sosial';
         $dropdown = '';
 
-        return view('admin.bantuan_sosial.create', [
+        return view('admin.data_alternatif.create', [
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown
@@ -61,44 +61,42 @@ class DataAlternatifController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'no_kk' => 'required|unique:kk',
-            'kepala_keluarga' => 'required',
+            'nama_alternatif' => 'required',
         ]);
 
         DataAlternatifModel::create([
-            'no_kk' => $request->no_kk,
-            'kepala_keluarga' => $request->kepala_keluarga,
+            'nama_alternatif' => $request->nama_alternatif
         ]);
 
-        return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil ditambahkan!');
+        return redirect('admin/data_alternatif')->with('success', 'Data Alternatif berhasil ditambahkan!');
     }
 
-    public function show($id){
-        $page = (object) [
-            'title' => 'Detail Kartu Keluarga',
-        ];
-        $activeMenu = 'kartu_keluarga';
-        $dropdown = 'd_penduduk';
-        $kk = DataAlternatifModel::find($id);
-        return view('admin.kk.show', [
-            'page' => $page,
-            'kk' => $kk,
-            'activeMenu' => $activeMenu,
-            'dropdown' => $dropdown
-        ]);
-    }
+    // public function show($id){
+    //     $page = (object) [
+    //         'title' => 'Detail Kartu Keluarga',
+    //     ];
+    //     $activeMenu = 'kartu_keluarga';
+    //     $dropdown = 'd_penduduk';
+    //     $kk = DataAlternatifModel::find($id);
+    //     return view('admin.kk.show', [
+    //         'page' => $page,
+    //         'kk' => $kk,
+    //         'activeMenu' => $activeMenu,
+    //         'dropdown' => $dropdown
+    //     ]);
+    // }
 
     public function edit($id)
     {
         $page = (object) [
-            'title' => 'Edit Kartu Keluarga',
+            'title' => 'Edit Data Alternatif',
         ];
-        $activeMenu = 'kartu_keluarga';
-        $dropdown = 'd_penduduk';
-        $kk = DataAlternatifModel::find($id);
+        $activeMenu = 'data_alternatif';
+        $dropdown = '';
+        $alternatif = DataAlternatifModel::find($id);
         return view('admin.kk.edit', [
             'page' => $page,
-            'kk' => $kk,
+            'kk' => $alternatif,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown
         ]);
@@ -107,20 +105,18 @@ class DataAlternatifController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'no_kk' => 'required',
-            'kepala_keluarga' => 'required',
+            'nama_alternatif' => 'required'
         ]);
-        $kk = DataAlternatifModel::find($id)->update([
-            'no_kk' => $request->no_kk,
-            'kepala_keluarga' => $request->kepala_keluarga,
+        $alternatif = DataAlternatifModel::find($id)->update([
+            'nama_alternatif' => $request->nama_alternatif
         ]);
-        return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil diupdate!');
+        return redirect('admin/data_alternatif')->with('success', 'Data Alternatif berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        $kk = DataAlternatifModel::find($id);
-        $kk->delete();
-        return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil dihapus!');
+        $alternatif = DataAlternatifModel::find($id);
+        $alternatif->delete();
+        return redirect('admin/data_alternatif')->with('success', 'Data Alternatif berhasil dihapus!');
     }
 }

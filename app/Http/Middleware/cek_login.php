@@ -15,7 +15,7 @@ class cek_login
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $roles): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
         if(!Auth::check()){
             return redirect('login');
@@ -23,7 +23,7 @@ class cek_login
 
         $user = Auth::user();
 
-        if($user->id_level == $roles){
+        if(in_array($user->id_level, $roles)){
             return $next($request);
         }
 
