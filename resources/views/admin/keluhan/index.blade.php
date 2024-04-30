@@ -36,7 +36,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{ $keluhan->nama_penduduk }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Asal RT: {{ $keluhan->asal_rt }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Asal RT: {{ $keluhan->rt }}</h6>
                             <p class="card-text">{{ $keluhan->keluhan }}</p>
                             <!-- Tambahkan tombol untuk melihat detail jika diperlukan -->
                             <!-- <a href="{{ route('keluhan.show', $keluhan->id) }}" class="card-link">Lihat Detail</a> -->

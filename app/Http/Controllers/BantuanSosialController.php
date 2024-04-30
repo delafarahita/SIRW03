@@ -6,12 +6,18 @@ use Illuminate\Http\Request;
 
 class BantuanSosial extends Controller
 {
-
     public function index() {
-        $data = [
+        $page = [
             'title' => 'Bantuan Sosial',
             'description' => 'Layanan Bantuan Sosial di Kecamatan Sindang'
         ];
-        return view('bantuansosial.index', $data);
+
+        $activeMenu = 'bantuan_sosial';
+        $dropdown = '';
+        return view('admin.bantuan_sosial.index', [
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
+            'page' => $page
+        ]);
     }
 }

@@ -251,19 +251,35 @@
                             <h1 class="text-white fw-bold font-s-48">KELUHAN</h1>
                         </div>
                         <div class="">
-                            <form action="" method="post">
+                            <form action="{{ route('store_keluhan') }}" method="POST">
+                                @csrf
                                 <div class="form-floating">
-                                    <input type="text" class="form-control my-2" id="floatingInput" placeholder="">
+                                    <input type="text" class="form-control my-2 @error('nama_penduduk') is-invalid @enderror" name="nama_penduduk" id="floatingInput" placeholder="">
                                     <label for="floatingInput">Nama</label>
                                 </div>
+                                @error('nama_penduduk')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div class="form-floating">
-                                    <input type="text" class="form-control my-2" id="floatingInput" placeholder="" >
+                                    <input type="text" class="form-control my-2 @error('rt') is-invalid @enderror" name="rt" id="floatingInput" placeholder="" >
                                     <label for="floatingInput">RT</label>
                                 </div>
+                                @error('rt')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="" id="floatingTextarea" style="height: 200px"></textarea>
+                                    <textarea class="form-control @error('keluhan') is-invalid @enderror" placeholder="" name="keluhan" id="floatingTextarea" style="height: 200px"></textarea>
                                     <label for="floatingTextarea">Pengaduan</label>
                                 </div>
+                                @error('keluhan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div class="my-2">
                                     <button type="submit" class="btn btn-oren text-white px-5">KIRIM</button>
                                 </div>

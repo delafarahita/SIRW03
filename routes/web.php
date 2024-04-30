@@ -91,15 +91,7 @@ Route::group(['prefix'=>'admin'], function(){
         Route::delete('/{id}', [UmkmController::class, 'destroy'])->name('umkm.destroy');
     });
 
-    Route::group(['prefix' => 'keluhan'], function () {
-        Route::get('/', [KeluhanController::class, 'index'])->name('keluhan.index');
-        Route::get('/create', [KeluhanController::class, 'create'])->name('keluhan.create');
-        Route::post('/store', [KeluhanController::class, 'store'])->name('keluhan.store');
-        Route::get('/{id}', [KeluhanController::class, 'show'])->name('keluhan.show');
-        Route::get('/{id}/reply', [KeluhanController::class, 'replyForm'])->name('keluhan.replyForm');
-        Route::post('/{id}/reply', [KeluhanController::class, 'reply'])->name('keluhan.reply');
-    });
-
+    
     Route::group(['prefix' => 'kegiatan'], function(){
         Route::get('/', [KegiatanController::class, 'index'])->name('kegiatan.index');
         Route::post('/list', [KegiatanController::class, 'list']);
@@ -110,7 +102,7 @@ Route::group(['prefix'=>'admin'], function(){
         Route::put('/{id}', [KegiatanController::class, 'update']);
         Route::delete('/{id}', [KegiatanController::class, 'destroy']);
     });
-
+    
     Route::group(['prefix' => 'inventaris'], function(){
         Route::get('/', [InventarisController::class, 'index'])->name('inventaris.index');
         Route::post('/list', [InventarisController::class, 'list']);
@@ -121,7 +113,7 @@ Route::group(['prefix'=>'admin'], function(){
         Route::put('/{id}', [InventarisController::class, 'update']);
         Route::delete('/{id}', [InventarisController::class, 'destroy']);
     });
-
+    
     Route::group(['prefix' => 'kas'], function(){
         Route::get('/', [KasController::class, 'index'])->name('kas.index');
         Route::post('/list', [KasController::class, 'list']);
@@ -165,14 +157,21 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware' => 'auth'], function () {
-
+    
     Route::group(['middleware' => 'cek_login:1'], function () {
         Route::resource('rw', RWController::class);
     });
-
+    
     Route::group(['middleware' => 'cek_login:2'], function () {
         Route::resource('rt', RTController::class);
     });
-
+    
 });
+Route::post('/', [KeluhanController::class, 'store'])->name('store_keluhan');
 
+Route::group(['prefix' => '/keluhan'], function () {
+    Route::get('/', [KeluhanController::class, 'index'])->name('keluhan.index');
+    Route::get('/list', [KeluhanController::class, 'list'])->name('keluhan.list');
+    Route::get('/create', [KeluhanController::class, 'create'])->name('keluhan.create');
+    Route::get('/{id}', [KeluhanController::class, 'show'])->name('keluhan.show');
+});
