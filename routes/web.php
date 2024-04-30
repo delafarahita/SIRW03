@@ -159,11 +159,15 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
     
     Route::group(['middleware' => 'cek_login:1'], function () {
-        Route::resource('rw', RWController::class);
+        Route::resource('admin', RWController::class);
+        Route::resource('admin', DataPendudukController::class);
+        Route::resource('admin', RWController::class);
+        Route::resource('admin', RWController::class);
+        Route::resource('admin', RWController::class);
     });
     
     Route::group(['middleware' => 'cek_login:2'], function () {
-        Route::resource('rt', RTController::class);
+        Route::resource('admin', RTController::class);
     });
     
 });

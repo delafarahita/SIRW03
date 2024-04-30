@@ -103,7 +103,7 @@ class DataPendudukController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nik' => 'required|unique:data_penduduk',
+            'nik' => 'required|regex:/^[0-9]{16}$|unique:data_penduduk',
             'no_kk' => 'required',
             'nama' => 'required',
             'tempat_lahir' => 'required',
@@ -156,6 +156,8 @@ class DataPendudukController extends Controller
         $page = (object) [
             'title' => 'Detail Data Penduduk'
         ];
+
+        $dropdown = '';
 
         $activeMenu = 'dataPenduduk'; // set menu yang sedang aktif
 
