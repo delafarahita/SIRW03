@@ -19,8 +19,8 @@ class PendudukSeeder extends Seeder
         // Data penduduk yang akan diisi
         $penduduk = [
             [
-                'nik' => 11203040506070809,
-                'no_kk' => 10203040506070809,
+                'nik' => 1203040506070809,
+                'no_kk' => 1020304050607089,
                 'nama' => 'Subagiyo',
                 'tempat_lahir' => 'Malang',
                 'tanggal_lahir' => '1990-05-15',
@@ -37,8 +37,8 @@ class PendudukSeeder extends Seeder
                 'domisili' => 'penduduk setempat'
             ],
             [
-                'nik' => 12203040506070809,
-                'no_kk' => 20203040506070809,
+                'nik' => 2203040506070809,
+                'no_kk' => 2020304050607089,
                 'nama' => 'Anto',
                 'tempat_lahir' => 'Malang',
                 'tanggal_lahir' => '1990-05-15',

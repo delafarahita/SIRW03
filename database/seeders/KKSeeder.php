@@ -15,11 +15,11 @@ class KKSeeder extends Seeder
         // Data keluarga yang akan diisi
         $keluarga = [
             [
-                'no_kk' => 10203040506070809,
+                'no_kk' => 1020304050607089,
                 'kepala_keluarga' => 'Subagiyo',
             ],
             [
-                'no_kk' => 20203040506070809,
+                'no_kk' => 2020304050607089,
                 'kepala_keluarga' => 'Anto',
             ],
             // Tambahkan data keluarga lainnya sesuai kebutuhan

@@ -189,7 +189,32 @@
             </li>
 
             <li class="nav-item {{ $activeMenu == 'umkm' ? 'active' : '' }}">
-                <a href="{{ route('umkm.index') }}" class="nav-link">
+                <a class="nav-link collapsed dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#collapseUmkm" aria-expanded="{{ $activeMenu == 'umkm' ? 'true' : 'false' }}" aria-controls="collapseUmkm" data-bs-auto-close="outside">
+                    <span class="sidebar-icon">
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">UMKM</span>
+                </a>
+                <div class="collapse {{ $dropdown == 'umkm' ? 'show' : '' }}" id="collapseUmkm" style="margin-left: 2.5rem;">
+                    <ul class="nav flex-column pl-5">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('umkm.index')}}">Data UMKM</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('kategori_dagang.index')}}">Kategori Dagang</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('kategori_jasa.index')}}">Kategori Jasa</a>
+                        </li>
+                    </ul>
+                </div>
+
+                    {{-- <a href="{{ route('umkm.index') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -200,7 +225,7 @@
                     </span>
                     <span class="sidebar-text">UMKM</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="nav-item {{ $activeMenu == 'keluhan' ? 'active' : '' }}">
                 <a href="{{ route('keluhan.index') }}" class="nav-link">
