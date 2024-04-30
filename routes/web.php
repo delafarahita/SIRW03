@@ -12,6 +12,7 @@ use App\Http\Controllers\KasController;
 use App\Http\Controllers\KKController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\RWController;
+use App\Http\Controllers\KategoriDagangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,6 +133,29 @@ Route::group(['prefix'=>'admin'], function(){
         Route::delete('/{id}', [KasController::class, 'destroy']);
     });
 });
+
+Route::group(['prefix' => 'kategori_dagang'], function(){
+    Route::get('/', [KategoriDagangController::class, 'index'])->name('kategori_dagang.index');
+    Route::post('/list', [KategoriDagangController::class, 'list'])->name('kategori_dagang.list');
+    Route::get('/create', [KategoriDagangController::class, 'create'])->name('kategori_dagang.create');
+    Route::post('/', [KategoriDagangController::class, 'store'])->name('kategori_dagang.store');
+    Route::get('/{id}', [KategoriDagangController::class, 'show'])->name('kategori_dagang.show');
+    Route::get('/{id}/edit', [KategoriDagangController::class, 'edit'])->name('kategori_dagang.edit');
+    Route::put('/{id}', [KategoriDagangController::class, 'update'])->name('kategori_dagang.update');
+    Route::delete('/{id}', [KategoriDagangController::class, 'destroy'])->name('kategori_dagang.destroy');
+});
+
+Route::group(['prefix' => 'kategori_jasa'], function(){
+    Route::get('/', [KategoriDagangController::class, 'index'])->name('kategori_jasa.index');
+    Route::post('/list', [KategoriDagangController::class, 'list'])->name('kategori_jasa.list');
+    Route::get('/create', [KategoriDagangController::class, 'create'])->name('kategori_jasa.create');
+    Route::post('/', [KategoriDagangController::class, 'store'])->name('kategori_jasa.store');
+    Route::get('/{id}', [KategoriDagangController::class, 'show'])->name('kategori_jasa.show');
+    Route::get('/{id}/edit', [KategoriDagangController::class, 'edit'])->name('kategori_jasa.edit');
+    Route::put('/{id}', [KategoriDagangController::class, 'update'])->name('kategori_jasa.update');
+    Route::delete('/{id}', [KategoriDagangController::class, 'destroy'])->name('kategori_jasa.destroy');
+});
+
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 // Route::get('register', [AuthController::class, 'register'])->name('register');

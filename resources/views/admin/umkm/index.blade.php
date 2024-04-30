@@ -15,43 +15,22 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
       @endif
 
-      <!-- Tiga kotak -->
+      <!-- Dua kotak -->
       <div class="d-flex justify-content-between">
-        <div class="card rounded-3 text-white" style="width: 24.5rem; background-color: #1F2937;">
-            <img src="{{asset('assets/img/penjahit.jpg')}}" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">Penjahit Bu Hana</h5>
-              <p class="card-text">Harga: 20.000 - 200.000</p>
-              <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
-              <div class="d-flex justify-content-between mt-5">
-                <a href="#" class="btn btn-danger">Hapus</a>
-                <a href="#" class="btn btn-warning">Edit</a>
-              </div>
-            </div>
-        </div>
-
-        <div class="card rounded-3 text-white" style="width: 24.5rem; background-color: #1F2937;">
-            <img src="{{asset('assets/img/fotocopy.jpg')}}" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">Fotocopy Modern</h5>
-              <p class="card-text">Harga: 500 - 500.000</p>
-              <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
-              <div class="d-flex justify-content-between mt-5">
-                <a href="#" class="btn btn-danger">Hapus</a>
-                <a href="#" class="btn btn-warning">Edit</a>
-              </div>
-            </div>
-        </div>
-
-        <div class="card rounded-3 text-white" style="width: 24.5rem; background-color: #1F2937;">
+        <div class="card rounded-3 text-white" style="width: 37.5rem; background-color: #1F2937;">
             <img src="{{asset('assets/img/kue.jpg')}}" class="card-img-top">
             <div class="card-body">
-              <h5 class="card-title">Kue Basah Bu Vania</h5>
-              <p class="card-text">Harga: 1.000 - 15.000</p>
-              <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
-              <div class="d-flex justify-content-between mt-5">
-                <a href="#" class="btn btn-danger">Hapus</a>
-                <a href="#" class="btn btn-warning">Edit</a>
+              <h5 class="card-title">Kategori Dagang</h5>
+              <div class="d-flex justify-content-between mt-2">
+              </div>
+            </div>
+        </div>
+
+        <div class="card rounded-3 text-white" style="width: 37.5rem; background-color: #1F2937;">
+            <img src="{{asset('assets/img/penjahit.jpg')}}" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Kategori Jasa</h5>
+              <div class="d-flex justify-content-between mt-2">
               </div>
             </div>
         </div>
