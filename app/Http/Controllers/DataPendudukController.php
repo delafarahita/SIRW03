@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use App\Models\RTModel;
 use App\Models\KKModel;
+use Brick\Math\BigInteger;
 
 class DataPendudukController extends Controller
 {
@@ -40,7 +41,7 @@ class DataPendudukController extends Controller
 
     public function list(Request $request)
     {
-        $penduduk = DataPendudukModel::select(
+        $penduduks = DataPendudukModel::select(
             'nik',
             'nama',
             'tempat_lahir',
@@ -49,10 +50,10 @@ class DataPendudukController extends Controller
             'jenis_kelamin',
         );
 
-        return DataTables::of($penduduk)
+        return DataTables::of($penduduks)
             ->addColumn('aksi', function ($penduduk) {
-                $btn = '<a href="' . url('admin/data_penduduk/' . $penduduk->nik) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('admin/data_penduduk/' . $penduduk->nik . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn = '<a href="' . url('/admin/data_penduduk/' . $penduduk->nik) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/admin/data_penduduk/' . $penduduk->nik . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_penduduk/' . $penduduk->nik) . '">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
@@ -103,7 +104,7 @@ class DataPendudukController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nik' => 'required|regex:/^[0-9]{16}$|unique:data_penduduk',
+            'nik' => 'required|regex:/^[0-9]{16}$/|unique:data_penduduk',
             'no_kk' => 'required',
             'nama' => 'required',
             'tempat_lahir' => 'required',
@@ -205,10 +206,10 @@ class DataPendudukController extends Controller
         ]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, String $id)
     {
-        $request->validate([
-            'nik'               => 'required|unique:data_penduduk',
+        $validated = $request->validate([
+            'nik'               => 'required',
             'no_kk'             => 'required',
             'nama'              => 'required',
             'tempat_lahir'      => 'required',
@@ -248,14 +249,14 @@ class DataPendudukController extends Controller
         return redirect('/admin/data_penduduk')->with('success', 'Data Penduduk berhasil diubah');
     }
 
-    public function destroy(string $id)
+    public function destroy(String $id)
     {
         $check = DataPendudukModel::find($id);
         if (!$check) {  // untuk mengecek apakah data user dengan id yang dimaksud ada atau tidak
             return redirect('/admin/data_penduduk')->with('error', 'Data Penduduk tidak ditemukan');
         }
         try {
-            DataPendudukModel::destroy($id); // Hapus data kategori
+            DataPendudukModel::destroy($id);
             return redirect('/admin/data_penduduk')->with('success', 'Data Penduduk berhasil dihapus');
         } catch (\Illuminate\Database\QueryException $e) {
             // Jika terjadi error ketika menghapus data, redirect kembali ke halaman dengan membawa pesan error
