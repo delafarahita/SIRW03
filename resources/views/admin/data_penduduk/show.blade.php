@@ -19,6 +19,11 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label">No.KK</label>
+                            <input type="text" class="form-control" id="" name=""
+                                value=" {{ $penduduk->no_kk }}" required disabled style="background-color: #f2f2f2; color: #777;">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Nama</label>
                             <input type="text" class="form-control" id="" name=""
                                 value=" {{ $penduduk->nama }}" required disabled style="background-color: #f2f2f2; color: #777;">
@@ -96,7 +101,7 @@
 
                 <div class="form-group row mt-3">
                     <div class="col-12">
-                        <a href="{{ url('DataPenduduk/1/edit/') }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ url('admin/data_penduduk/' . $penduduk->nik . '/edit') }}" class="btn btn-primary">Edit</a>
                     </div>
                 </div>
             </form>

@@ -7,7 +7,7 @@
         <div class="card-body">
             <form method="POST" action="{{ url('admin/data_kk/'.$kk->no_kk) }}">
 
-                @csrf
+            @csrf
                 {!! method_field('PUT') !!}
 
                 <div class="form-group row">

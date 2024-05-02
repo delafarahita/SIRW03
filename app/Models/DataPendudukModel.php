@@ -10,7 +10,7 @@ class DataPendudukModel extends Model
 {
     use HasFactory;
     public $table = 'data_penduduk';
-    public $primaryKey = 'NIK';
+    public $primaryKey = 'nik';
     public $timestamps = false;
 
     protected $fillable = [

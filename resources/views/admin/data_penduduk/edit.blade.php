@@ -6,14 +6,15 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url('dataPenduduk') }}" class="form-horizontal">
+            <form method="POST" action="{{ route('data_penduduk.update', $penduduk->nik) }}" class="form-horizontal">
                 @csrf
+                {!! method_field('PUT') !!} 
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label class="control-label">NIK</label>
                             <input type="number" class="form-control" id="nik" name="nik"
-                                value="{{ $penduduk->nik }}" required>
+                                value="{{ $penduduk->nik }}" >
                             @error('nik')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -22,7 +23,7 @@
                             <label class="control-label">No. KK</label>
                             {{-- <input type="number" class="form-control" id="no_kk" name="no_kk"
                                 value="{{ old('no_kk') }}" required> --}}
-                            <select class="form-control" id="no_kk" name="no_kk" required>
+                            <select class="form-control" id="no_kk" name="no_kk">
                                 <option value="">- Pilih  -</option>
                                 @foreach ($kk as $item)
                                     <option value="{{ $item->no_kk }}"
@@ -96,7 +97,7 @@
                         <div class="form-group">
                             <label class="control-label">RW</label>
                             <input type="number" class="form-control" id="rw" name="rw"
-                                value="{{ $penduduk->nik }}" required>
+                                value="{{ $penduduk->rw }}" required>
                             @error('rw')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
