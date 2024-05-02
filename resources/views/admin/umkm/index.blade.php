@@ -17,7 +17,7 @@
 
       <!-- Dua kotak -->
       <div class="d-flex justify-content-between">
-        <div class="card rounded-3 text-white" style="width: 37.5rem; background-color: #1F2937;">
+        <div class="card rounded-3 text-white" style="width: 48.5rem; background-color: #1F2937;">
             <img src="{{asset('assets/img/kue.jpg')}}" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Kategori Dagang</h5>
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="card rounded-3 text-white" style="width: 37.5rem; background-color: #1F2937;">
+        <div class="card rounded-3 text-white" style="width: 48.5rem; background-color: #1F2937;">
             <img src="{{asset('assets/img/penjahit.jpg')}}" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Kategori Jasa</h5>

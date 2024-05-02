@@ -11,6 +11,18 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
+                            <label class="control-label">Kategori Usaha</label>
+                            <select class="form-control" name="kategori_usaha" id="kategori_usaha" required>
+                                <option value="">- Pilih</option>
+                                @foreach ($rt as $item)
+                                    <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
+                                @endforeach
+                            </select>
+                            @error('id_rt')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Nama Usaha</label>
                             <input type="text" class="form-control" id="nama_usaha" name="nama_usaha"
                                 value="{{ old('nama_usaha') }}" required>

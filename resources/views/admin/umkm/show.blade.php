@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 @section('content')
     <div class="card card-outline card-primary">
         <div class="card-header">
@@ -78,4 +78,4 @@
 </style>
 @endpush
 @push('js')
-@endpush
+@endpush --}}

@@ -17,7 +17,7 @@
 
       <!-- Tiga kotak -->
       <div class="d-flex justify-content-between">
-        <div class="card rounded-3 text-white" style="width: 24.5rem; background-color: #1F2937;">
+        <div class="card rounded-3 text-white" style="width: 31.5rem; background-color: #1F2937;">
             <img src="{{asset('assets/img/penjahit.jpg')}}" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Penjahit Bu Hana</h5>
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="card rounded-3 text-white" style="width: 24.5rem; background-color: #1F2937;">
+        <div class="card rounded-3 text-white" style="width: 31.5rem; background-color: #1F2937;">
             <img src="{{asset('assets/img/fotocopy.jpg')}}" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Fotocopy Modern</h5>
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="card rounded-3 text-white" style="width: 24.5rem; background-color: #1F2937;">
+        <div class="card rounded-3 text-white" style="width: 31.5rem; background-color: #1F2937;">
             <img src="{{asset('assets/img/kue.jpg')}}" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Kue Basah Bu Vania</h5>
