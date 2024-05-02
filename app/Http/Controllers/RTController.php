@@ -106,5 +106,5 @@ class RTController extends Controller
         $rt->delete();
         return redirect('/admin/data_rt')->with('success', 'Data RT baru berhasil ditambahkan');
     }
-    
+
 }

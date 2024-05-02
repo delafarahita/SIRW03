@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label class="control-label">Kategori Usaha</label>
                             <select class="form-control" name="kategori_usaha" id="kategori_usaha" required>
-                                <option value="">- Pilih</option>
+                                <option value="">- Pilih Kategori Usaha -</option>
                                 @foreach ($rt as $item)
                                     <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
                                 @endforeach

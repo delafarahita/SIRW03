@@ -83,7 +83,7 @@ class UmkmController extends Controller
         $rt = RTModel::all();
 
         $activeMenu = 'umkm'; // set menu yang sedang aktif
-        
+
         return view('admin.umkm.show', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
