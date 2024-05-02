@@ -47,10 +47,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col">
-                    <a href="">Data Kriteria</a>
+                    <a href="{{url('admin/data_kriteria')}}">Data Kriteria</a>
                 </div>
                 <div class="col">
-                    <a href="">Data Alternatif</a>
+                    <a href="{{url('admin/data_alternatif')}}">Data Alternatif</a>
                 </div>
             </div>
             <div class="row align-items-center">

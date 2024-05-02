@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 class BantuanSosialController extends Controller
 {
     public function index() {
-        $page = [
+        $page = (object) [
             'title' => 'Bantuan Sosial',
-            'description' => 'Layanan Bantuan Sosial di Kecamatan Kedungkandang'
         ];
         // $bantuansosial = BantuanSosialModel::all();
         // return view('admin.bantuan_sosial.index', ['bantuansosial' => $bantuansosial]);
