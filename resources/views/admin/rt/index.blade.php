@@ -25,7 +25,7 @@
                 <div class="alert alert-success">{{ session('error') }}</div>
             @endif
 
-            <div class="table-container">
+            <div class="table-container table-responsive">
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_dataRT">
                     <thead>
                         <tr>

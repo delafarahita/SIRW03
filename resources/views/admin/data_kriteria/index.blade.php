@@ -24,7 +24,7 @@
                 <div class="alert alert-success">{{ session('error') }}</div>
             @endif
 
-            <div class="table-container">
+            <div class="table-container table-responsive">
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_dataKriteria">
                     <thead>
                         <tr>
@@ -58,9 +58,10 @@
                     type: "POST",
                 },
                 columns: [{
-                    data: "id_kriteria",
-                    orderable: true,
-                    searchable: true
+                    data: "DT_RowIndex",
+                    class: 'text-center',
+                    orderable: false,
+                    searchable: false
                 }, 
                 {
                     data: "kode_kriteria",

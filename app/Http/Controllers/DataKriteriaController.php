@@ -26,14 +26,14 @@ class DataKriteriaController extends Controller
 
     public function list(Request $request)
     {
-        $kriterias = DataKriteriaModel::select('kode_kriteria', 'nama_kriteria', 'bobot', 'jenis');
+        $kriterias = DataKriteriaModel::select('id_kriteria','kode_kriteria', 'nama_kriteria', 'bobot', 'jenis');
 
         return DataTables::of($kriterias)
             ->addIndexColumn()
             ->addColumn('aksi', function ($kriteria) {
-                $btn = '<a href="' . url('admin/data_kk/' . $kriteria->no_kk) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('admin/data_kk/' . $kriteria->no_kk . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
-                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_kk/' . $kriteria->no_kk) . '">'
+                $btn = '<a href="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria) . '">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
@@ -50,11 +50,13 @@ class DataKriteriaController extends Controller
 
         $activeMenu = 'bantuan_sosial';
         $dropdown = '';
+        $jenis = DataKriteriaModel::$jenis;
 
         return view('admin.data_kriteria.create', [
             'page' => $page,
             'activeMenu' => $activeMenu,
-            'dropdown' => $dropdown
+            'dropdown' => $dropdown,
+            'jenis' => $jenis
         ]);
     }
 
@@ -68,8 +70,8 @@ class DataKriteriaController extends Controller
         ]);
 
         DataKriteriaModel::create([
-            'kode_kriteria' => $request->no_kk,
-            'nama_kriteria' => $request->kepala_keluarga,
+            'kode_kriteria' => $request->kode_kriteria,
+            'nama_kriteria' => $request->nama_kriteria,
             'bobot' => $request->bobot,
             'jenis' => $request->jenis
         ]);
@@ -92,7 +94,7 @@ class DataKriteriaController extends Controller
     //     ]);
     // }
 
-    public function edit($id)
+    public function edit(string $id)
     {
         $page = (object) [
             'title' => 'Edit Kriteria',
@@ -122,7 +124,7 @@ class DataKriteriaController extends Controller
             'bobot' => $request->bobot,
             'jenis' => $request->jenis,
         ]);
-        return redirect('admin.data_kriteria')->with('success', 'Data Kriteria berhasil diupdate!');
+        return redirect('admin/data_kriteria')->with('success', 'Data Kriteria berhasil diupdate!');
     }
 
     public function destroy($id)
