@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('inventaris', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_barang');
+            $table->string('jenis_barang');
+            $table->string('jumlah_barang');
+            $table->timestamps();
+        });
     }
 
     /**
