@@ -55,6 +55,7 @@
                         <div class="d-grid gap-2 col-6 justify-content-center">
                             <button type="submit" class="btn btn-warning text-white fw-bold"
                                 >SUBMIT</button>
+                                <a href="{{url('/')}}" class="btn btn-danger">Kembali</a>
                         </div>
                     </div>
                 </form>

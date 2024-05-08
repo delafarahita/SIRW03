@@ -14,6 +14,9 @@ class DataKriteriaModel extends Model
 
     public $fillable = ['kode_kriteria', 'nama_kriteria', 'bobot', 'jenis'];
 
-    
+    public $timestamps = false;
 
+    public static $jenis =[
+        "Benefit","Cost"
+    ];
 }

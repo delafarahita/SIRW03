@@ -143,7 +143,7 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                     </div>
-                    <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNavAltMarkup">
+                    <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNav">
                         <div class="navbar-nav">
                           <a class="nav-link me-5" aria-current="page" href="#"><span class="">ABOUT</span></a>
                           <a class="nav-link me-5" href="#umkm">UMKM</a>

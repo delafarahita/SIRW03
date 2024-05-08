@@ -24,26 +24,16 @@
                 <div class="alert alert-success">{{ session('error') }}</div>
             @endif
 
-            <div class="table-container">
+            <div class="table-container table-responsive">
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_dataPenduduk">
                     <thead>
                         <tr>
                             <th>NIK</th>
-                            {{-- <th>No. KK</th> --}}
                             <th>Nama</th>
                             <th>Tempat Lahir</th>
                             <th>Tanggal Lahir</th>
                             <th>Gol. Darah</th>
                             <th>Jenis Kelamin</th>
-                            {{-- <th>Alamat</th> --}}
-                            {{-- <th>RT</th> --}}
-                            {{-- <th>RT</th> --}}
-                            {{-- <th>Kelurahan</th> --}}
-                            {{-- <th>Kecamatan</th> --}}
-                            {{-- <th>Kewarganegaraan</th> --}}
-                            {{-- <th>Pekerjaan</th> --}}
-                            {{-- <th>Agama</th> --}}
-                            {{-- <th>Domisili</th> --}}
                             <th>Aksi</th>
                         </tr>
                     </thead>

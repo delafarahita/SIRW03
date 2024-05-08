@@ -31,8 +31,7 @@ class KKController extends Controller
         return DataTables::of($kks)
             ->addIndexColumn()
             ->addColumn('aksi', function ($kk) {
-                $btn = '<a href="' . url('admin/data_kk/' . $kk->no_kk) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('admin/data_kk/' . $kk->no_kk . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn = '<a href="' . url('admin/data_kk/' . $kk->no_kk . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_kk/' . $kk->no_kk) . '">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
