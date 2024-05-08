@@ -14,11 +14,11 @@
                             <label class="control-label">Kategori Usaha</label>
                             <select class="form-control" name="kategori_usaha" id="kategori_usaha" required>
                                 <option value="">- Pilih Kategori Usaha -</option>
-                                @foreach ($rt as $item)
-                                    <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
+                                @foreach ($kategori_usaha as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>
-                            @error('id_rt')
+                            @error('kategori_usaha')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
