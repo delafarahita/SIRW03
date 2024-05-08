@@ -18,7 +18,7 @@ class BantuanSosialSeeder extends Seeder
             'status' => 'Tersedia'
         ]);
 
-        BantuanSosial::create([
+        BantuanSosialModel::create([
             'nama' => 'Bantuan Pendidikan',
             'jenis' => 'Pendidikan',
             'jumlah' => 50,

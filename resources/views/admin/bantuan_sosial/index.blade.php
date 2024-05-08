@@ -1,14 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bantuan Sosial</title>
         <style>
-            body {
+            /* body {
                 font-family: Arial, sans-serif;
                 display: flex;
                 justify-content: center;
@@ -39,7 +33,7 @@
 
             .button:hover {
                 background-color: #0056b3;
-            }
+            } */
 
             .border-main{
                 border-left: 10px solid #1F2937;
@@ -49,22 +43,24 @@
         </style>
     </head>
 
-    <body>
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col bg-white rounded p-3 mx-2 border-main">
-                    <a href="{{url('admin/data_kriteria')}}">Data Kriteria</a>
+    <body class="">
+        <div class="container d-flex justify-content-center align-items-center" style="height: 70vh">
+            <div class="">
+                <div class="row align-items-center">
+                    <div class="col bg-white rounded p-3 mx-2 border-main">
+                        <a href="{{url('admin/data_kriteria')}}">Data Kriteria</a>
+                    </div>
+                    <div class="col bg-white rounded p-3 mx-2 border-main">
+                        <a href="{{url('admin/data_alternatif')}}">Data Alternatif</a>
+                    </div>
                 </div>
-                <div class="col bg-white rounded p-3 mx-2 border-main">
-                    <a href="{{url('admin/data_alternatif')}}">Data Alternatif</a>
-                </div>
-            </div>
-            <div class="row align-items-center my-2">
-                <div class="col bg-white rounded p-3 mx-2 border-main">
-                    <a href="">Data Perhitungan</a>
-                </div>
-                <div class="col bg-white rounded p-3 mx-2 border-main">
-                    <a href="">Data Hasil Akhir</a>
+                <div class="row align-items-center my-2">
+                    <div class="col bg-white rounded p-3 mx-2 border-main">
+                        <a href="">Data Perhitungan</a>
+                    </div>
+                    <div class="col bg-white rounded p-3 mx-2 border-main">
+                        <a href="">Data Hasil Akhir</a>
+                    </div>
                 </div>
             </div>
         </div>

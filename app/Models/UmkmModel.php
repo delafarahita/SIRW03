@@ -10,22 +10,23 @@ class UmkmModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'umkms'; // Nama tabel di database
+    protected $table = 'umkm'; // Nama tabel di database
 
+    protected $primaryKey = 'id_umkm';
     protected $fillable = [
-        'nama_usaha',
-        'nama_pemilik_usaha',
-        'alamat_usaha',
+        'nama_umkm',
+        'kategori_umkm',
+        'pemilik_umkm',
+        'alamat_umkm',
         'id_rt',
-        'id_rw',
+        'rw',
         'kelurahan',
         'kecamatan',
-        'upload_foto_usaha',
-        'deskripsi_usaha',
-        'kategori_usaha'
+        'foto_umkm',
+        'deskripsi_umkm',
     ]; // Kolom yang dapat diisi
 
-    public static $kategori_usaha =[
+    public static $kategori_umkm =[
         "Dagang", "Jasa"
     ];
 

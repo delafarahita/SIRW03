@@ -9,8 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    public function down(): void
+    {
+        Schema::dropIfExists('inventaris');
+    }
+
     public function up(): void
     {
+        Schema::dropIfExists('inventaris');
+
+
         Schema::create('inventaris', function (Blueprint $table) {
             $table->id();
             $table->string('nama_barang');
@@ -23,8 +31,4 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        //
-    }
 };
