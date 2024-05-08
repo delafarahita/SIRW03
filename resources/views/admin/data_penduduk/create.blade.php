@@ -23,7 +23,7 @@
                             {{-- <input type="number" class="form-control" id="no_kk" name="no_kk"
                                 value="{{ old('no_kk') }}" required> --}}
                             <select class="form-control" id="no_kk" name="no_kk" required>
-                                <option value="">- Pilih Level -</option>
+                                <option value="">- PILIH -</option>
                                 @foreach ($kk as $item)
                                     <option value="{{ $item->no_kk }}">{{ $item->no_kk }}</option>
                                 @endforeach
