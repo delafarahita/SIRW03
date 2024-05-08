@@ -20,8 +20,6 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">No. KK</label>
-                            {{-- <input type="number" class="form-control" id="no_kk" name="no_kk"
-                                value="{{ old('no_kk') }}" required> --}}
                             <select class="form-control" id="no_kk" name="no_kk" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($kk as $item)
@@ -93,7 +91,7 @@
                         <div class="form-group">
                             <label class="control-label">RW</label>
                             <input type="number" class="form-control" id="rw" name="rw"
-                                value="{{ old('rw') }}" required>
+                                value="03" required disabled>
                             @error('rw')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

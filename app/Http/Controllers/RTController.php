@@ -30,8 +30,7 @@ class RTController extends Controller
         return DataTables::of($rts)
             ->addIndexColumn()
             ->addColumn('aksi', function ($rt) {
-                $btn = '<a href="' . url('admin/data_rt/' . $rt->id_rt) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('admin/data_rt/' . $rt->id_rt . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn = '<a href="' . url('admin/data_rt/' . $rt->id_rt . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_rt/' . $rt->id_rt) . '">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
