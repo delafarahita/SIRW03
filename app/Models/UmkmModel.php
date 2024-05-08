@@ -11,12 +11,29 @@ class UmkmModel extends Model
     use HasFactory;
 
     protected $table = 'umkms'; // Nama tabel di database
-    
-    protected $fillable = ['nama_usaha', 'nama_pemilik_usaha', 'alamat_usaha', 'id_rt', 'id_rw', 'kelurahan', 'kecamatan', 'upload_foto_usaha', 'deskripsi_usaha']; // Kolom yang dapat diisi
+
+    protected $fillable = [
+        'nama_usaha',
+        'nama_pemilik_usaha',
+        'alamat_usaha',
+        'id_rt',
+        'id_rw',
+        'kelurahan',
+        'kecamatan',
+        'upload_foto_usaha',
+        'deskripsi_usaha',
+        'kategori_usaha'
+    ]; // Kolom yang dapat diisi
+
+    public static $kategori_usaha =[
+        "Dagang", "Jasa"
+    ];
 
     public function rt(): BelongsTo
     {
         return $this->belongsTo(RtModel::class, 'id_rt', 'id');
     }
+
+
 
 }

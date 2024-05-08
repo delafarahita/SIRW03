@@ -23,12 +23,14 @@ class KeluhanController extends Controller
     $dropdown = '';
 
     // Simulasi data keluhan (Anda akan menggantinya dengan data sebenarnya)
-    $keluhans = [
-        (object) ['nama_penduduk' => 'John Doe', 'rt' => 'RT 01', 'keluhan' => 'Lorem ipsum dolor sit amet consectetur.', 'is_private' => false, 'reply' => 'Balasan 1', 'id' => 1],
-        (object) ['nama_penduduk' => 'Jane Doe', 'rt' => 'RT 02', 'keluhan' => 'Lorem ipsum dolor sit amet consectetur.', 'is_private' => true, 'reply' => null, 'id' => 2],
-        (object) ['nama_penduduk' => 'Alice Smith', 'rt' => 'RT 03', 'keluhan' => 'Lorem ipsum dolor sit amet consectetur.', 'is_private' => false, 'reply' => 'Balasan 3', 'id' => 3],
-    ];
+    // $keluhans = [
+    //     (object) ['nama_penduduk' => 'John Doe', 'rt' => 'RT 01', 'keluhan' => 'Lorem ipsum dolor sit amet consectetur.', 'is_private' => false, 'reply' => 'Balasan 1', 'id' => 1],
+    //     (object) ['nama_penduduk' => 'Jane Doe', 'rt' => 'RT 02', 'keluhan' => 'Lorem ipsum dolor sit amet consectetur.', 'is_private' => true, 'reply' => null, 'id' => 2],
+    //     (object) ['nama_penduduk' => 'Alice Smith', 'rt' => 'RT 03', 'keluhan' => 'Lorem ipsum dolor sit amet consectetur.', 'is_private' => false, 'reply' => 'Balasan 3', 'id' => 3],
+    // ];
 
+    $keluhans = Keluhan::all();
+        
     return view('admin.keluhan.index', [
         'breadcrumb' => $breadcrumb,
         'page' => $page,
@@ -37,6 +39,8 @@ class KeluhanController extends Controller
         'keluhans' => $keluhans
     ]);
 }
+
+
 
 public function store(Request $request)
 {
@@ -55,14 +59,12 @@ public function store(Request $request)
         'rt' => $request->rt,
         'keluhan' => $request->keluhan,
     ]);
-    return redirect()->intended('/');
+    return redirect()->intended('/')->with('success','saran / keluhan anda berhasil dikirim');
     // Simpan data ke database
     // $keluhan = new Keluhan();
     // $keluhan->nama_penduduk = $validatedData['nama'];
     // $keluhan->asal_rt = $validatedData['rt'];
     // $keluhan->keluhan = $validatedData['keluhan'];
     // $keluhan->save();
-
-
     }
 }

@@ -58,14 +58,14 @@
                 </a>
                 <div class="collapse {{ $dropdown == 'd_penduduk' ? 'show' : '' }}" id="collapsePenduduk" style="margin-left: 2.5rem;">
                     <ul class="nav flex-column pl-5">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{ route('data_penduduk.index')}}">Data Penduduk</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('data_kk.index')}}">Data KK</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('data_rt.index')}}">Data RT</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('data_penduduk.index')}}">Data Penduduk</a>
                         </li>
                     </ul>
                 </div>
