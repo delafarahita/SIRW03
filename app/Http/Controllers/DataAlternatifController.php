@@ -94,9 +94,9 @@ class DataAlternatifController extends Controller
         $activeMenu = 'data_alternatif';
         $dropdown = '';
         $alternatif = DataAlternatifModel::find($id);
-        return view('admin.kk.edit', [
+        return view('admin.data_alternatif.edit', [
             'page' => $page,
-            'kk' => $alternatif,
+            'alternatif' => $alternatif,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown
         ]);

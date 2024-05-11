@@ -12,6 +12,7 @@ class DataAlternatifModel extends Model
     public $table = 'data_alternatif';
     public $primaryKey = 'id_alternatif';
     
+    public $timestamps = false;
     public $fillable = ['nama_alternatif'];
     
 }

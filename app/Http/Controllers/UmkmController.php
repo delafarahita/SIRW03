@@ -49,12 +49,15 @@ class UmkmController extends Controller
 
         $activeMenu = 'umkm'; // set menu yang sedang aktif
 
+        $kategori_umkm = UmkmModel::$kategori_umkm;
+        
         return view('admin.umkm.create', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown,
             'rt' => $rt,
+            'kategori_umkm'=> $kategori_umkm,
         ]);
     }
 

@@ -11,38 +11,38 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">Kategori Usaha</label>
-                            <select class="form-control" name="kategori_usaha" id="kategori_usaha" required>
-                                <option value="">- Pilih Kategori Usaha -</option>
-                                @foreach ($rt as $item)
-                                    <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
-                                @endforeach
-                            </select>
-                            @error('id_rt')
+                            <label class="control-label">Nama Usaha</label>
+                            <input type="text" class="form-control" id="nama_umkm" name="nama_umkm"
+                                value="{{ old('nama_umkm') }}" required>
+                            @error('nama_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Nama Usaha</label>
-                            <input type="text" class="form-control" id="nama_usaha" name="nama_usaha"
-                                value="{{ old('nama_usaha') }}" required>
-                            @error('nama_usaha')
+                            <label class="control-label">Kategori Usaha</label>
+                            <select class="form-control" name="kategori_umkm" id="kategori_umkm" required>
+                                <option value="">- Pilih Kategori umkm -</option>
+                                @foreach ($kategori_umkm as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                            @error('kategori_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">Nama Pemilik Usaha</label>
-                            <input type="text" class="form-control" id="nama_pemilik_usaha" name="nama_pemilik_usaha"
-                                value="{{ old('nama_pemilik_usaha') }}" required>
-                            @error('nama_pemilik_usaha')
+                            <input type="text" class="form-control" id="pemilik_umkm" name="pemilik_umkm"
+                                value="{{ old('pemilik_umkm') }}" required>
+                            @error('pemilik_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">Alamat Usaha</label>
-                            <input type="text" class="form-control" id="alamat_usaha" name="alamat_usaha"
-                                value="{{ old('alamat_usaha') }}" required>
-                            @error('alamat_usaha')
+                            <input type="text" class="form-control" id="alamat_umkm" name="alamat_umkm"
+                                value="{{ old('alamat_umkm') }}" required>
+                            @error('alamat_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -86,9 +86,9 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label class="control-label">Deskripsi Usaha</label>
-                            <textarea class="form-control @error('deskripsi_usaha') is-invalid @enderror" placeholder=""
-                            name="deskripsi_usaha" id="floatingTextarea" style="height: 200px"></textarea>
-                            @error('deskripsi_usaha')
+                            <textarea class="form-control @error('deskripsi_umkm') is-invalid @enderror" placeholder=""
+                            name="deskripsi_umkm" id="floatingTextarea" style="height: 200px"></textarea>
+                            @error('deskripsi_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
