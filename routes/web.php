@@ -210,3 +210,12 @@ Route::group(['prefix' => '/keluhan'], function () {
     Route::get('/create', [KeluhanController::class, 'create'])->name('keluhan.create');
     Route::get('/{id}', [KeluhanController::class, 'show'])->name('keluhan.show');
 });
+
+Route::prefix('kas')->group(function () {
+    Route::get('/', [KasController::class, 'index'])->name('kas.index');
+    Route::get('/create', [KasController::class, 'create'])->name('kas.create');
+    Route::post('/', [KasController::class, 'store'])->name('kas.store');
+    Route::get('/{kas}/edit', [KasController::class, 'edit'])->name('kas.edit');
+    Route::put('/{kas}', [KasController::class, 'update'])->name('kas.update');
+    Route::delete('/{kas}', [KasController::class, 'destroy'])->name('kas.destroy');
+});
