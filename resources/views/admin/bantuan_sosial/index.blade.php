@@ -56,6 +56,9 @@
                 </div>
                 <div class="row align-items-center my-2">
                     <div class="col bg-white rounded p-3 mx-2 border-main">
+                        <a href="{{url('admin/data_penilaian')}}">Data Penilaian</a>
+                    </div>
+                    <div class="col bg-white rounded p-3 mx-2 border-main">
                         <a href="">Data Perhitungan</a>
                     </div>
                     <div class="col bg-white rounded p-3 mx-2 border-main">

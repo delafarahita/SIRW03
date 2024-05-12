@@ -58,13 +58,13 @@
                 </a>
                 <div class="collapse {{ $dropdown == 'd_penduduk' ? 'show' : '' }}" id="collapsePenduduk" style="margin-left: 2.5rem;">
                     <ul class="nav flex-column pl-5">
-                        <li class="nav-item">
+                        <li class="nav-item {{ $activeMenu == 'kk' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('data_kk.index')}}">Data KK</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ $activeMenu == 'rt' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('data_rt.index')}}">Data RT</a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item {{ $activeMenu == 'data_penduduk' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('data_penduduk.index')}}">Data Penduduk</a>
                         </li>
                     </ul>
@@ -72,7 +72,7 @@
             </li>
 
             <li class="nav-item {{ $activeMenu == 'bantuan_sosial' ? 'active' : '' }}">
-                <a href="{{ route('bantuan_sosial.index')}}" class="nav-link">
+                <a href="{{ route('bantuan_sosial.index')}}" class="nav-link collapsed dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#collapseBansos" aria-expanded="{{ $activeMenu == 'bantuan_sosial' ? 'true' : 'false' }}" aria-controls="collapseBansos" data-bs-auto-close="outside">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -83,6 +83,19 @@
                     </span>
                     <span class="sidebar-text">Bantuan Sosial</span>
                 </a>
+                <div class="collapse {{ $dropdown == 'd_bansos' ? 'show' : '' }}" id="collapseBansos" style="margin-left: 2.5rem;">
+                    <ul class="nav flex-column pl-5">
+                        <li class="nav-item {{ $activeMenu == 'data_alternatif' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('data_alternatif.index')}}">Data Alternatif</a>
+                        </li>
+                        <li class="nav-item {{ $activeMenu == 'data_kriteria' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('data_kriteria.index')}}">Data Kriteria</a>
+                        </li>
+                        <li class="nav-item {{ $activeMenu == 'data_penilaian' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('data_penilaian.index')}}">Data Penilaian</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
 
             <li class="nav-item {{ $activeMenu == 'umkm' ? 'active' : '' }}">

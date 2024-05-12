@@ -14,8 +14,8 @@ class DataAlternatifController extends Controller
             'title' => 'Daftar Alternatif Bantuan Sosial',
         ];
 
-        $activeMenu = 'bantuan_sosial';
-        $dropdown = '';
+        $activeMenu = 'data_alternatif';
+        $dropdown = 'd_bansos';
 
         return view('admin.data_alternatif.index', [
             'page' => $page,
@@ -48,8 +48,8 @@ class DataAlternatifController extends Controller
             'title' => 'Tambah Alternatif Baru',
         ];
 
-        $activeMenu = 'bantuan_sosial';
-        $dropdown = '';
+        $activeMenu = 'data_kriteria';
+        $dropdown = 'd_bansos';
 
         return view('admin.data_alternatif.create', [
             'page' => $page,

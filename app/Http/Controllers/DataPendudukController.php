@@ -25,7 +25,7 @@ class DataPendudukController extends Controller
 
         $dropdown = 'd_penduduk';
 
-        $activeMenu = 'Data Penduduk'; // set menu yang sedang aktif
+        $activeMenu = 'data_penduduk'; // set menu yang sedang aktif
         $rt = RTModel::all();
         $kk = KKModel::all();
 
@@ -160,7 +160,7 @@ class DataPendudukController extends Controller
 
         $dropdown = 'd_penduduk';
 
-        $activeMenu = 'dataPenduduk'; // set menu yang sedang aktif
+        $activeMenu = 'data_penduduk'; // set menu yang sedang aktif
 
         return view('admin.data_penduduk.show', ['penduduk' => $penduduk, 'breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'dropdown' => $dropdown]);
     }
@@ -185,7 +185,7 @@ class DataPendudukController extends Controller
         $page = (object) [
             'title' => 'Edit Data Penduduk'
         ];
-        $activeMenu = 'dataPenduduk';
+        $activeMenu = 'data_penduduk';
         $dropdown = 'd_penduduk';
 
         return view('admin.data_penduduk.edit', [

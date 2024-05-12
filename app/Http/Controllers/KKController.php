@@ -14,7 +14,7 @@ class KKController extends Controller
             'title' => 'Daftar Kartu Keluarga',
         ];
 
-        $activeMenu = 'kartu_keluarga';
+        $activeMenu = 'kk';
         $dropdown = 'd_penduduk';
 
         return view('admin.kk.index', [
@@ -47,7 +47,7 @@ class KKController extends Controller
             'title' => 'Tambah Kartu Keluarga Baru',
         ];
 
-        $activeMenu = 'kartu_keluarga';
+        $activeMenu = 'kk';
         $dropdown = 'd_penduduk';
 
         return view('admin.kk.create', [
@@ -92,7 +92,7 @@ class KKController extends Controller
         $page = (object) [
             'title' => 'Edit Kartu Keluarga',
         ];
-        $activeMenu = 'kartu_keluarga';
+        $activeMenu = 'kk';
         $dropdown = 'd_penduduk';
         $kk = KKModel::find($id);
         return view('admin.kk.edit', [

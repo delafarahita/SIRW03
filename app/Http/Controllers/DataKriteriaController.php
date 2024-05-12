@@ -14,8 +14,8 @@ class DataKriteriaController extends Controller
             'title' => 'Daftar Kriteria Bantuan Sosial',
         ];
 
-        $activeMenu = 'bantuan_sosial';
-        $dropdown = '';
+        $activeMenu = 'data_kriteria';
+        $dropdown = 'd_bansos';
 
         return view('admin.data_kriteria.index', [
             'page' => $page,
@@ -48,8 +48,8 @@ class DataKriteriaController extends Controller
             'title' => 'Tambah Kriteria Baru',
         ];
 
-        $activeMenu = 'bantuan_sosial';
-        $dropdown = '';
+        $activeMenu = 'data_kriteria';
+        $dropdown = 'd_bansos';
         $jenis = DataKriteriaModel::$jenis;
 
         return view('admin.data_kriteria.create', [
