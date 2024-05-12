@@ -91,7 +91,7 @@
                         <div class="form-group">
                             <label class="control-label">RW</label>
                             <input type="number" class="form-control" id="rw" name="rw"
-                                value="03" required disabled>
+                                value="{{ old('rw') }}" required>
                             @error('rw')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
