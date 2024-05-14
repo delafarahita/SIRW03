@@ -62,22 +62,50 @@ class DataPenilaianController extends Controller
         ]);
     }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'id_alternatif' => 'nullable|required_without:id_alternatif_default|default:1',
-            'id_kriteria' => 'required',
-            'nilai' => 'required'
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'id_alternatif' => 'required',
+    //         'id_kriteria' => 'required',
+    //         'nilai' => 'required'
+    //     ]);
 
-        DataPenilaianModel::create([
-            'id_alternatif' => $request->id_alternatif ?? $request->id_alternatif_default,
-            'id_kriteria' => $request->id_kriteria,
-            'nilai' => $request->nilai
-        ]);
+    //     DataPenilaianModel::create([
+    //         'id_alternatif' => $request->id_alternatif,
+    //         'id_kriteria' => $request->id_kriteria,
+    //         'nilai' => $request->nilai
+    //     ]);
+
+    //     return redirect('admin/data_penilaian')->with('success', 'Data penilaian berhasil ditambahkan!');
+    // }
+
+    public function store(Request $request)
+{
+    $validated = $request->validate([
+        'id_alternatif' => 'required',
+        'nilai.*' => 'required|numeric',
+    ]);
+
+    try {
+        $alternatif = DataAlternatifModel::findOrFail($request->id_alternatif);
+
+        $kriteria = DataKriteriaModel::all(); // Ambil semua kriteria
+
+        foreach ($kriteria as $index => $item) {
+            $nilai = $request->nilai[$index];
+
+            $penilaian = new DataPenilaianModel();
+            $penilaian->id_alternatif = $alternatif->id_alternatif;
+            $penilaian->id_kriteria = $item->id_kriteria;
+            $penilaian->nilai = $nilai;
+            $penilaian->save();
+        }
 
         return redirect('admin/data_penilaian')->with('success', 'Data penilaian berhasil ditambahkan!');
+    } catch (\Exception $e) {
+        dd($e->getMessage());
     }
+}
 
     // public function show($id){
     //     $page = (object) [
@@ -102,30 +130,48 @@ class DataPenilaianController extends Controller
         $activeMenu = 'Bantuan Sosial';
         $dropdown = 'd_bansos';
         $penilaian = DataPenilaianModel::find($id);
+        $alternatif = DataAlternatifModel::find($id);
+        $kriteria = DataKriteriaModel::all();
         return view('admin.data_penilaian.edit', [
             'page' => $page,
             'penilaian' => $penilaian,
             'activeMenu' => $activeMenu,
-            'dropdown' => $dropdown
+            'dropdown' => $dropdown,
+            'alternatif' => $alternatif,
+            'kriteria' => $kriteria
         ]);
     }
 
     public function update(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'kode_penilaian' => 'required',
-            'nama_penilaian' => 'required',
-            'bobot' => 'required',
-            'jenis' => 'required'
-        ]);
-        $penilaian = DataPenilaianModel::find($id)->update([
-            'kode_penilaian' => $request->kode_penilaian,
-            'nama_penilaian' => $request->nama_penilaian,
-            'bobot' => $request->bobot,
-            'jenis' => $request->jenis,
-        ]);
-        return redirect('admin/data_penilaian')->with('success', 'Data penilaian berhasil diupdate!');
+{
+    $validated = $request->validate([
+        'nilai.*' => 'required|numeric',
+    ]);
+
+    try {
+        $alternatif = DataAlternatifModel::findOrFail($id);
+        $kriteria = DataKriteriaModel::all();
+
+        // Hapus semua penilaian terkait dengan alternatif ini
+        $alternatif->penilaians()->delete();
+
+        foreach ($kriteria as $index => $item) {
+            if (isset($request->nilai[$index])) {
+                $nilai = $request->nilai[$index];
+
+                $penilaian = new DataPenilaianModel();
+                $penilaian->id_alternatif = $alternatif->id_alternatif;
+                $penilaian->id_kriteria = $item->id_kriteria;
+                $penilaian->nilai = $nilai;
+                $penilaian->save();
+            }
+        }
+
+        return redirect('admin/data_penilaian')->with('success', 'Data penilaian berhasil diperbarui!');
+    } catch (\Exception $e) {
+        dd($e->getMessage());
     }
+}
 
     public function destroy($id)
     {

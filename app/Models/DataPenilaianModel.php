@@ -18,12 +18,18 @@ class DataPenilaianModel extends Model
 
     protected $fillable = ['id_alternatif', 'id_kriteria', 'nilai'];
     
-    public function data_alternatif(): BelongsTo
+    public function alternatif(): BelongsTo
     {
         return $this->belongsTo(DataAlternatifModel::class, 'id_alternatif', 'id_alternatif');
     }
-    public function data_kriteria(): BelongsTo
+    public function kriteria(): BelongsTo
     {
         return $this->belongsTo(DataKriteriaModel::class, 'id_kriteria', 'id_kriteria');
     }
+
+    public function nilai_for($kriteria_id)
+    {
+        $penilaian = $this->where('id_kriteria', $kriteria_id)->first();
+        return $penilaian ? $penilaian->nilai : null;
     }
+}

@@ -15,6 +15,11 @@ class DataKriteriaModel extends Model
     public $fillable = ['kode_kriteria', 'nama_kriteria', 'bobot', 'jenis'];
 
     public $timestamps = false;
+    public function alternatifs()
+    {
+        return $this->belongsToMany(DataAlternatifModel::class, 'data_penilaian')
+            ->withPivot('nilai');
+    }
 
     public static $jenis =[
         "Benefit","Cost"

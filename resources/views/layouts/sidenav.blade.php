@@ -94,6 +94,9 @@
                         <li class="nav-item {{ $activeMenu == 'data_penilaian' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('data_penilaian.index')}}">Data Penilaian</a>
                         </li>
+                        <li class="nav-item {{ $activeMenu == 'data_perhitungan' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('data_perhitungan.index')}}">Data Perhitungan</a>
+                        </li>
                     </ul>
                 </div>
             </li>

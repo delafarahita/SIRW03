@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataKriteriaModel;
+use App\Models\DataPenilaianModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -129,8 +130,21 @@ class DataKriteriaController extends Controller
 
     public function destroy($id)
     {
-        $kriteria = DataKriteriaModel::find($id);
-        $kriteria->delete();
-        return redirect('admin/data_kriteria')->with('success', 'Data Kriteria berhasil dihapus!');
+        try {
+            $kriteria = DataKriteriaModel::findOrFail($id);
+    
+            // Periksa apakah ada data penilaian yang terkait dengan kriteria ini
+            $penilaianTerkait = DataPenilaianModel::where('id_kriteria', $id)->exists();
+    
+            if ($penilaianTerkait) {
+                return redirect('admin/data_kriteria')->with('error', 'Data Kriteria tidak dapat dihapus karena masih digunakan pada data penilaian!');
+            }
+    
+            $kriteria->delete();
+    
+            return redirect('admin/data_kriteria')->with('success', 'Data Kriteria berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect('admin/data_kriteria')->with('error', 'Terjadi kesalahan saat menghapus data Kriteria: ' . $e->getMessage());
+        }
     }
 }

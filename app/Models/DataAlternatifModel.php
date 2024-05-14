@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DataAlternatifModel extends Model
 {
+
     use HasFactory;
 
     public $table = 'data_alternatif';
@@ -14,5 +15,15 @@ class DataAlternatifModel extends Model
     
     public $timestamps = false;
     public $fillable = ['nama_alternatif'];
-    
+
+    public function kriterias()
+    {
+        return $this->belongsToMany(DataKriteriaModel::class, 'data_penilaian')
+                    ->withPivot('nilai');
+    }
+
+    public function penilaians()
+    {
+        return $this->hasMany(DataPenilaianModel::class, 'id_alternatif');
+    }
 }

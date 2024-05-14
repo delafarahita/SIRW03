@@ -16,6 +16,7 @@ use App\Http\Controllers\RTController;
 use App\Http\Controllers\RWController;
 use App\Http\Controllers\BantuanSosialController;
 use App\Http\Controllers\DataPenilaianController;
+use App\Http\Controllers\DataPerhitunganController;
 use App\Http\Controllers\KategoriDagangController;
 use App\Http\Controllers\KategoriJasaController;
 use App\Http\Controllers\KategoriUmkmController;
@@ -128,6 +129,17 @@ Route::group(['middleware' => ['auth']], function (){
             Route::get('/{id}/edit', [DataPenilaianController::class, 'edit'])->name('data_penilaian.edit');
             Route::put('/{id}', [DataPenilaianController::class, 'update'])->name('data_penilaian.update');
             Route::delete('/{id}', [DataPenilaianController::class, 'destroy'])->name('data_penilaian.destroy');
+        });
+
+        Route::group(['prefix' => 'data_perhitungan'], function(){
+            Route::get('/', [DataPerhitunganController::class, 'index'])->name('data_perhitungan.index');
+            Route::post('/list', [DataPerhitunganController::class, 'list'])->name('data_perhitungan.list');
+            Route::get('/{id}/create', [DataPerhitunganController::class, 'create'])->name('data_perhitungan.create');
+            Route::post('/', [DataPerhitunganController::class, 'store'])->name('data_perhitungan.store');
+            Route::get('/{id}', [DataPerhitunganController::class, 'show'])->name('data_perhitungan.show');
+            Route::get('/{id}/edit', [DataPerhitunganController::class, 'edit'])->name('data_perhitungan.edit');
+            Route::put('/{id}', [DataPerhitunganController::class, 'update'])->name('data_perhitungan.update');
+            Route::delete('/{id}', [DataPerhitunganController::class, 'destroy'])->name('data_perhitungan.destroy');
         });
 
         Route::group(['prefix' => 'umkm'], function(){

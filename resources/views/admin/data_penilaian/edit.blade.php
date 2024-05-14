@@ -7,14 +7,19 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url('admin/data_penilaian/') }}" class="form-horizontal">
+            <form method="POST" action="{{ url('admin/data_penilaian/'. $penilaian->id_penilaian) }}" class="form-horizontal">
                 @csrf
+                    {!! method_field('PUT') !!}
                 <input type="hidden" name="id_alternatif" value="{{ $alternatif->id_alternatif }}">
-                @foreach ($kriteria as $item)
+                @foreach ($kriteria as $krit)
+                    @php
+                        $penilaian = $alternatif->penilaians()->where('id_kriteria', $krit->id_kriteria)->first();
+                        $nilai = $penilaian ? $penilaian->nilai : null;
+                    @endphp
                     <div class="form-group row">
-                        <label for="nilai" class="col-sm-2 col-form-label">{{ $item->nama_kriteria }}</label>
+                        <label for="nilai" class="col-sm-2 col-form-label">{{ $krit->nama_kriteria }}</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control @error('nilai.*') is-invalid @enderror" id="nilai" name="nilai[]" value="{{ old('nilai.'.$loop->index) }}" required>
+                            <input type="text" class="form-control @error('nilai.*') is-invalid @enderror" id="nilai" name="nilai[]" value="{{ old('nilai.'.$loop->index, $nilai) }}" required>
                             @error('nilai.*')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

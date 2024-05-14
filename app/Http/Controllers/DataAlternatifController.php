@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataAlternatifModel;
+use App\Models\DataPenilaianModel;
 use Yajra\DataTables\Facades\DataTables;
 
 class DataAlternatifController extends Controller
@@ -48,7 +49,7 @@ class DataAlternatifController extends Controller
             'title' => 'Tambah Alternatif Baru',
         ];
 
-        $activeMenu = 'data_kriteria';
+        $activeMenu = 'data_alternatif';
         $dropdown = 'd_bansos';
 
         return view('admin.data_alternatif.create', [
@@ -115,8 +116,21 @@ class DataAlternatifController extends Controller
 
     public function destroy($id)
     {
-        $alternatif = DataAlternatifModel::find($id);
-        $alternatif->delete();
-        return redirect('admin/data_alternatif')->with('success', 'Data Alternatif berhasil dihapus!');
+        try {
+            $alternatif = DataAlternatifModel::findOrFail($id);
+    
+            // Periksa apakah ada data penilaian yang terkait dengan alternatif ini
+            $penilaianTerkait = DataPenilaianModel::where('id_alternatif', $id)->exists();
+    
+            if ($penilaianTerkait) {
+                return redirect('admin/data_alternatif')->with('error', 'Data Alternatif tidak dapat dihapus karena masih digunakan pada data penilaian!');
+            }
+    
+            $alternatif->delete();
+    
+            return redirect('admin/data_alternatif')->with('success', 'Data Alternatif berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect('admin/data_alternatif')->with('error', 'Terjadi kesalahan saat menghapus data alternatif: ' . $e->getMessage());
+        }
     }
 }
