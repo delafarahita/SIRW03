@@ -1,10 +1,21 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    .custom-color-btn {
+        background-color: #FFA63E;
+        color: #fff;
+        border-color: #FFA63E;
+    }
+
+    .table-container {
+        margin-bottom: 20px;
+    }
+</style>
   <div class="card card-outline card-primary">
     <div class="card-header">
       <h3 class="card-title">{{ $page->title }}</h3>
       <div class="card-tools">
-        <a class="btn btn-sm btn-primary mt-1" href="{{ url('admin/kegiatan/create') }}">Tambah</a>
+        <a class="btn-sm custom-color-btn mt-1" href="{{ url('admin/kegiatan/create') }}">Tambah</a>
       </div>
     </div>
     <div class="card-body">
@@ -15,10 +26,9 @@
         <div class="alert alert-danger">{{ session('error') }}</div>
       @endif
 
-      <!-- Tiga kotak -->
-      <div class="d-flex justify-content-between">
-        <div class="card rounded-3 text-white" style="width: 24.5rem; background-color: #1F2937;">
-            <img src="{{asset('assets/img/penjahit.jpg')}}" class="card-img-top">
+      <div class="d-flex flex-column align-items-center">
+        <div class="card rounded-3 text-white mb-4" style="background-color: #1F2937;">
+            <img src="{{asset('assets/img/penjahit.jpg')}}" class="card-img-top img-fluid">
             <div class="card-body">
               <h5 class="card-title">Pelatihan Menjahit</h5>
               <p class="card-text">Kegiatan Mendatang</p>
@@ -30,8 +40,8 @@
             </div>
         </div>
 
-        <div class="card rounded-3 text-white" style="width: 24.5rem; background-color: #1F2937;">
-            <img src="{{asset('assets/img/fotocopy.jpg')}}" class="card-img-top">
+        <div class="card rounded-3 text-white mb-4" style="background-color: #1F2937;">
+            <img src="{{asset('assets/img/fotocopy.jpg')}}" class="card-img-top img-fluid">
             <div class="card-body">
               <h5 class="card-title">Kerja Bakti</h5>
               <p class="card-text">Kegiatan Mendatang</p>
@@ -43,8 +53,8 @@
             </div>
         </div>
 
-        <div class="card rounded-3 text-white" style="width: 24.5rem; background-color: #1F2937;">
-            <img src="{{asset('assets/img/kue.jpg')}}" class="card-img-top">
+        <div class="card rounded-3 text-white mb-4" style="background-color: #1F2937;">
+            <img src="{{asset('assets/img/kue.jpg')}}" class="card-img-top img-fluid">
             <div class="card-body">
               <h5 class="card-title">Karang Taruna</h5>
               <p class="card-text">Kegiatan Mendatang</p>
@@ -55,6 +65,7 @@
               </div>
             </div>
         </div>
+
       </div>
     </div>
   </div>
