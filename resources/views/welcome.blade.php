@@ -312,7 +312,7 @@
                         @enderror
                         <div class="form-floating">
                             <textarea class="form-control @error('keluhan') is-invalid @enderror" placeholder="" name="keluhan"
-                                id="floatingTextarea" style="height: 200px"></textarea>
+                                id="floatingTextarea" style="height: 100px"></textarea>
                             <label for="floatingTextarea">Pengaduan</label>
                         </div>
                         @error('keluhan')
@@ -320,6 +320,18 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                        <div class="form-floating">
+                            {{-- <textarea class="form-control @error('foto_peng') is-invalid @enderror" placeholder="" name="keluhan"
+                            id="floatingTextarea" style="height: 100px"></textarea> --}}
+                            <input type="file" class="form-control my-2 @error('berkas') is-invalid @enderror" id="berkas" name="berkas" placeholder="Upload Foto">
+                            <label for="berkas">Foto Pengaduan</label>
+                        </div>
+                        @error('berkas')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        
                         <div class="my-2">
                             <button type="submit" class="btn btn-oren text-white px-5">KIRIM</button>
                         </div>

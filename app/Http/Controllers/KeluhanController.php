@@ -51,15 +51,35 @@ public function store(Request $request)
         'nama_penduduk' => 'required',
         'rt' => 'required',
         'keluhan' => 'required',
+        'foto' => 'fillable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
+    if ($request->hasFile('foto')) {
+        $imageName = time().'.'.$request->foto->extension();  
+        $request->foto->move(public_path('images'), $imageName);
+    } else {
+        $imageName = null;
+    }
+
+    // $keluhan = new Keluhan([
+    //     'nama_penduduk' => $request->get('nama_penduduk'),
+    //     'rt' => $request->get('rt'),
+    //     'keluhan' => $request->get('keluhan'),
+    //     'foto' => $imageName,
+    // ]);
+
+    // $keluhan->save();
+
+    // return redirect()->intended('/')->with('success', 'Keluhan berhasil dikirim.');
+
         
 
     Keluhan::create([
         'nama_penduduk' => $request->nama_penduduk,
         'rt' => $request->rt,
         'keluhan' => $request->keluhan,
+        'foto' => $request->foto
     ]);
-    return redirect()->intended('/')->with('success','saran / keluhan anda berhasil dikirim');
+    return redirect('/')->with('success','saran / keluhan anda berhasil dikirim');
     // Simpan data ke database
     // $keluhan = new Keluhan();
     // $keluhan->nama_penduduk = $validatedData['nama'];
