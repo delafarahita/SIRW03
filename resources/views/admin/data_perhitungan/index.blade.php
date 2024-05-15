@@ -36,15 +36,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($alternatif as $alt)
+                        @foreach ($dataMatriks as $alt)
                             <tr>
-                                <td>A{{ $alt->id_alternatif }}</td>
-                                @foreach ($kriteria as $krit)
-                                    @php
-                                        $penilaian = $alt->penilaians()->where('id_kriteria', $krit->id_kriteria)->first();
-                                        $nilai = $penilaian ? $penilaian->nilai : null;
-                                    @endphp
-                                    <td>{{ $nilai }}</td>
+                                <td>A{{ $alt['id_alternatif'] }}</td>
+                                @foreach ($alt['penilaians'] as $penilaian)
+                                    <td>{{ $penilaian['nilai'] }}</td>
                                 @endforeach
                             </tr>
                         @endforeach
@@ -53,19 +49,26 @@
             </div>
             <div class="table-container table-responsive">
                 <h5>Solusi Rata-rata (AV)</h5>
+                @php
+                    $krit = $dataAvg[0];
+                @endphp
+                <p>Total Nilai untuk AV{{ $krit['id_kriteria'] }} = {{ $krit['totalNilai'] }}</p>
+                <p>Rata-rata Nilai untuk AV{{ $krit['id_kriteria'] }} = {{ $krit['rataRataNilai'] }}</p>
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_av">
                     <thead>
                         <tr>
-                            <th>Alternatif</th>
+                            <th>Rata-rata Solusi</th>
                             <th>Nilai</th>
                         </tr>
-                        {{-- @foreach ($alternatif as $item)
-                        <tr>
-                                <td>AV{{$item->id_alternatif}}</td>
-                                <td></td>
-                        </tr>
-                        @endforeach --}}
                     </thead>
+                    <tbody>
+                        @foreach ($dataAvg as $krit)
+                        <tr>
+                            <td>AV{{$krit['id_kriteria']}}</td>
+                            <td>{{$krit['rataRataNilai']}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
             <div class="table-container table-responsive">
@@ -73,55 +76,117 @@
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_pda">
                     <thead>
                         <tr>
-                            <th>Alternatif</th>
-                            @foreach ($kriteria as $item)
-                                <th>{{$item->kode_kriteria}}</th>
+                            <th>Alternative</th>
+                            @foreach($dataPDA[0]['penilaians'] as $penilaian)
+                                <th>C{{ $penilaian['id_kriteria'] }}</th>
                             @endforeach
-                            <th>Jumlah Terbobot (SP)</th>
+                            {{-- <th>SP</th> --}}
                         </tr>
-                        {{-- @foreach ($alternatif as $item)
-                        <tr>
-                                <td>A{{$item->id_alternatif}}</td>
-                        </tr>
-                        @endforeach --}}
                     </thead>
+                    <tbody>
+                        @foreach($dataPDA as $alternative)
+                            <tr>
+                                <td>A{{ $alternative['id_alternatif'] }}</td>
+                                @foreach($alternative['penilaians'] as $penilaian)
+                                    <td>{{ $penilaian['nilai'] !== null ? $penilaian['nilai'] : '-' }}</td>
+                                    @endforeach
+                                </tr>
+                                @endforeach
+                    </tbody>
                 </table>
             </div>
+            <div class="table-container table-responsive">
+                <h5>Jumlah Terbobot dari PDA (SP)</h5>
+                <table class="table table-bordered table-striped table-hover table-sm" id="table_nda">
+                    <thead>
+                        <tr>
+                            <th>Alternatif</th>
+                            @foreach($dataSP[0]['penilaians'] as $penilaian)
+                                <th>C{{ $penilaian['id_kriteria'] }}</th>
+                            @endforeach
+                            <th>SP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($dataSP as $alternative)
+                            <tr>
+                                <td>A{{ $alternative['id_alternatif'] }}</td>
+                                @foreach ($alternative['penilaians'] as $penilaian)
+                                    <td>{{ $penilaian['nilai'] }}</td>
+                                @endforeach
+                                <td>{{ $alternative['sum_weightedValue'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            
             <div class="table-container table-responsive">
                 <h5>Jarak Negatif Rata-rata (NDA)</h5>
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_nda">
                     <thead>
                         <tr>
                             <th>Alternatif</th>
-                            @foreach ($kriteria as $item)
-                                <th>{{$item->kode_kriteria}}</th>
+                            @foreach($dataNDA[0]['penilaians'] as $penilaian)
+                                <th>C{{ $penilaian['id_kriteria'] }}</th>
                             @endforeach
-                            <th>Jumlah Terbobot (SP)</th>
                         </tr>
-                        {{-- @foreach ($alternatif as $item)
-                        <tr>
-                                <td>A{{$item->id_alternatif}}</td>
-                        </tr>
-                        @endforeach --}}
                     </thead>
+                    <tbody>
+                        @foreach($dataNDA as $alternative)
+                            <tr>
+                                <td>A{{ $alternative['id_alternatif'] }}</td>
+                                @foreach($alternative['penilaians'] as $penilaian)
+                                    <td>{{ $penilaian['nilai'] !== null ? $penilaian['nilai'] : '-' }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
             <div class="table-container table-responsive">
-                <h5>Normalisasi Nilai SP (NSP)</h5>
+                <h5>Jumlah Terbobot dari NDA (SN)</h5>
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_nda">
                     <thead>
                         <tr>
                             <th>Alternatif</th>
-                            @foreach ($kriteria as $item)
-                                <th>{{$item->kode_kriteria}}</th>
+                            @foreach($dataSN[0]['penilaians'] as $penilaian)
+                                <th>C{{ $penilaian['id_kriteria'] }}</th>
                             @endforeach
+                            <th>SP</th>
                         </tr>
-                        {{-- @foreach ($alternatif as $item)
-                        <tr>
-                                <td>A{{$item->id_alternatif}}</td>
-                        </tr>
-                        @endforeach --}}
                     </thead>
+                    <tbody>
+                        @foreach ($dataSN as $alternative)
+                            <tr>
+                                <td>A{{ $alternative['id_alternatif'] }}</td>
+                                @foreach ($alternative['penilaians'] as $penilaian)
+                                    <td>{{ $penilaian['nilai'] }}</td>
+                                @endforeach
+                                <td>{{ $alternative['sum_weightedValue'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-container table-responsive">
+                <h5>Normalisasi Nilai SP (NSP) & Normalisasi Nilai SN (NSN)</h5>
+                <table class="table table-bordered table-striped table-hover table-sm" id="table_nda">
+                    <thead>
+                        <tr>
+                            <th>Alternatif</th>
+                            <th>NSP</th>
+                            {{-- <th>NSN</th> --}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($dataNSP as $alternative)
+                            <tr>
+                                <td>A{{ $alternative['id_alternatif'] }}</td>
+                                <td>{{ $alternative['sum_NSP'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
             <div class="table-container table-responsive">
@@ -130,11 +195,17 @@
                     <thead>
                         <tr>
                             <th>Alternatif</th>
-                            @foreach ($kriteria as $item)
-                                <th>{{$item->kode_kriteria}}</th>
-                            @endforeach
+                            <th>NSN</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach ($dataNSN as $alternative)
+                            <tr>
+                                <td>A{{ $alternative['id_alternatif'] }}</td>
+                                <td>{{ $alternative['sum_NSN'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
             <div class="table-container table-responsive">
@@ -144,9 +215,39 @@
                         <tr>
                             <th>Alternatif</th>
                             <th>Nilai</th>
-                            <th>Rank</th>
+                            {{-- <th>Rank</th> --}}
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach ($dataAS as $alternative)
+                            <tr>
+                                <td>A{{ $alternative['id_alternatif'] }}</td>
+                                <td>{{ $alternative['combined_value'] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-container table-responsive">
+                <h5>Nilai Perankingan (Rank)</h5>
+                <table class="table table-bordered table-striped table-hover table-sm" id="table_as">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Alternatif</th>
+
+                            {{-- <th>Rank</th> --}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($dataRank as $alternative)
+                            <tr>
+                                <td>{{ $alternative['rank'] }}</td>
+                                <td>A{{ $alternative['id_alternatif'] }}</td>
+                                {{-- <td>{{ $alternative['combined_value'] }}</td> --}}
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
