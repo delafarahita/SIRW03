@@ -171,7 +171,7 @@ class DataPendudukController extends Controller
         $kk = KKModel::all();
         $rt = RTModel::all();
         $pekerjaan = DataPendudukModel::$pekerjaan;
-        $gol_darah = DataPEndudukModel::$gol_darah;
+        $gol_darah = DataPendudukModel::$gol_darah;
         $jenis_kelamin = DataPendudukModel::$jenis_kelamin;
         $kewarganegaraan = DataPendudukModel::$kewarganegaraan;
         $agama     = DataPendudukModel::$agama;
