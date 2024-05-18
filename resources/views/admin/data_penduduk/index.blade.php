@@ -42,7 +42,9 @@
 
             <div class="card-tools d-flex justify-content-between">
                 <a class="btn-sm custom-color-btn mt-1" href="{{ route('data_penduduk.create') }}">Tambah Penduduk</a>
-                <a class="btn-sm custom-color-btn mt-1" href="{{ url('DataPenduduk/create') }}">Download Seluruh Data</a>
+                <form action="{{route('data_penduduk.export')}}" method="get">
+                    <button class="btn-sm custom-color-btn mt-1" type="submit">Download Seluruh Data</button>
+                 </form>
             </div>
         </div>
     </div>
