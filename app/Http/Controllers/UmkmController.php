@@ -50,7 +50,7 @@ class UmkmController extends Controller
         $activeMenu = 'umkm'; // set menu yang sedang aktif
 
         $kategori_umkm = UmkmModel::$kategori_umkm;
-        
+
         return view('admin.umkm.create', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
@@ -96,10 +96,22 @@ class UmkmController extends Controller
         ]);
     }
 
-    public function edit($id)
+    public function edit()
     {
-        $umkm = UmkmModel::findOrFail($id);
-        return view('admin.umkm.edit', compact('umkm'));
+        // $umkm = UmkmModel::findOrFail($id);
+        $page = (object) [
+            'title' => 'Edit Data UMKM',
+        ];
+        $activeMenu = 'umkm';
+        $dropdown = '';
+        $umkm = UmkmModel::all();
+
+        return view('admin.umkm.edit', [
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
+            'umkm' => $umkm
+        ]);
     }
 
     public function update(Request $request, $id)
