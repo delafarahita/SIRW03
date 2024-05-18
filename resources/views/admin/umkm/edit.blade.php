@@ -6,99 +6,44 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('umkm.edit') }}" class="form-horizontal">
+            <form method="POST" action="{{ url('admin/umkm/') }}" class="form-horizontal">
                 @csrf
                 {!! method_field('PUT') !!}
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">NIK</label>
-                            <input type="number" class="form-control" id="nik" name="nik">
-                                {{-- value="{{ $umkm->nik }}" > --}}
-                            @error('nik')
+                            <label class="control-label">Nama Usaha</label>
+                            <input type="text" class="form-control" id="nama_umkm" name="nama_umkm"
+                                value="{{ old('nama_umkm') }}" required>
+                            @error('nama_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">No. KK</label>
-                            {{-- <input type="number" class="form-control" id="no_kk" name="no_kk"
-                                value="{{ old('no_kk') }}" required> --}}
-                            <select class="form-control" id="no_kk" name="no_kk">
-                                <option value="">- Pilih  -</option>
-                                {{-- @foreach ($kk as $item)
-                                    <option value="{{ $item->no_kk }}"
-                                        @if ($item->no_kk == $umkm->no_kk) selected @endif>{{ $item->no_kk }}</option>
-                                @endforeach --}}
+                            <label class="control-label">Kategori Usaha</label>
+                            <select class="form-control" name="kategori_umkm" id="kategori_umkm" required>
+                                <option value="">- Pilih Kategori umkm -</option>
+                                @foreach ($kategori_umkm as $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
                             </select>
-                            @error('no_kk')
+                            @error('kategori_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama">
-                                {{-- value="{{ $umkm->nama }}" required> --}}
-                            @error('nama')
+                            <label class="control-label">Nama Pemilik Usaha</label>
+                            <input type="text" class="form-control" id="pemilik_umkm" name="pemilik_umkm"
+                                value="{{ old('pemilik_umkm') }}" required>
+                            @error('pemilik_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Tempat Lahir</label>
-                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
-                                {{-- value="{{ $umkm->tempat_lahir }}" required> --}}
-                            @error('tempat_lahir')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
-                                {{-- value="{{ $umkm->tanggal_lahir }}" required> --}}
-                            @error('tanggal_lahir')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Gol. Darah</label>
-                            <select class="form-control" id="gol_darah" name="gol_darah" required>
-                                <option value="">- PILIH -</option>
-                                {{-- @foreach ($gol_darah as $item)
-                                    <option value="{{ $item }}" @if ($item == $umkm->gol_darah) selected @endif>
-                                        {{ $item }}</option>
-                                @endforeach --}}
-                            </select>
-                            @error('gol_darah')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Jenis Kelamin</label>
-                            <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
-                                <option value="">- PILIH -</option>
-                                {{-- @foreach ($jenis_kelamin as $item)
-                                    <option value="{{ $item }}" @if ($item == $umkm->jenis_kelamin) selected @endif>
-                                        {{ $item }}</option>
-                                @endforeach --}}
-                            </select>
-                            @error('jenis_kelamin')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat">
-                                {{-- value="{{ $umkm->alamat }}" required> --}}
-                            @error('alamat')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label class="control-label">RW</label>
-                            <input type="number" class="form-control" id="rw" name="rw">
-                                {{-- value="{{ $umkm->rw }}" required> --}}
-                            @error('rw')
+                            <label class="control-label">Alamat Usaha</label>
+                            <input type="text" class="form-control" id="alamat_umkm" name="alamat_umkm"
+                                value="{{ old('alamat_umkm') }}" required>
+                            @error('alamat_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -106,85 +51,65 @@
                             <label class="control-label">RT</label>
                             <select class="form-control" name="id_rt" id="id_rt" required>
                                 <option value="">- Pilih</option>
-                                {{-- @foreach ($rt as $item)
-                                    <option value="{{ $item->id_rt }}" @if($item->id_rt == $umkm->id_rt) selected @endif>{{ $item->id_rt }}</option>
-                                @endforeach --}}
+                                @foreach ($rt as $item)
+                                    <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
+                                @endforeach
                             </select>
                             @error('id_rt')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label class="control-label">RW</label>
+                            <input type="number" class="form-control" id="rw" name="rw"
+                                value="{{ old('rw') }}" required>
+                            @error('rw')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Kel/Desa</label>
-                            <input type="text" class="form-control" id="kelurahan" name="kelurahan">
-                                {{-- value="{{ $umkm->kelurahan }}" required> --}}
+                            <input type="text" class="form-control" id="kelurahan" name="kelurahan"
+                                value="{{ old('kelurahan') }}" required>
                             @error('kelurahan')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">Kecamatan</label>
-                            <input type="text" class="form-control" id="kecamatan" name="kecamatan">
-                                {{-- value="{{ $umkm->kecamatan }}" required> --}}
+                            <input type="text" class="form-control" id="kecamatan" name="kecamatan"
+                                value="{{ old('kecamatan') }}" required>
                             @error('kecamatan')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+                    </div>
+                    <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">Kewarganegaraan</label>
-                            <select class="form-control" id="kewarganegaraan" name="kewarganegaraan" required>
-                                <option value="">- PILIH -</option>
-                                {{-- @foreach ($kewarganegaraan as $item)
-                                    <option value="{{ $item }}" @if ($item == $umkm->kewarganegaraan) selected @endif>{{$item}}</option>
-                                @endforeach --}}
-                            </select>
-                            @error('kewarganegaraan')
-                                <small class="form-text text-danger">{{ $message }}</small>
+                            <label class="control-label">Deskripsi Usaha</label>
+                            <textarea class="form-control @error('deskripsi_umkm') is-invalid @enderror" placeholder=""
+                            name="deskripsi_umkm" id="floatingTextarea" style="height: 200px"></textarea>
+                            @error('deskripsi_umkm')
+                            <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+                    </div>
+                    <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">Pekerjaan</label>
-                            <select class="form-control" id="pekerjaan" name="pekerjaan" required>
-                                <option value="">- PILIH -</option>
-                                {{-- @foreach ($pekerjaan as $item)
-                                    <option value="{{ $item }}" @if ($item == $umkm->pekerjaan) selected @endif>{{ $item }}</option>
-                                @endforeach --}}
-                            </select>
-                            @error('pekerjaan')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label">Agama</label>
-                            <select class="form-control" id="agama" name="agama" required>
-                                <option value="">- PILIH -</option>
-                                {{-- @foreach ($agama as $item)
-                                    <option value="{{ $item }}" @if ($item == $umkm->agama) selected @endif>{{$item}}</option>
-                                @endforeach --}}
-                            </select>
-                            @error('agama')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Domisili</label>
-                            <select class="form-control" id="domisili" name="domisili" required>
-                                <option value="">- PILIH -</option>
-                                {{-- @foreach ($domisili as $item)
-                                    <option value="{{ $item }}" @if ($item == $umkm->domisili) selected @endif>{{$item}}</option>
-                                @endforeach --}}
-                            </select>
-                            @error('domisili')
+                            <label class="control-label">Foto UMKM</label>
+                            <input type="file" name="foto_umkm" class="form-control @error('foto_umkm') is-invalid @enderror" placeholder=""
+                            name="foto_umkm"></input>
+                            @error('foto_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group row mt-3">
                     <div class="col-12">
                         <button type="submit" class="btn btn-info btn-sm btn-block">Simpan</button>
+                        <a href="{{ route('umkm.index') }}" class="btn btn-danger btn-sm btn-block">Kembali</a">
+                        </a>
                     </div>
                 </div>
             </form>

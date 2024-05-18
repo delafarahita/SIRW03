@@ -18,21 +18,25 @@
       <!-- Dua kotak -->
       <div class="d-flex justify-content-between">
         <div class="card rounded-3 text-white mx-2" style="width: 40.5rem; background-color: #1F2937;">
+          <a href="{{route('kategori_dagang.index')}}">
             <img src="{{asset('assets/img/dagang_4.jpg')}}" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Kategori Dagang</h5>
               <div class="d-flex justify-content-between mt-2">
               </div>
             </div>
+          </a>
         </div>
 
         <div class="card rounded-3 text-white" style="width: 40.5rem; background-color: #1F2937;">
+          <a href="{{route('kategori_jasa.index')}}">
             <img src="{{asset('assets/img/jasa_2.jpg')}}" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title">Kategori Jasa</h5>
               <div class="d-flex justify-content-between mt-2">
               </div>
             </div>
+          </a>
         </div>
       </div>
     </div>

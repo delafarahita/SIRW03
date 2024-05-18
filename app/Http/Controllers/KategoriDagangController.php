@@ -16,7 +16,7 @@ class KategoriDagangController extends Controller
         ];
 
         $page = (object) [
-            'title' => 'Data UMKM yang terdaftar dalam sistem'
+            'title' => 'Data UMKM Kategori Dagang'
         ];
         $dropdown = 'd_kategori_Dagang';
         $activeMenu = 'Data UMKM';

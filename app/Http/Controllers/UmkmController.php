@@ -64,7 +64,7 @@ class UmkmController extends Controller
     public function store(Request $request)
     {
         UmkmModel::create($request->all());
-        return redirect()->route('umkm.index');
+        return redirect()->route('umkm.index')->with('success', 'UMKM berhasil ditambahkan');
     }
 
     public function show($id)
@@ -105,16 +105,19 @@ class UmkmController extends Controller
         $activeMenu = 'umkm';
         $dropdown = '';
         $umkm = UmkmModel::all();
-
+        $kategori_umkm = UmkmModel::$kategori_umkm;
+        $rt = RTModel::all();
         return view('admin.umkm.edit', [
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown,
-            'umkm' => $umkm
+            'umkm' => $umkm,
+            'kategori_umkm' => $kategori_umkm,
+            'rt' => $rt
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, String $id)
     {
         $umkm = UmkmModel::findOrFail($id);
         $umkm->update($request->all());

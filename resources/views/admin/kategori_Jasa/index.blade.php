@@ -36,8 +36,8 @@
                         <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
                     </div>
                     <div class="d-flex justify-content-between mt-5 w-100">
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a href="{{ url('admin/umkm/' . 6 . '/delete') }}" class="btn btn-danger">Hapus</a>
+                        <a href="{{ url('admin/umkm/' . 6 . '/edit') }}" class="btn btn-warning">Edit</a>
                     </div>
                 </div>
             </div>
@@ -52,8 +52,8 @@
                         <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
                     </div>
                     <div class="d-flex justify-content-between mt-5 w-100">
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a href="{{ url('admin/umkm/' . 4 . '/delete') }}" class="btn btn-danger">Hapus</a>
+                        <a href="{{ url('admin/umkm/' . 4 . '/edit') }}" class="btn btn-warning">Edit</a>
                     </div>
                 </div>
             </div>
@@ -67,8 +67,8 @@
                         <p class="card-text">Alamat: JL.Kolonel Sugiono V/68 Malang</p>
                     </div>
                     <div class="d-flex justify-content-between mt-5 w-100">
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a href="{{ url('admin/umkm/' . 5 . '/delete') }}" class="btn btn-danger">Hapus</a>
+                        <a href="{{ url('admin/umkm/' . 5 . '/edit') }}" class="btn btn-warning">Edit</a>
                     </div>
                 </div>
             </div>

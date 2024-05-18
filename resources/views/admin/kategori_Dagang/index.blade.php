@@ -24,49 +24,51 @@
         @endif
 
         <!-- Tiga kotak -->
-        <div class="d-flex justify-content-between">
-            <div class="card rounded-3 text-white mx-2" style="width: 31.5rem; background-color: #1F2937;">
-                <img src="{{ asset('assets/img/dagang_1.jpg') }}" class="card-img-top">
-                <div class="card-body d-flex flex-column justify-content-between align-items-start">
-                    <div style="text-align: left; width: 100%;">
-                        <h5 class="card-title">Sate Gule Merso</h5>
-                        <p class="card-text">Harga: 20.000 - 200.000</p>
-                        <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
-                    </div>
-                    <div class="d-flex justify-content-between mt-5 w-100">
-                        <a href="{{ url('admin/umkm/' . 1 . '/delete') }}" class="btn btn-danger">Hapus</a>
-                        <a href="{{ url('admin/umkm/' . 1 . '/edit') }}" class="btn btn-warning">Edit</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card rounded-3 text-white mx-2" style="width: 31.5rem; background-color: #1F2937;">
-                <img src="{{ asset('assets/img/dagang_2.jpg') }}" class="card-img-top">
-                <div class="card-body d-flex flex-column justify-content-between align-items-start">
-                    <div style="text-align: left; width: 100%;">
-                        <h5 class="card-title">Agen Telur & Sembako Bu Yur</h5>
-                        <p class="card-text">Harga: 500 - 500.000</p>
-                        <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
-                    </div>
-                    <div class="d-flex justify-content-between mt-5 w-100">
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
+        <div class="">
+            <div class="d-flex justify-content-between">
+                <div class="card rounded-3 text-white" style="background-color: #1F2937;">
+                    <img src="{{ asset('assets/img/dagang_1.jpg') }}" class="card-img-top">
+                    <div class="card-body d-flex flex-column justify-content-between align-items-start">
+                        <div style="text-align: left; width: 100%;">
+                            <h5 class="card-title">Sate Gule Merso</h5>
+                            <p class="card-text">Harga: 20.000 - 200.000</p>
+                            <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
+                        </div>
+                        <div class="d-flex justify-content-between mt-5 w-100">
+                            <a href="{{ url('admin/umkm/' . 1 . '/delete') }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{ url('admin/umkm/' . 1 . '/edit') }}" class="btn btn-warning">Edit</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="card rounded-3 text-white mx-2" style="width: 31.5rem; background-color: #1F2937;">
-                <img src="{{ asset('assets/img/dagang_6.jpg') }}" class="card-img-top">
-                <div class="card-body d-flex flex-column justify-content-between align-items-start">
-                    <div style="text-align: left; width: 100%;">
-                        <h5 class="card-title">OBILICO</h5>
-                        <h5 class="card-title">Frozen Food & Snack</h5>
-                        <p class="card-text">Harga: 1.000 - 15.000</p>
-                        <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
+    
+                <div class="card rounded-3 text-white mx-2" style="background-color: #1F2937;">
+                    <img src="{{ asset('assets/img/dagang_2.jpg') }}" class="card-img-top">
+                    <div class="card-body d-flex flex-column justify-content-between align-items-start">
+                        <div style="text-align: left; width: 100%;">
+                            <h5 class="card-title">Agen Telur & Sembako Bu Yur</h5>
+                            <p class="card-text">Harga: 500 - 500.000</p>
+                            <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
+                        </div>
+                        <div class="d-flex justify-content-between mt-5 w-100">
+                            <a href="{{ url('admin/umkm/' . 2 . '/delete') }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{ url('admin/umkm/' . 2 . '/edit') }}" class="btn btn-warning">Edit</a>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between mt-5 w-100">
-                        <a href="#" class="btn btn-danger">Hapus</a>
-                        <a href="#" class="btn btn-warning">Edit</a>
+                </div>
+    
+                <div class="card rounded-3 text-white" style="background-color: #1F2937;">
+                    <img src="{{ asset('assets/img/dagang_6.jpg') }}" class="card-img-top">
+                    <div class="card-body d-flex flex-column justify-content-between align-items-start">
+                        <div style="text-align: left; width: 100%;">
+                            <h5 class="card-title">OBILICO</h5>
+                            <h5 class="card-title">Frozen Food & Snack</h5>
+                            <p class="card-text">Harga: 1.000 - 15.000</p>
+                            <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
+                        </div>
+                        <div class="d-flex justify-content-between mt-5 w-100">
+                            <a href="{{ url('admin/umkm/' . 3 . '/delete') }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{ url('admin/umkm/' . 3 . '/edit') }}" class="btn btn-warning">Edit</a>
+                        </div>
                     </div>
                 </div>
             </div>

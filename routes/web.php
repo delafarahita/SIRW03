@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\ExportController;
+
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataAlternatifController;
@@ -218,6 +220,7 @@ Route::group(['middleware' => ['auth']], function (){
         Route::put('/{id}', [KategoriUmkmController::class, 'update'])->name('data_kategori_umkm.update');
         Route::delete('/{id}', [KategoriUmkmController::class, 'destroy'])->name('data_kategori_umkm.destroy');
     });
+    Route::get('/export', [ExportController::class, 'exportToExcel'])->name('data_penduduk.export');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 

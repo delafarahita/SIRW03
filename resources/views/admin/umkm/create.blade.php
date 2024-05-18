@@ -93,6 +93,16 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="control-label">Foto UMKM</label>
+                            <input type="file" name="foto_umkm" class="form-control @error('foto_umkm') is-invalid @enderror" placeholder=""
+                            name="foto_umkm"></input>
+                            @error('foto_umkm')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group row mt-3">
                     <div class="col-12">
