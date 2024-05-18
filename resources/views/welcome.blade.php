@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="{{ asset('assets/img/logorw03.jpg') }}">
     <title>SIRW03</title>
 
     <!-- Fonts -->
@@ -190,18 +190,18 @@
             <div>
                 <h1 class="bg-font-primary text-center fw-bold font-s-48 mb-3">UMKM</h1>
             </div>
-            <div id="carouselExampleIndicators" class="carousel slide my-3 data-bs-ride="true">
+            <div id="carouselExampleAutoPlaying" class="carousel slide my-3" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                    <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="0"
                         class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="1"
                         aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="2"
                         aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ 'assets/img/umkm1.avif' }}" class="d-block w-100" style="height: 600px"
+                        <img src="{{ 'assets/img/umkm1.avif' }}" class="img-responsive w-100 d-block rounded"
                             alt="slide 1">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>UMKM 1</h5>
@@ -209,7 +209,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ 'assets/img/umkm2.jpg' }}" class="d-block w-100" style="height: 600px"
+                        <img src="{{ 'assets/img/umkm2.jpg' }}" class="img-responsive w-100 d-block rounded"
                             alt="slide 2">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>UMKM 2</h5>
@@ -217,7 +217,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ 'assets/img/umkm3.jpg' }}" class="d-block w-100" style="height: 600px"
+                        <img src="{{ 'assets/img/umkm3.jpg' }}" class="img-responsive w-100 d-block  rounded"
                             alt="slide 3">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>UMKM 3</h5>
@@ -225,12 +225,12 @@
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoPlaying"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoPlaying"
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
@@ -247,7 +247,7 @@
                 <div class="row">
                     <div class="col-lg-8 hovereffect">
                         <img src="{{ asset('assets/img/kegiatan2.jpg') }}" alt="Activity 1"
-                            class="big-img img-responsive mb-3">
+                            class="big-img img-responsive mb-3 rounded">
                         <div class="overlay text-center">
                             <h2>Minggu Bersih</h2>
                         </div>
@@ -256,14 +256,14 @@
                         <div class="col">
                             <div class="col hovereffect">
                                 <img src="{{ asset('assets/img/kegiatan1.jpg') }}" alt="Activity 2"
-                                    class="small-img mb-3">
+                                    class="small-img mb-3 rounded">
                                 <div class="overlay">
                                     <h2>Pemungutan Suara</h2>
                                 </div>
                             </div>
                             <div class="col hovereffect">
                                 <img src="{{ asset('assets/img/kegiatan4.jpg') }}" alt="Activity 3"
-                                    class="small-img mb-3">
+                                    class="small-img mb-3 rounded">
                                 <div class="overlay">
                                     <h2>Pembersihan TPU</h2>
                                 </div>
@@ -312,7 +312,7 @@
                         @enderror
                         <div class="form-floating">
                             <textarea class="form-control @error('keluhan') is-invalid @enderror" placeholder="" name="keluhan"
-                                id="floatingTextarea" style="height: 200px"></textarea>
+                                id="floatingTextarea" style="height: 100px"></textarea>
                             <label for="floatingTextarea">Pengaduan</label>
                         </div>
                         @error('keluhan')
@@ -320,6 +320,18 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                        <div class="form-floating">
+                            {{-- <textarea class="form-control @error('foto_peng') is-invalid @enderror" placeholder="" name="keluhan"
+                            id="floatingTextarea" style="height: 100px"></textarea> --}}
+                            <input type="file" class="form-control my-2 @error('berkas') is-invalid @enderror" id="berkas" name="berkas" placeholder="Upload Foto">
+                            <label for="berkas">Foto Pengaduan</label>
+                        </div>
+                        @error('berkas')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        
                         <div class="my-2">
                             <button type="submit" class="btn btn-oren text-white px-5">KIRIM</button>
                         </div>

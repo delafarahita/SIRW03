@@ -29,13 +29,17 @@ class DataPenilaianController extends Controller
     {
         $alternatifs = DataAlternatifModel::select('id_alternatif', 'nama_alternatif');
 
-        $penilaians = DataPenilaianModel::select('id_penilaian','id_kriteria', 'id_alternatif', 'nilai');
+        // $penilaians = DataPenilaianModel::select('id_penilaian','id_kriteria', 'id_alternatif', 'nilai')
+        //                     ->with('alternatif');
 
         return DataTables::of($alternatifs)
             ->addIndexColumn()
             ->addColumn('aksi', function ($alternatif) {
                 $btn = '<a href="' . url('/admin/data_penilaian/' . $alternatif->id_alternatif . '/create') . '" class="btn btn-info btn-sm">Isi</a> ';
                 $btn .= '<a href="' . url('/admin/data_penilaian/' . $alternatif->id_alternatif . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_penilaian/' . $alternatif->id_alternatif) . '">'
+                    . csrf_field() . method_field('DELETE') .
+                    '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
                 return $btn;
             })
             ->rawColumns(['aksi'])
@@ -175,9 +179,14 @@ class DataPenilaianController extends Controller
 
     public function destroy($id)
     {
-        $kriteria = DataPenilaianModel::find($id);
-        $kriteria->delete();
-        return redirect('admin/data_kriteria')->with('success', 'Data Kriteria berhasil dihapus!');
+        $penilaian = DataPenilaianModel::find($id);
+
+    if ($penilaian) {
+        $penilaian->delete();
+        return redirect('admin/data_penilaian')->with('success', 'Data Penilaian berhasil dihapus!');
+    } else {
+        return redirect('admin/data_penilaian')->with(  'error', 'Data Penilaian tidak ditemukan!');
+    }
     }
     
 }

@@ -8,7 +8,7 @@
         <div class="card-body">
             <form method="POST" action="{{ route('data_penduduk.update', $penduduk->nik) }}" class="form-horizontal">
                 @csrf
-                {!! method_field('PUT') !!} 
+                {!! method_field('PUT') !!}
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">

@@ -223,9 +223,6 @@ Route::group(['middleware' => ['auth']], function (){
 
 });
 
-
-
-
 Route::post('/', [KeluhanController::class, 'store'])->name('store_keluhan');
 
 Route::group(['prefix' => '/keluhan'], function () {

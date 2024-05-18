@@ -16,13 +16,14 @@ class KasController extends Controller
         ];
         $activeMenu = 'kas';
         $dropdown = '';
+        $kas = Kas::all();
 
         return view('admin.kas.index', [
             'page' => $page,
             'activeMenu' => $activeMenu,
-            'dropdown' => $dropdown
+            'dropdown' => $dropdown,
+            'kas' => $kas,
         ]);
-        // $kas = Kas::all();
         // return view('kas.index', ['kas' => $kas]);
     }
 
