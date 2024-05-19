@@ -32,6 +32,7 @@
                             <th>Nama Barang</th>
                             <th>Jenis Barang</th>
                             <th>Jumlah Barang</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -39,8 +40,8 @@
             </div>
 
             <div class="card-tools d-flex justify-content-between">
-                <a class="btn-sm custom-color-btn mt-1" href="{{ url('admin/inventaris/create') }}">Tambah</a>
-
+                <a class="btn-sm custom-color-btn mt-1" href="{{ url('admin/inventaris/create') }}">Tambah Inventaris</a>
+                <a class="btn-sm custom-color-btn mt-1" href="{{ url('admin/pinjam/create') }}">Tambah Peminjam</a>
             </div>
         </div>
     </div>
@@ -58,7 +59,7 @@
                     type: "POST",
                 },
                 columns: [{
-                        data: 'id',
+                        data: 'inventaris_id',
                     },
                     {
                         data: 'nama_barang',
@@ -73,6 +74,8 @@
 
                     },
                     {
+                        data: 'status_barang',
+                    },{
                         data: 'aksi',
                         orderable: false,
                         searchable: false

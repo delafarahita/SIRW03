@@ -38,6 +38,17 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="status_barang" class="col-sm-2 col-form-label">Status Barang</label>
+                    <select class="form-control col-sm-10" id="status_barang" name="status_barang">
+                        <option value="ada" {{ $inventaris->status_barang == 'ada' ? 'selected' : '' }}>Ada</option>
+                        <option value="dipinjam" {{ $inventaris->status_barang == 'dipinjam' ? 'selected' : '' }}>Dipinjam
+                        </option>
+                    </select>
+                    @error('status_barang')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group row">
                     <label></label>
                     <div class="pt-2">
                         <button type="submit" class="btn btn-info btn-sm">Simpan</button>
