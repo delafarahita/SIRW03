@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+use App\Models\BantuanSosialModel;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,5 +19,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call([
+            BantuanSosialModel::class,
+            // Panggil seeder lain jika ada
+        ]);
     }
 }

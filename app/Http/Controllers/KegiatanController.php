@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kegiatan;
+use App\Models\KegiatanModel;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
@@ -23,9 +23,15 @@ class KegiatanController extends Controller
         ];
 
         $activeMenu = 'Info Kegiatan'; // set menu yang sedang aktif
-        // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
+        $dropdown = '';
+        // $dataPenduduk = KegiatanModel::all(); // ambil data level untuk filter level
 
-        return view('admin.kegiatan.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('admin.kegiatan.index', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown
+        ]);
     }
 
     /**
@@ -47,7 +53,7 @@ class KegiatanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kegiatan $kegiatan)
+    public function show(KegiatanModel $kegiatan)
     {
         //
     }
@@ -55,15 +61,39 @@ class KegiatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kegiatan $kegiatan)
+    public function edit($id)
     {
-        //
+        $kegiatan = KegiatanModel::find($id);
+
+        if (!$kegiatan) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
+        }
+
+        $breadcrumb = (object) [
+            'title' => 'Edit Data Penduduk',
+            'list' => ['Home', 'Data Penduduk', 'Edit']
+        ];
+
+        $page = (object) [
+            'title' => 'Edit Data Penduduk'
+        ];
+
+        $activeMenu = 'data_penduduk';
+        $dropdown = 'd_penduduk';
+
+        return view('admin.data_penduduk.edit', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'kegiatan' => $kegiatan,
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kegiatan $kegiatan)
+    public function update(Request $request, KegiatanModel $kegiatan)
     {
         //
     }
@@ -71,7 +101,7 @@ class KegiatanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kegiatan $kegiatan)
+    public function destroy(KegiatanModel $kegiatan)
     {
         //
     }

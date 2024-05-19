@@ -17,16 +17,36 @@
         </div>
         <div class="col d-flex justify-content-center align-items-center bg">
             <div class="w-75 w-md-50">
-                <h3 class="mb-3 text-center text-white">LOGIN</h3>
-                <form>
-                    <div class="mb-3">
-                        <label for="username" class="form-label text-white ">USERNAME</label>
-                        <input type="text" class="form-control" id="username" placeholder="">
+                <h3 class="mb-3 text-center text-white fw-bold">LOGIN</h3>
+                @error('login_gagal')
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span class="alert-inner-text"><strong>Warning!</strong>{{ $message }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="">
-                        <label for="password" class="form-label text-white ">PASSWORD</label>
-                        <input type="password" class="form-control" id="password" placeholder="">
+                @enderror
+                <form method="POST" action="{{url('proses_login')}}">
+                    @csrf
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" id="floatingInput" name="username" placeholder="" value="{{ old('username') }}">
+                        <label for="floatingInput" class="form-label ">USERNAME</label>
                     </div>
+                    @error('username')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+                    <div class="form-floating">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="floatingInput" name="password" value="{{old('password')}}" placeholder="">
+                        <label for="floatingInput" class="form-label  ">PASSWORD</label>
+                    </div>
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                     <div class="mb-3">
                         <a href="#" class="text-white"
                             style="text-decoration: none; font-style: italic; font-size: 0.8rem;">Lupa Password?</a>
@@ -35,7 +55,7 @@
                         <div class="d-grid gap-2 col-6 justify-content-center">
                             <button type="submit" class="btn btn-warning text-white fw-bold"
                                 >SUBMIT</button>
-                            <a href="{{url('/')}}" class="btn btn-danger">KEMBALI</a>
+                                <a href="{{url('/')}}" class="btn btn-danger">Kembali</a>
                         </div>
                     </div>
                 </form>

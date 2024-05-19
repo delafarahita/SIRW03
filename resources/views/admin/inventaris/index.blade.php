@@ -24,7 +24,7 @@
                 <div class="alert alert-success">{{ session('error') }}</div>
             @endif
 
-            <div class="table-container">
+            <div class="table-container table-responsive">
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_inventaris">
                     <thead>
                         <tr>
@@ -39,8 +39,8 @@
             </div>
 
             <div class="card-tools d-flex justify-content-between">
-                <a class="btn-sm custom-color-btn mt-1" href="{{ url('inventaris/create') }}">Tambah</a>
-                <a class="btn-sm custom-color-btn mt-1" href="{{ url('inventaris/create') }}">Download Seluruh Data</a>
+                <a class="btn-sm custom-color-btn mt-1" href="{{ url('admin/inventaris/create') }}">Tambah</a>
+
             </div>
         </div>
     </div>
@@ -49,6 +49,36 @@
 @endpush
 @push('js')
     <script>
+        $(document).ready(function() {
+            var inventaris = $('#table_inventaris').DataTable({
+                serverSide: true,
+                ajax: {
+                    url: "{{ url('admin/inventaris/list') }}",
+                    dataType: "json",
+                    type: "POST",
+                },
+                columns: [{
+                        data: 'id',
+                    },
+                    {
+                        data: 'nama_barang',
 
+                    },
+                    {
+                        data: 'jenis_barang',
+
+                    },
+                    {
+                        data: 'jumlah_barang',
+
+                    },
+                    {
+                        data: 'aksi',
+                        orderable: false,
+                        searchable: false
+                    }
+                ]
+            });
+        });
     </script>
 @endpush

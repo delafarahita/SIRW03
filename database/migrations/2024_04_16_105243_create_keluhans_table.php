@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('keluhans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->string('nama_penduduk');
+            $table->string('rt');
             $table->text('keluhan');
-            $table->boolean('is_private')->default(true);
             $table->timestamps();
-    
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

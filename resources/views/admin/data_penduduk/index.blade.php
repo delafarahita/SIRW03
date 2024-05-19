@@ -24,7 +24,7 @@
                 <div class="alert alert-success">{{ session('error') }}</div>
             @endif
 
-            <div class="table-container">
+            <div class="table-container table-responsive">
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_dataPenduduk">
                     <thead>
                         <tr>
@@ -37,39 +37,14 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>10203040506070809</td>
-                            <td>Anto</td>
-                            <td>Malang</td>
-                            <td>1990-05-15</td>
-                            <td>O</td>
-                            <td>Laki-laki</td>
-                            <td>
-                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-info">Detail</a>
-                                <button class="btn btn-danger">Hapus</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10908070605040302</td>
-                            <td>Ana</td>
-                            <td>Malang</td>
-                            <td>1995-10-20</td>
-                            <td>A</td>
-                            <td>Perempuan</td>
-                            <td>
-                                <a href="{{ url('DataPenduduk/detail/') }}" class="btn btn-info">Detail</a>
-                                <button class="btn btn-danger">Hapus</button>
-                            </td>
-                        </tr>
-
-                    </tbody>
                 </table>
             </div>
 
             <div class="card-tools d-flex justify-content-between">
-                <a class="btn-sm custom-color-btn mt-1" href="{{ url('DataPenduduk/create') }}">Tambah</a>
-                <a class="btn-sm custom-color-btn mt-1" href="{{ url('DataPenduduk/create') }}">Download Seluruh Data</a>
+                <a class="btn-sm custom-color-btn mt-1" href="{{ route('data_penduduk.create') }}">Tambah Penduduk</a>
+                <form action="{{route('data_penduduk.export')}}" method="get">
+                    <button class="btn-sm custom-color-btn mt-1" type="submit">Download Seluruh Data</button>
+                 </form>
             </div>
         </div>
     </div>
@@ -77,49 +52,52 @@
 @push('css')
 @endpush
 @push('js')
-    {{-- <script>
+    <script>
         $(document).ready(function() {
-            var dataUser = $('#table_level').DataTable({
-                serverSide: true, // serverSide: true, jika ingin menggunakan server side processing
+            var dataPenduduk = $('#table_dataPenduduk').DataTable({
+                serverSide: true,
                 ajax: {
-                    "url": "{{ url('level/list') }}",
-                    "dataType": "json",
-                    "type": "POST",
-                    "data": function(d) {
-                        d.level_id = $('#level_id').val();
-                    }
+                    url: "{{ url('admin/data_penduduk/list') }}",
+                    dataType: "json",
+                    type: "POST",
                 },
                 columns: [{
-                        data: "DT_RowIndex",
-                        className: "text-center",
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: "level_kode", // Menggunakan level_kode langsung dari hasil query
-                        className: "",
-                        orderable: true,
-                        searchable: true
-                    },
-                    {
-                        data: "level_nama", // Menggunakan level_nama langsung dari hasil query
-                        className: "",
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
-                        data: "aksi",
-                        className: "",
-                        orderable: false,
-                        searchable: false
-                    }
-                ]
-
+                    data: "nik",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true,
+                }, {
+                    data: "nama",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true,
+                }, {
+                    data: "tempat_lahir",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
+                }, {
+                    data: "tanggal_lahir",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
+                }, {
+                    data: "gol_darah",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
+                }, {
+                    data: "jenis_kelamin",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true
+                }, {
+                    data: "aksi",
+                    className: "text-center",
+                    orderable: false,
+                    searchable: false
+                }]
             });
-            $('#level_id').on('change', function() {
-                dataUser.ajax.reload();
-            });
-
         });
-    </script> --}}
+    </script>
 @endpush
