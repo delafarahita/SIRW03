@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::table('kegiatans', function (Blueprint $table) {
             // $table->id();
-            $table->string("nama");
-            $table->string("jenis");
-            $table->string("deskripsi");
-            $table->string("image_path");
-            $table->date("tanggal");
+            // $table->string("nama");
+            // $table->string("jenis");
+            // $table->string("deskripsi");
+            // $table->string("image_path");
+            // $table->date("tanggal");
             // $table->timestamps();
         });
     }

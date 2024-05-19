@@ -317,17 +317,19 @@ class DataPerhitunganController extends Controller
             foreach ($alternative['penilaians'] as $penilaian) {
                 // Calculate the division of SP value by the maximum sum of weighted values
                 $divisionValue = ($maxSP != 0) ? $penilaian['sum_weightValue'] / $maxSP : 0;
-                
+                $value = 1 - $divisionValue;
+
+
                 $divisionPenilaians[] = [
                     'id_kriteria' => $penilaian['id_kriteria'],
-                    'nilai' => $divisionValue
+                    'nilai' => $value
                 ];
             }
 
             $nsnMatrix[] = [
                 'id_alternatif' => $alternative['id_alternatif'],
                 // 'penilaians' => $divisionPenilaians,
-                'sum_NSN' => $divisionValue,
+                'sum_NSN' => $value,
                 'max_sp' => $maxSP
             ];
         }
