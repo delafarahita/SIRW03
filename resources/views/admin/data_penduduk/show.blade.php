@@ -101,7 +101,7 @@
 
                 <div class="form-group row mt-3">
                     <div class="col-12">
-                        <a href="{{ url('admin/data_penduduk/' . $penduduk->nik . '/edit') }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ url('admin/data_penduduk/') }}" class="btn btn-primary">Kembali</a>
                     </div>
                 </div>
             </form>
