@@ -24,14 +24,16 @@ class KegiatanController extends Controller
 
         $activeMenu = 'Info Kegiatan'; // set menu yang sedang aktif
         $dropdown = '';
-        // $dataPenduduk = KegiatanModel::all(); // ambil data level untuk filter level
+        $kegiatan = KegiatanModel::all(); // ambil data level untuk filter level
 
         return view('admin.kegiatan.index', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
-            'dropdown' => $dropdown
+            'dropdown' => $dropdown,
+            'kegiatan' => $kegiatan
         ]);
+
     }
 
     /**
@@ -54,7 +56,7 @@ class KegiatanController extends Controller
 
         $activeMenu = 'kegiatan'; // set menu yang sedang aktif
 
-        //$kategori_kegiatan = KegiatanModel::$kategori_kegiatan;
+        $jenis = KegiatanModel::$jenis;
 
         return view('admin.kegiatan.create', [
             'breadcrumb' => $breadcrumb,
@@ -62,7 +64,7 @@ class KegiatanController extends Controller
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown,
             'rt' => $rt,
-            //'kategori_kegiatan'=> $kategori_kegiatan,
+            'jenis'=> $jenis,
         ]);
     }
 
@@ -71,7 +73,25 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'id' => 'required',
+            'nama' => 'required',
+            'jenis' => 'required',
+            'deskripsi' => 'required',
+            'image_path' => 'required',
+            'tanggal' => 'required',
+        ]);
+
+        KegiatanModel::create([
+            'id' => $request->id,
+            'nama' => $request->nama,
+            'jenis' => $request->jenis,
+            'deskripsi' => $request->deskripsi,
+            'image_path' => $request->image_path,
+            'tanggal' => $request->tanggal,
+        ]);
+
+        return redirect('admin/kegiatan')->with('success', 'Kegiatan berhasil disimpan');
     }
 
     /**
