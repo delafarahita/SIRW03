@@ -21,7 +21,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 table-responsive">
                     <h4>Daftar Peminjam</h4>
                     {{-- @if ($pinjamInventaris->count() > 0) --}}
                     <table class="table table-sm">

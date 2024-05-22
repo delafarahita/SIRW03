@@ -235,7 +235,7 @@
                         <tr>
                             <th>Rank</th>
                             <th>Alternatif</th>
-
+                            <th>Nama Penerima</th>
                             {{-- <th>Rank</th> --}}
                         </tr>
                     </thead>
@@ -244,6 +244,7 @@
                             <tr>
                                 <td>{{ $alternative['rank'] }}</td>
                                 <td>A{{ $alternative['id_alternatif'] }}</td>
+                                <td>{{$alternative['nama_alternatif']}}</td>
                                 {{-- <td>{{ $alternative['combined_value'] }}</td> --}}
                             </tr>
                         @endforeach
