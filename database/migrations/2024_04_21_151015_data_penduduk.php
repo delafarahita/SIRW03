@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('alamat', 50);
             $table->string('rw', 5);
             $table->unsignedBigInteger('id_rt')->index();
+            $table->enum('status_perkawinan', ['BELUM KAWIN', 'KAWIN', 'CERAI HIDUP', 'CERAI MATI']);
             $table->string('kelurahan');
             $table->string('kecamatan');
             $table->enum('kewarganegaraan', ['WNA', 'WNI']);

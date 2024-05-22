@@ -12,7 +12,7 @@ class KegiatanController extends Controller
      */
     public function index()
     {
-        // $umkms = UmkmModel::all();
+        // $kegiatans = kegiatanModel::all();
         $breadcrumb = (object) [
             'title' => 'Info Kegiatan',
             'list' => ['Home', 'Info Kegiatan']
@@ -39,7 +39,31 @@ class KegiatanController extends Controller
      */
     public function create()
     {
-        //
+        $breadcrumb = (object) [
+            'title' => 'kegiatan',
+            'list' => ['Home', 'kegiatan']
+        ];
+
+        $page = (object) [
+            'title' => 'kegiatan'
+        ];
+
+        $dropdown = 'kegiatan';
+
+        $rt = KegiatanModel::all();
+
+        $activeMenu = 'kegiatan'; // set menu yang sedang aktif
+
+        //$kategori_kegiatan = KegiatanModel::$kategori_kegiatan;
+
+        return view('admin.kegiatan.create', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
+            'rt' => $rt,
+            //'kategori_kegiatan'=> $kategori_kegiatan,
+        ]);
     }
 
     /**

@@ -99,12 +99,24 @@
                         <div class="form-group">
                             <label class="control-label">RT</label>
                             <select class="form-control" name="id_rt" id="id_rt" required>
-                                <option value="">- Pilih</option>
+                                <option value="">- Pilih -</option>
                                 @foreach ($rt as $item)
                                     <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
                                 @endforeach
                             </select>
                             @error('id_rt')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Status Perkawinan</label>
+                            <select class="form-control" name="status_perkawinan" id="status_perkawinan" required>
+                                <option value="">- Pilih -</option>
+                                @foreach ($status_perkawinan as $item)
+                                    <option value="{{ $item->status_perkawinan }}">{{ $item->status_perkawinan }}</option>
+                                @endforeach
+                            </select>
+                            @error('status_perkawinan')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>

@@ -53,6 +53,7 @@ class DataPendudukController extends Controller
         return DataTables::of($penduduks)
             ->addColumn('aksi', function ($penduduk) {
                 $btn = '<a href="' . url('/admin/data_penduduk/' . $penduduk->nik) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn .= '<a href="' . url('/admin/data_penduduk/' . $penduduk->nik . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_penduduk/' . $penduduk->nik) . '">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
@@ -66,6 +67,7 @@ class DataPendudukController extends Controller
     {
         $kk = KKModel::all();
         $rt = RTModel::all();
+        $status_perkawinan = DataPendudukModel::$status_perkawinan;
         $pekerjaan = DataPendudukModel::$pekerjaan;
         $gol_darah = DataPEndudukModel::$gol_darah;
         $jenis_kelamin = DataPendudukModel::$jenis_kelamin;
@@ -92,6 +94,7 @@ class DataPendudukController extends Controller
             'pekerjaan' => $pekerjaan,
             'kk' => $kk,
             'rt' => $rt,
+            'status_perkawinan' => $status_perkawinan,
             'gol_darah' => $gol_darah,
             'jenis_kelamin' => $jenis_kelamin,
             'kewarganegaraan' => $kewarganegaraan,
@@ -113,6 +116,7 @@ class DataPendudukController extends Controller
             'alamat' => 'required',
             'rw' => 'required',
             'id_rt' => 'required',
+            'status_perkawinan' => 'required',
             'kelurahan' => 'required',
             'kecamatan' => 'required',
             'kewarganegaraan' => 'required',
@@ -132,6 +136,7 @@ class DataPendudukController extends Controller
             'alamat' => $request->alamat,
             'rw' => $request->rw,
             'id_rt' => $request->id_rt,
+            'status_perkawinan' => $request->status_perkawinan,
             'kelurahan' => $request->kelurahan,
             'kecamatan' => $request->kecamatan,
             'kewarganegaraan' => $request->kewarganegaraan,
@@ -170,6 +175,7 @@ class DataPendudukController extends Controller
         $penduduk = DataPendudukModel::find($id);
         $kk = KKModel::all();
         $rt = RTModel::all();
+        $status_perkawinan = DataPendudukModel::$status_perkawinan;
         $pekerjaan = DataPendudukModel::$pekerjaan;
         $gol_darah = DataPendudukModel::$gol_darah;
         $jenis_kelamin = DataPendudukModel::$jenis_kelamin;
@@ -197,6 +203,7 @@ class DataPendudukController extends Controller
             'penduduk' => $penduduk,
             'kk' => $kk,
             'rt' => $rt,
+            'status_perkawinan' => $status_perkawinan,
             'gol_darah' => $gol_darah,
             'jenis_kelamin' => $jenis_kelamin,
             'kewarganegaraan' => $kewarganegaraan,
@@ -218,6 +225,7 @@ class DataPendudukController extends Controller
             'alamat'            => 'required',
             'rw'                => 'required',
             'id_rt'             => 'required',
+            'status_perkawinan' => 'required',
             'kelurahan'         => 'required',
             'kecamatan'         => 'required',
             'kewarganegaraan'   => 'required',
@@ -237,6 +245,7 @@ class DataPendudukController extends Controller
             'alamat'        => $request->alamat,
             'rw'            => $request->rw,
             'id_rt'         => $request->id_rt,
+            'status_perkawinan' => $request->status_perkawinan,
             'kelurahan'     => $request->kelurahan,
             'kecamatan'     => $request->kecamatan,
             'kewarganegaraan' => $request->kewarganegaraan,
