@@ -27,50 +27,24 @@
       @endif
 
       <div class="row g-3">
+          @foreach ($kegiatan as $item)
         <div class="col-md-6">
             <div class="card rounded-3 text-white" style="background-color: #1F2937;">
                 <img src="{{asset('assets/img/penjahit.jpg')}}" class="card-img-top img-fluid">
                 <div class="card-body">
-                  <h5 class="card-title">Pelatihan Menjahit</h5>
-                  <p class="card-text">Kegiatan Mendatang</p>
-                  <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
+                  <h5 class="card-title">{{ $item->nama }}</h5>
+                  <p class="card-text">{{ $item->jenis }}</p>
+                  <p class="card-text">{{ $item->deskripsi }}</p>
+                  {{-- <p class="card-text">{{ $item->deskripsi }}</p> --}}
                   <div class="d-flex justify-content-between mt-5">
                     <a href="#" class="btn btn-danger">Hapus</a>
                     <a href="#" class="btn btn-warning">Edit</a>
                   </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-6">
-            <div class="card rounded-3 text-white" style="background-color: #1F2937;">
-                <img src="{{asset('assets/img/fotocopy.jpg')}}" class="card-img-top img-fluid">
-                <div class="card-body">
-                  <h5 class="card-title">Kerja Bakti</h5>
-                  <p class="card-text">Kegiatan Mendatang</p>
-                  <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
-                  <div class="d-flex justify-content-between mt-5">
-                    <a href="#" class="btn btn-danger">Hapus</a>
-                    <a href="#" class="btn btn-warning">Edit</a>
-                  </div>
-                </div>
-            </div>
         </div>
-
-        <div class="col-md-6">
-            <div class="card rounded-3 text-white" style="background-color: #1F2937;">
-                <img src="{{asset('assets/img/kue.jpg')}}" class="card-img-top img-fluid">
-                <div class="card-body">
-                  <h5 class="card-title">Karang Taruna</h5>
-                  <p class="card-text">Kegiatan Mendatang</p>
-                  <p class="card-text">Alamat: JL.Mergosono Gg.V</p>
-                  <div class="d-flex justify-content-between mt-5">
-                    <a href="#" class="btn btn-danger">Hapus</a>
-                    <a href="#" class="btn btn-warning">Edit</a>
-                  </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
 
         <!-- Tambahkan card tambahan di sini jika diperlukan -->
 

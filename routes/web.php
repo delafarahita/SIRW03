@@ -158,13 +158,13 @@ Route::group(['middleware' => ['auth']], function (){
 
         Route::group(['prefix' => 'kegiatan'], function(){
             Route::get('/', [KegiatanController::class, 'index'])->name('kegiatan.index');
-            Route::post('/list', [KegiatanController::class, 'list']);
-            Route::get('/create', [KegiatanController::class, 'create']);
-            Route::post('/', [KegiatanController::class, 'store']);
-            Route::get('/{id}', [KegiatanController::class, 'show']);
-            Route::get('/{id}/edit', [KegiatanController::class, 'edit']);
-            Route::put('/{id}', [KegiatanController::class, 'update']);
-            Route::delete('/{id}', [KegiatanController::class, 'destroy']);
+            Route::post('/list', [KegiatanController::class, 'list'])->name('kegiatan.list');;
+            Route::get('/create', [KegiatanController::class, 'create'])->name('kegiatan.create');
+            Route::post('/', [KegiatanController::class, 'store'])->name('kegiatan.store');
+            Route::get('/{id}', [KegiatanController::class, 'show'])->name('kegiatan.show');
+            Route::get('/{id}/edit', [KegiatanController::class, 'edit'])->name('kegiatan.edit');
+            Route::put('/{id}', [KegiatanController::class, 'update'])->name('kegiatan.update');
+            Route::delete('/{id}', [KegiatanController::class, 'destroy'])->name('kegiatan.destroy');
         });
 
         Route::group(['prefix' => 'inventaris'], function(){

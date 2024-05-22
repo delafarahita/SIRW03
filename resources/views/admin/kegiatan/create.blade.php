@@ -20,13 +20,13 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Kategori kegiatan</label>
-                            <select class="form-control" name="kategori_kegiatan" id="kategori_kegiatan" required>
+                            <select class="form-control" name="jenis" id="jenis" required>
                                 <option value="">- Pilih Kategori kegiatan -</option>
-                                @foreach ($kategori_kegiatan as $item)
+                                @foreach ($jenis as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>
-                            @error('kategori_kegiatan')
+                            @error('jenis')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -107,7 +107,7 @@
                 <div class="form-group row mt-3">
                     <div class="col-12">
                         <button type="submit" class="btn btn-info btn-sm btn-block">Simpan</button>
-                        <a href="{{ route('kategori_dagang.index') }}" class="btn btn-danger btn-sm btn-block">Kembali</a">
+                        <a href="{{ route('kegiatan.index') }}" class="btn btn-danger btn-sm btn-block">Kembali</a">
                         </a>
                     </div>
                 </div>
