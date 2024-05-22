@@ -9,5 +9,21 @@ class KegiatanModel extends Model
 {
     use HasFactory;
 
-    public $tables ;
+    protected $table = 'kegiatan'; // Nama tabel di database
+
+    protected $primaryKey = 'id_kegiatan';
+
+    public $timestamps = false;
+    protected $fillable = [
+        'id',
+        'nama',
+        'jenis',
+        'deskripsi',
+        'image_path',
+        'tanggal',
+    ]; // Kolom yang dapat diisi
+
+    public static $kategori_kegiatan =[
+        "Sosial", "Keagamaan"
+    ];
 }
