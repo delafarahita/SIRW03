@@ -24,6 +24,7 @@ class DataPendudukModel extends Model
         'alamat',
         'rw',
         'id_rt',
+        'status_perkawinan',
         'kelurahan',
         'kecamatan',
         'kewarganegaraan',
@@ -123,6 +124,9 @@ class DataPendudukModel extends Model
         "Wiraswasta"
     ];
 
+    public static $status_perkawinan =[
+        'BELUM KAWIN', 'KAWIN', 'CERAI HIDUP', 'CERAI MATI'
+    ];
     public static $gol_darah =[
         "A","AB","B","O"
     ];
