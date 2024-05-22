@@ -156,18 +156,20 @@ class DataPenilaianController extends Controller
         $alternatif = DataAlternatifModel::findOrFail($id);
         $kriteria = DataKriteriaModel::all();
 
-        // Hapus semua penilaian terkait dengan alternatif ini
-        $alternatif->penilaians()->delete();
-
         foreach ($kriteria as $index => $item) {
             if (isset($request->nilai[$index])) {
                 $nilai = $request->nilai[$index];
 
-                $penilaian = new DataPenilaianModel();
-                $penilaian->id_alternatif = $alternatif->id_alternatif;
-                $penilaian->id_kriteria = $item->id_kriteria;
-                $penilaian->nilai = $nilai;
-                $penilaian->save();
+                $penilaian = DataPenilaianModel::where('id_alternatif', $alternatif->id_alternatif)
+                                               ->where('id_kriteria', $item->id_kriteria)
+                                               ->first();
+
+                // Update the penilaian if it exists, otherwise create a new one
+                if ($penilaian) {
+                    $penilaian->update([
+                        'nilai' => $nilai,
+                    ]);
+                }
             }
         }
 
