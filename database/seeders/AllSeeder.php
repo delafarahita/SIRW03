@@ -22,6 +22,7 @@ class AllSeeder extends Seeder
             KegiatanSeeder::class,
             InventarisSeeder::class,
             PengaduanSeeder::class,
+            PinjamInventarisSeeder::class,
         ]);
     }
 }

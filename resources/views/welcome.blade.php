@@ -65,11 +65,11 @@
         .hovereffect {
             height: auto;
             float: right;
-            ;
             overflow: hidden;
             position: relative;
             text-align: center;
             cursor: default;
+            border-radius: 5px;
         }
 
         .hovereffect .overlay {

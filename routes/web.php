@@ -12,6 +12,7 @@ use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\KeluhanController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\PinjamInventarisController;
 use App\Http\Controllers\KasController;
 use App\Http\Controllers\KKController;
 use App\Http\Controllers\RTController;
@@ -175,6 +176,14 @@ Route::group(['middleware' => ['auth']], function (){
             Route::get('/{id}/edit', [InventarisController::class, 'edit']);
             Route::put('/{id}', [InventarisController::class, 'update']);
             Route::delete('/{id}', [InventarisController::class, 'destroy']);
+        });
+
+        Route::group(['prefix'=>'pinjam'],function(){
+            Route::get('/create', [InventarisController::class, 'createPinjam']);
+            Route::post('/', [InventarisController::class, 'storePinjam']);
+            Route::get('/{id}/edit', [InventarisController::class, 'editPinjam']);
+            Route::put('/{id}', [InventarisController::class, 'updatePinjam']);
+            Route::delete('/{id}', [InventarisController::class, 'destroyPinjam']);
         });
 
         Route::group(['prefix' => 'kas'], function(){

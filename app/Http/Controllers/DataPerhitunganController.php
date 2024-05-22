@@ -366,7 +366,8 @@ class DataPerhitunganController extends Controller
 
     public function rank($asMatrix){
         $rankedMatrix = $asMatrix;
-
+        $nama_alternatif = DataAlternatifModel::all();
+        
         // Sort the rankedMatrix based on the 'combined_value' in descending order
         usort($rankedMatrix, function($a, $b) {
             return $b['combined_value'] <=> $a['combined_value'];
@@ -376,6 +377,7 @@ class DataPerhitunganController extends Controller
         $rank = 1;
         foreach ($rankedMatrix as &$alternative) {
             $alternative['rank'] = $rank++;
+            $alternative['nama_alternatif'] =  $nama_alternatif[$alternative['id_alternatif'] - 1]->nama_alternatif;
         }
 
         return $rankedMatrix;

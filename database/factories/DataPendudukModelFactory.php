@@ -1,32 +1,34 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace Database\Factories;
 
-return new class extends Migration
+use App\Models\DataPendudukModel;
+use App\Models\KKModel;
+use App\Models\RTModel;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+class DataPendudukModelFactory extends Factory
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    protected $model = DataPendudukModel::class;
+
+    public function definition()
     {
-        Schema::create('data_penduduk', function (Blueprint $table) {
-            $table->id('nik');
-            $table->unsignedBigInteger('no_kk')->index();
-            $table->string('nama', 50);
-            $table->string('tempat_lahir', 50);
-            $table->date('tanggal_lahir');
-            $table->enum('gol_darah', ['A', 'AB', 'B', 'O']);
-            $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->string('alamat', 50);
-            $table->string('rw', 5);
-            $table->unsignedBigInteger('id_rt')->index();
-            $table->enum('status_perkawinan', ['BELUM KAWIN', 'KAWIN', 'CERAI HIDUP', 'CERAI MATI']);
-            $table->string('kelurahan');
-            $table->string('kecamatan');
-            $table->enum('kewarganegaraan', ['WNA', 'WNI']);
-            $table->enum('pekerjaan', [
+        return [
+            'nik' => 1234567890123458,
+            'no_kk' => 1234567890123456,
+            'nama' => $this->faker->name,
+            'tempat_lahir' => $this->faker->city,
+            'tanggal_lahir' => $this->faker->date,
+            'gol_darah' => $this->faker->randomElement(['A', 'B', 'AB', 'O']),
+            'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
+            'alamat' => $this->faker->city,
+            'rw' => $this->faker->numberBetween(1, 10),
+            'id_rt' => RTModel::factory(),
+            'kelurahan' => $this->faker->city,
+            'kecamatan' => $this->faker->city,
+            'kewarganegaraan' => 'WNI',
+            'pekerjaan' => $this->faker->randomElement([
                 "Belum/ Tidak Bekerja",
                 "Mengurus Rumah Tagga",
                 "Pelajar/ Mahasiswa",
@@ -115,20 +117,9 @@ return new class extends Migration
                 "Kepala Desa",
                 "Biarawati",
                 "Wiraswasta"
-            ]);
-            $table->enum('agama', ['islam', 'katolik', 'protestan', 'hindu', 'budha', 'konghucu']);
-            $table->enum('domisili', ['penduduk setempat' , 'penduduk setempat berdomisili di tempat lain', 'penduduk dari luar']);
-
-            $table->foreign('no_kk')->references('no_kk')->on('kk');
-            $table->foreign('id_rt')->references('id_rt')->on('rt');
-        });
+            ]),
+            'agama' => $this->faker->randomElement(['islam', 'katolik', 'protestan', 'hindu', 'budha', 'konghucu']),
+            'domisili' => $this->faker->randomElement(['penduduk setempat', 'penduduk setempat berdomisili di tempat lain', 'penduduk dari luar']),
+        ];
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('data_penduduk');
-    }
-};
+}

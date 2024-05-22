@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Tanggal Lahir</label>
-                            <input type="datetime-local" class="form-control" id="" name=""
+                            <input type="text" class="form-control" id="" name=""
                                 value="{{ $penduduk->tanggal_lahir }}" required disabled style="background-color: #f2f2f2; color: #777;">
                         </div>
                         <div class="form-group">
@@ -101,7 +101,7 @@
 
                 <div class="form-group row mt-3">
                     <div class="col-12">
-                        <a href="{{ url('admin/data_penduduk/' . $penduduk->nik . '/edit') }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ url('admin/data_penduduk/') }}" class="btn btn-primary">Kembali</a>
                     </div>
                 </div>
             </form>

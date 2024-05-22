@@ -15,16 +15,25 @@ class InventarisSeeder extends Seeder
     {
         $inventaris = [
             [
-                'id' => 1,
-                'nama_barang' => 'Meja',
-                'jenis_barang' => 'Kantor',
-                'jumlah_barang' => 10,
+                'inventaris_id' => 1,
+                'nama_barang' => 'Komputer',
+                'jenis_barang' => 'Elektronik',
+                'jumlah_barang' => 15,
+                'status_barang' => 'ada',
             ],
             [
-                'id' => 2,
-                'nama_barang' => 'Kursi',
-                'jenis_barang' => 'Kantor',
+                'inventaris_id' => 2,
+                'nama_barang' => 'Printer',
+                'jenis_barang' => 'Elektronik',
+                'jumlah_barang' => 5,
+                'status_barang' => 'ada',
+            ],
+            [
+                'inventaris_id' => 3,
+                'nama_barang' => 'Meja Kantor',
+                'jenis_barang' => 'Furniture',
                 'jumlah_barang' => 20,
+                'status_barang' => 'ada',
             ],
         ];
 
