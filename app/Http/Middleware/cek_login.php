@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\UserModel;
 
-class Cek_login
+class Cek_Login
 {
     /**
      * Handle an incoming request.
