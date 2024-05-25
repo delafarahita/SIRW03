@@ -33,7 +33,6 @@ class KegiatanController extends Controller
             'dropdown' => $dropdown,
             'kegiatan' => $kegiatan
         ]);
-
     }
 
     /**
@@ -63,8 +62,7 @@ class KegiatanController extends Controller
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown,
-            'rt' => $rt,
-            'jenis'=> $jenis,
+            'jenis' => $jenis,
         ]);
     }
 
@@ -73,26 +71,32 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'id' => 'required',
-            'nama' => 'required',
-            'jenis' => 'required',
-            'deskripsi' => 'required',
-            'image_path' => 'required',
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'jenis' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'alamat' => 'required|string',
             'tanggal' => 'required',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
-        KegiatanModel::create([
-            'id' => $request->id,
-            'nama' => $request->nama,
-            'jenis' => $request->jenis,
-            'deskripsi' => $request->deskripsi,
-            'image_path' => $request->image_path,
-            'tanggal' => $request->tanggal,
-        ]);
+        // Store the image in the public directory
+        $path = $request->file('image_path')->store('public/image_path');
 
-        return redirect('admin/kegiatan')->with('success', 'Kegiatan berhasil disimpan');
+        $kegiatan = new KegiatanModel;
+        $kegiatan->nama = $validatedData['nama'];
+        $kegiatan->jenis = $validatedData['jenis'];
+        $kegiatan->deskripsi = $validatedData['deskripsi'];
+        $kegiatan->alamat = $validatedData['alamat'];
+        $kegiatan->tanggal = $validatedData['tanggal'];
+        $kegiatan->image_path = str_replace('public/', 'storage/', $path);
+
+        $kegiatan->save();
+
+        return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil ditambahkan');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -114,18 +118,18 @@ class KegiatanController extends Controller
         }
 
         $breadcrumb = (object) [
-            'title' => 'Edit Data Penduduk',
-            'list' => ['Home', 'Data Penduduk', 'Edit']
+            'title' => 'Edit Kegiatan',
+            'list' => ['Home', 'Kegiatan', 'Edit']
         ];
 
         $page = (object) [
-            'title' => 'Edit Data Penduduk'
+            'title' => 'Edit Kegiatan'
         ];
 
-        $activeMenu = 'data_penduduk';
-        $dropdown = 'd_penduduk';
+        $activeMenu = 'kegiatan';
+        $dropdown = 'kegiatan';
 
-        return view('admin.data_penduduk.edit', [
+        return view('admin.kegiatan.edit', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
@@ -139,14 +143,42 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, KegiatanModel $kegiatan)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'jenis' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'alamat' => 'required|string',
+            'tanggal' => 'required',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        // Update data kegiatan
+        $kegiatan->nama = $validatedData['nama'];
+        $kegiatan->jenis = $validatedData['jenis'];
+        $kegiatan->deskripsi = $validatedData['deskripsi'];
+        $kegiatan->alamat = $validatedData['alamat'];
+        $kegiatan->tanggal = $validatedData['tanggal'];
+
+        // Jika ada gambar baru di-upload
+        if ($request->hasFile('image_path')) {
+            // Store the new image in the public directory
+            $path = $request->file('image_path')->store('public/image_path');
+            $kegiatan->image_path = str_replace('public/', 'storage/', $path);
+        }
+
+        $kegiatan->save();
+
+        return redirect()->route('kegiatan.index')->with('success', 'Data kegiatan berhasil diperbarui');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(KegiatanModel $kegiatan)
     {
-        //
+        $kegiatan->delete();
+
+        return redirect()->route('kegiatan.index')->with('success', 'Data kegiatan berhasil dihapus');
     }
 }
