@@ -9,6 +9,17 @@ class KategoriDagangModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'kategori_dagang'; // Nama tabel di database
-    protected $fillable = ['nama', 'deskripsi', 'alamat']; // Kolom yang dapat diisi
+    protected $table = 'kategori_dagang';
+    protected $fillable = [
+        'nama_umkm',
+        'kategori_umkm',
+        'pemilik_umkm',
+        'alamat_umkm',
+        'id_rt',
+        'rw',
+        'kelurahan',
+        'kecamatan',
+        'image_path',
+        'deskripsi_umkm',
+    ];
 }
