@@ -57,13 +57,15 @@
             margin-bottom: 20px;
         }
 
-        .small-img {
-            height: 230px;
-            max-width: 100%;
+        .img-uniform {
+            width: 400px;          
+            height: 250px;         
+            max-width: 100%;     
+            max-height: 100%;    
+            object-fit: cover; 
         }
 
         .hovereffect {
-            
             height: auto;
             float: right;
             overflow: hidden;
@@ -99,7 +101,7 @@
             text-align: center;
             position: relative;
             font-size: 17px;
-            background: rgba(0, 0, 0, 0.6);
+            background: #1F2937;
             -webkit-transform: translatey(-100px);
             -ms-transform: translatey(-100px);
             transform: translatey(-100px);
@@ -109,6 +111,7 @@
         }
 
         .hovereffect:hover img {
+            -webkit-filter: blur(2px);
             -ms-transform: scale(1.2);
             -webkit-transform: scale(1.2);
             transform: scale(1.2);
@@ -254,61 +257,21 @@
             </div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="col">
-                            <div class="col hovereffect my-2">
-                                <img src="{{ asset('assets/img/kegiatan2.jpg') }}" alt="Activity 2"
-                                    class="small-img mb-3 rounded">
-                                <div class="overlay">
-                                    <h2>Minggu Bersih</h2>
-                                    <p class="text-white">lorem </p>
-                                </div>
-                            </div>
-                            <div class="col hovereffect">
-                                <img src="{{ asset('assets/img/kegiatan4.jpg') }}" alt="Activity 3"
-                                    class="small-img mb-3 rounded">
-                                <div class="overlay">
-                                    <h2>Pembersihan TPU</h2>
+                    @foreach ($kegiatan as $item)
+                        <div class="col-lg-4">
+                            <div class="col">
+                                <div class="col hovereffect my-2">
+                                    <img src="{{ asset($item->image_path) }}" alt="{{$item->nama}}"
+                                        class="img-uniform mb-3 rounded img-fluid">
+                                    <div class="overlay">
+                                        <h2 class="fw-bolder">{{$item->nama}}</h2>
+                                        <p class="text-white">{{$item->deskripsi}}</p>
+                                        <p class="text-white">📅{{$item->tanggal}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="col">
-                            <div class="col hovereffect my-2">
-                                <img src="{{ asset('assets/img/kegiatan1.jpg') }}" alt="Activity 2"
-                                    class="small-img mb-3 rounded">
-                                <div class="overlay">
-                                    <h2>Pemungutan Suara</h2>
-                                </div>
-                            </div>
-                            <div class="col hovereffect">
-                                <img src="{{ asset('assets/img/kegiatan4.jpg') }}" alt="Activity 3"
-                                    class="small-img mb-3 rounded">
-                                <div class="overlay">
-                                    <h2>Pembersihan TPU</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="col">
-                            <div class="col hovereffect my-2">
-                                <img src="{{ asset('assets/img/kegiatan1.jpg') }}" alt="Activity 2"
-                                    class="small-img mb-3 rounded">
-                                <div class="overlay">
-                                    <h2>Pemungutan Suara</h2>
-                                </div>
-                            </div>
-                            <div class="col hovereffect">
-                                <img src="{{ asset('assets/img/kegiatan4.jpg') }}" alt="Activity 3"
-                                    class="small-img mb-3 rounded">
-                                <div class="overlay">
-                                    <h2>Pembersihan TPU</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

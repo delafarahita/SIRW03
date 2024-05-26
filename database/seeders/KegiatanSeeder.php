@@ -44,6 +44,16 @@ class KegiatanSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'nama' => 'Panitia TPS',
+                'jenis' => 'Sosial',
+                'deskripsi' => 'Menjaga dan melancarkan pemilihan umum',
+                'image_path' => 'storage/image_path/tps.jpg',
+                'tanggal' => '2024-07-20',
+                'alamat' => 'Jl. Kol.Sugiono No. 125',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
         DB::table('kegiatans')->insert($kegiatan);
 

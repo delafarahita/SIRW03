@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KegiatanModel;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
+    public function index() {
+        $kegiatan = KegiatanModel::all();
+
+        return view('/welcome', [
+            'kegiatan' => $kegiatan,
+        ]);
+    }
+
     public function fileUpload(){
         return view('welcome');
     }

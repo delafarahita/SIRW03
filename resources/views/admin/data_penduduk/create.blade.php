@@ -113,7 +113,7 @@
                             <select class="form-control" name="status_perkawinan" id="status_perkawinan" required>
                                 <option value="">- Pilih -</option>
                                 @foreach ($status_perkawinan as $item)
-                                    <option value="{{ $item->status_perkawinan }}">{{ $item->status_perkawinan }}</option>
+                                    <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('status_perkawinan')

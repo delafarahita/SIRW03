@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class KasModel extends Model
 {
     use HasFactory;
+
+    protected $table = 'kas';
+
+    protected $primaryKey = 'id';
 }

@@ -23,6 +23,7 @@ use App\Http\Controllers\DataPerhitunganController;
 use App\Http\Controllers\KategoriDagangController;
 use App\Http\Controllers\KategoriJasaController;
 use App\Http\Controllers\KategoriUmkmController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ use App\Http\Controllers\KategoriUmkmController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::group(['prefix'=>'login'], function(){
     Route::get('/', [LoginController::class, 'index'])->name('login');

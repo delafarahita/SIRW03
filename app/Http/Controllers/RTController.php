@@ -69,7 +69,7 @@ class RTController extends Controller
         return redirect('/admin/data_rt')->with('success', 'Data RT baru berhasil ditambahkan');
     }
 
-    public function edit(string $id)
+    public function edit($id)
     {
         $page = (object) [
             'title' => 'Edit Data RT',

@@ -11,6 +11,14 @@
             margin-bottom: 20px;
         }
 
+        .img-uniform {
+            width: 100%;          
+            height: auto;         
+            max-width: 300px;     
+            max-height: 200px;    
+            object-fit: cover; 
+        }
+
     </style>
     <div class="card card-outline card-primary">
         <div class="card-header">
@@ -32,7 +40,7 @@
                     <div class="col-md-6">
                         <div class="card rounded-3 text-white" style="background-color: #1F2937;">
                             @if ($item->image_path)
-                                <img src="{{ asset($item->image_path) }}" class="card-img-top rounded-3 img-fluid"
+                                <img src="{{ asset($item->image_path) }}" class="card-img-top rounded-3 img-uniform img-fluid"
                                     alt="{{ $item->nama }}">
                             @endif
 
