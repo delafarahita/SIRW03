@@ -31,7 +31,7 @@
                     <label ></label>
                     <div class="pt-2">
                         <button type="submit" class="btn btn-info btn-sm">Simpan</button>
-                        <a class="btn btn-sm btn-primary" href="{{ route('data_kk.index') }}">Kembali</a>
+                        <a class="btn btn-sm btn-danger" href="{{ route('data_kk.index') }}">Kembali</a>
                     </div>
                 </div>
             </form>

@@ -53,8 +53,16 @@
                                     {{-- <a href="{{ route('admin/kegiatan/' . $item->nama . '/destroy') }}" class="btn btn-danger">Hapus</a>
                                     <a href="{{ route('admin/kegiatan/' . $item->nama . '/edit') }}" class="btn btn-warning">Edit</a> --}}
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                    <a href="{{ route('kegiatan.edit', ['id' => $item->id]) }}" class="btn btn-warning">Edit</a>
+                                    <div>
+                                        <a href="{{ url('/admin/kegiatan/' . $item->id . '/edit') }}" class="btn btn-warning">Edit</a>
+                                    </div>
+                                    <div>
+                                        <form class="d-inline-block" method="POST" action="{{ url('/admin/kegiatan/' . $item->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin menghapus data ini?')">Hapus</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

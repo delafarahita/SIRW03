@@ -41,35 +41,39 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Deskripsi</label>
-                            <input type="text" class="form-control" id="deskripsi" name="deskripsi"
-                                value="{{ $kegiatan->deskripsi }}" required>
-                            @error('deskripsi')
-                                <small class="form-text text-danger">{{ $message }}</small>
+                            <label class="control-label">Tanggal</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal"
+                            value="{{ $kegiatan->tanggal }}" required>
+                            @error('tanggal')
+                            <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">Foto kegiatan</label>
                             <input type="file" class="form-control" id="image_path" name="image_path"
-                                value="{{ $kegiatan->image_path }}" required>
+                            value="{{ $kegiatan->image_path }}" required>
                             @error('image_path')
-                                <small class="form-text text-danger">{{ $message }}</small>
+                            <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Tanggal</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal"
-                                value="{{ $kegiatan->tanggal }}" required>
-                            @error('tanggal')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                <div class="form-group row mt-3">
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-info btn-sm btn-block">Simpan</button>
                     </div>
-                </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="control-label">Deskripsi</label>
+                            <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" style="height: 200px"
+                                value="{{ $kegiatan->deskripsi }}" required> {{$kegiatan->deskripsi }}</textarea>
+                            @error('deskripsi')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                        
+                        <div class="form-group row mt-3">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-info btn-sm btn-block">Simpan</button>
+                                <a class="btn btn-sm btn-danger" href="{{ route('kegiatan.index') }}">Kembali</a>
+                            </div>
+                        </div>
             </form>
         </div>
     </div>

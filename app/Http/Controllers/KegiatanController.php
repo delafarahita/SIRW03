@@ -135,6 +135,7 @@ class KegiatanController extends Controller
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
             'kegiatan' => $kegiatan,
             'jenis' => $jenis,
         ]);
@@ -178,8 +179,9 @@ class KegiatanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(KegiatanModel $kegiatan)
+    public function destroy($id)
     {
+        $kegiatan = KegiatanModel::find($id);
         $kegiatan->delete();
 
         return redirect()->route('kegiatan.index')->with('success', 'Data kegiatan berhasil dihapus');

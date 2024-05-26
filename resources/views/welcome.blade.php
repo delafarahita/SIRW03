@@ -57,9 +57,16 @@
             margin-bottom: 20px;
         }
 
-        .img-uniform {
+        .img-uniform-kegiatan {
             width: 400px;          
             height: 250px;         
+            max-width: 100%;     
+            max-height: 100%;    
+            object-fit: cover; 
+        }
+        .img-uniform-umkm {
+            width: 1100px;          
+            height: 800px;         
             max-width: 100%;     
             max-height: 100%;    
             object-fit: cover; 
@@ -203,38 +210,22 @@
             </div>
             <div id="carouselExampleAutoPlaying" class="carousel slide my-3" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                    @foreach ($umkm as $index => $item)
+                        <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="{{ $index }}"
+                            class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                            aria-label="Slide {{ $index + 1 }}"></button>
+                    @endforeach
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ 'assets/img/umkm1.avif' }}" class="img-responsive w-100 d-block rounded"
-                            alt="slide 1">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>UMKM 1</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                    @foreach ($umkm as $index => $item)
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                            <img src="{{ asset($item->foto_umkm) }}" class="img-responsive img-uniform-umkm w-100 d-block rounded" alt="slide {{ $index + 1 }}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ $item->nama_umkm }}</h5>
+                                <p>{{ $item->deskripsi_umkm }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ 'assets/img/umkm2.jpg' }}" class="img-responsive w-100 d-block rounded"
-                            alt="slide 2">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>UMKM 2</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ 'assets/img/umkm3.jpg' }}" class="img-responsive w-100 d-block  rounded"
-                            alt="slide 3">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>UMKM 3</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoPlaying"
                     data-bs-slide="prev">
@@ -262,7 +253,7 @@
                             <div class="col">
                                 <div class="col hovereffect my-2">
                                     <img src="{{ asset($item->image_path) }}" alt="{{$item->nama}}"
-                                        class="img-uniform mb-3 rounded img-fluid">
+                                        class="img-uniform-kegiatan mb-3 rounded img-fluid">
                                     <div class="overlay">
                                         <h2 class="fw-bolder">{{$item->nama}}</h2>
                                         <p class="text-white">{{$item->deskripsi}}</p>

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\KegiatanModel;
+use App\Models\UmkmModel;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
     public function index() {
         $kegiatan = KegiatanModel::all();
+        $umkm = UmkmModel::all();
 
         return view('/welcome', [
             'kegiatan' => $kegiatan,
+            'umkm' => $umkm
         ]);
     }
 
