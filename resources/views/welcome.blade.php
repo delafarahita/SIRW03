@@ -63,6 +63,7 @@
         }
 
         .hovereffect {
+            
             height: auto;
             float: right;
             overflow: hidden;
@@ -73,6 +74,7 @@
         }
 
         .hovereffect .overlay {
+            width: 100%;
             height: auto;
             position: absolute;
             overflow: hidden;
@@ -152,22 +154,28 @@
     <main>
         <nav class="navbar sticky-top navbar-expand-lg bg-main "data-bs-theme="dark">
             <div class="container-fluid">
-                <div class="mx-3">
-                    <a href="" class="navbar-brand text-white fw-bolder"><img
-                            src="{{ asset('assets/img/logorw03.jpg') }}" alt="Logo" width="30" height="30"
-                            class="me-2 rounded-circle">SIRW03</a>
+                <div class="mx-3 d-flex justify-content-between align-items-center">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a href="#" class="navbar-brand text-white fw-bolder"><img src="{{ asset('assets/img/logorw03.jpg') }}" alt="Logo" width="30" height="30" class="me-2 rounded-circle">SIRW03</a>
+                  </div>
+                {{-- <div class="mx-3">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                </div>
-                <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNav">
+                    <a href="#" class="navbar-brand text-white fw-bolder"><img
+                            src="{{ asset('assets/img/logorw03.jpg') }}" alt="Logo" width="30" height="30"
+                            class="me-2 rounded-circle">SIRW03</a>
+                </div> --}}
+                <div class="collapse navbar-collapse justify-content-end container-fluid" id="navbarNav">
                     <div class="navbar-nav">
-                        <a class="nav-link me-5" aria-current="page" href="#"><span
+                        <a class="nav-link me-lg-5 text-center" aria-current="page" href="#"><span
                                 class="">ABOUT</span></a>
-                        <a class="nav-link me-5" href="#umkm">UMKM</a>
-                        <a class="nav-link me-5" href="#kegiatan">KEGIATAN</a>
-                        <a class="nav-link me-5" href="#keluhan">KELUHAN</a>
+                        <a class="nav-link me-lg-5 text-center" href="#umkm">UMKM</a>
+                        <a class="nav-link me-lg-5 text-center" href="#kegiatan">KEGIATAN</a>
+                        <a class="nav-link me-lg-5 text-center" href="#keluhan">KELUHAN</a>
                         <a href="{{ route('login') }}" class="btn btn-oren text-white px-3">LOGIN</a>
                     </div>
                 </div>
@@ -238,6 +246,7 @@
             </div>
         </div>
 
+
         {{-- kegiatan  --}}
         <div class="container my-5" id="kegiatan">
             <div>
@@ -245,16 +254,46 @@
             </div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-8 hovereffect">
-                        <img src="{{ asset('assets/img/kegiatan2.jpg') }}" alt="Activity 1"
-                            class="big-img img-responsive mb-3 rounded">
-                        <div class="overlay text-center">
-                            <h2>Minggu Bersih</h2>
+                    <div class="col-lg-4">
+                        <div class="col">
+                            <div class="col hovereffect my-2">
+                                <img src="{{ asset('assets/img/kegiatan2.jpg') }}" alt="Activity 2"
+                                    class="small-img mb-3 rounded">
+                                <div class="overlay">
+                                    <h2>Minggu Bersih</h2>
+                                    <p class="text-white">lorem </p>
+                                </div>
+                            </div>
+                            <div class="col hovereffect">
+                                <img src="{{ asset('assets/img/kegiatan4.jpg') }}" alt="Activity 3"
+                                    class="small-img mb-3 rounded">
+                                <div class="overlay">
+                                    <h2>Pembersihan TPU</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="col">
+                            <div class="col hovereffect my-2">
+                                <img src="{{ asset('assets/img/kegiatan1.jpg') }}" alt="Activity 2"
+                                    class="small-img mb-3 rounded">
+                                <div class="overlay">
+                                    <h2>Pemungutan Suara</h2>
+                                </div>
+                            </div>
                             <div class="col hovereffect">
+                                <img src="{{ asset('assets/img/kegiatan4.jpg') }}" alt="Activity 3"
+                                    class="small-img mb-3 rounded">
+                                <div class="overlay">
+                                    <h2>Pembersihan TPU</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="col">
+                            <div class="col hovereffect my-2">
                                 <img src="{{ asset('assets/img/kegiatan1.jpg') }}" alt="Activity 2"
                                     class="small-img mb-3 rounded">
                                 <div class="overlay">
@@ -344,6 +383,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     
     
 </body>
