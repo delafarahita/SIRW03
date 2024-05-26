@@ -24,7 +24,7 @@ class UmkmModel extends Model
         'rw',
         'kelurahan',
         'kecamatan',
-        'image_path',
+        'foto_umkm',
         'deskripsi_umkm',
     ];
 

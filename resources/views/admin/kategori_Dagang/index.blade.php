@@ -10,6 +10,14 @@
     .table-container {
         margin-bottom: 20px;
     }
+
+    .img-uniform {
+            width: 100%;          
+            height: auto;         
+            max-width: 300px;     
+            max-height: 200px;    
+            object-fit: cover; 
+        }
 </style>
     <div class="card card-outline card-primary">
     <div class="card-header">
@@ -27,26 +35,30 @@
       @endif
 
     <div class="row g-3">
-        @foreach ($kategori as $item)
+        @foreach ($kategoriDagang as $item)
             <div class="col-md-6">
                 <div class="card rounded-3 text-white" style="background-color: #1F2937;">
-                    @if ($item->image_path)
-                        <img src="{{ asset($item->image_path) }}" class="card-img-top rounded-3 img-fluid" alt="{{ $item->nama }}">
+                    @if ($item->foto_umkm)
+                        <img src="{{ asset($item->foto_umkm) }}" class="card-img-top img-uniform rounded-3 img-fluid" alt="{{ $item->nama }}">
                     @endif
-                </div>
+                
                     <div class="card-body">
                       <h5 class="card-title">{{ $item->nama_umkm }}</h5>
                       <p class="card-text">{{ $item->deskripsi_umkm }}</p>
                       <p class="card-text">Kategori: {{ $item->kategori_umkm }}</p>
                       <p class="card-text">Nama Pemilik: {{ $item->pemilik_umkm }}</p>
-                      <p class="card-text">Alamat: {{ $item->alamat_umkm }}</p>
-                      <p class="card-text">RT: {{ $item->id_rt }}</p>
-                      <p class="card-text">RW: {{ $item->rw }}</p>
-                      <p class="card-text">Kelurahan: {{ $item->kelurahan }}</p>
-                      <p class="card-text">Kecamatan: {{ $item->kecamatan }}</p>
+                      <p class="card-text">Alamat: {{ $item->alamat_umkm }}, RT {{ $item->id_rt }}, RW {{ $item->rw }}, Kel. {{ $item->kelurahan }}, Kec. {{ $item->kecamatan }}</p>
                       <div class="d-flex justify-content-between mt-5">
-                        <a href="{{ url('admin/umkm/' . 5 . '/delete') }}" class="btn btn-danger">Hapus</a>
-                        <a href="{{ url('admin/umkm/' . 5 . '/edit') }}" class="btn btn-warning">Edit</a>
+                        <div>
+                          <a href="{{ url('admin/umkm/' . $item->id_umkm . '/edit') }}" class="btn btn-warning">Edit</a>
+                        </div>
+                        <div>
+                          <form class="d-inline-block" method="POST" action="{{ url('/admin/umkm/' . $item->id_umkm) }}">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin menghapus data ini?')">Hapus</button>
+                          </form>
+                        </div>
                       </div>
                     </div>
                 </div>

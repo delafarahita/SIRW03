@@ -6,7 +6,7 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url('admin/umkm/') }}" class="form-horizontal">
+            <form method="POST" action="{{ url('admin/umkm/'.$umkm->id_umkm) }}" class="form-horizontal">
                 @csrf
                 {!! method_field('PUT') !!}
                 <div class="row">
@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label class="control-label">Nama Usaha</label>
                             <input type="text" class="form-control" id="nama_umkm" name="nama_umkm"
-                                value="{{ old('nama_umkm') }}" required>
+                                value="{{ $umkm->nama_umkm }}" required>
                             @error('nama_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label class="control-label">Nama Pemilik Usaha</label>
                             <input type="text" class="form-control" id="pemilik_umkm" name="pemilik_umkm"
-                                value="{{ old('pemilik_umkm') }}" required>
+                                value="{{ $umkm->pemilik_umkm }}" required>
                             @error('pemilik_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label class="control-label">Alamat Usaha</label>
                             <input type="text" class="form-control" id="alamat_umkm" name="alamat_umkm"
-                                value="{{ old('alamat_umkm') }}" required>
+                                value="{{ $umkm->alamat_umkm }}" required>
                             @error('alamat_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <label class="control-label">RW</label>
                             <input type="number" class="form-control" id="rw" name="rw"
-                                value="{{ old('rw') }}" required>
+                                value="{{ $umkm->rw }}" required>
                             @error('rw')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label class="control-label">Kel/Desa</label>
                             <input type="text" class="form-control" id="kelurahan" name="kelurahan"
-                                value="{{ old('kelurahan') }}" required>
+                                value="{{ $umkm->kelurahan }}" required>
                             @error('kelurahan')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label class="control-label">Kecamatan</label>
                             <input type="text" class="form-control" id="kecamatan" name="kecamatan"
-                                value="{{ old('kecamatan') }}" required>
+                                value="{{ $umkm->kecamatan }}" required>
                             @error('kecamatan')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -88,7 +88,7 @@
                         <div class="form-group">
                             <label class="control-label">Deskripsi Usaha</label>
                             <textarea class="form-control @error('deskripsi_umkm') is-invalid @enderror" placeholder=""
-                            name="deskripsi_umkm" id="floatingTextarea" style="height: 200px"></textarea>
+                            name="deskripsi_umkm" id="floatingTextarea" style="height: 200px">{{$umkm->deskripsi_umkm}}</textarea>
                             @error('deskripsi_umkm')
                             <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

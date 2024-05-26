@@ -22,15 +22,16 @@ class KategoriDagangController extends Controller
 
         $dropdown = 'd_kategori_Dagang';
         $activeMenu = 'Data UMKM';
-        $kategori = UmkmModel::where('kategori_umkm', 'Dagang')->get();
+        $kategoriDagang = UmkmModel::where('kategori_umkm', 'Dagang')->get();
         // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
-
+        $umkm = UmkmModel::all();
         return view('admin.kategori_Dagang.index', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown,
-            'kategori' => $kategori
+            'umkm' => $umkm,
+            'kategoriDagang' => $kategoriDagang
         ]);
     }
 

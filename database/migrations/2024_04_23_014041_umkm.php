@@ -21,7 +21,7 @@ return new class extends Migration
            $table->string('rw', 5);
            $table->string('kelurahan', 50);
            $table->string('kecamatan', 50);
-           $table->string('image_path');
+           $table->string('foto_umkm');
            $table->string('deskripsi_umkm', 50);
 
            $table->foreign('id_rt')->references('id_rt')->on('rt');
