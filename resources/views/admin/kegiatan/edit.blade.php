@@ -6,15 +6,14 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('kegiatan.update', $kegiatan->nama) }}" class="form-horizontal">
+            <form method="POST" action="{{ route('kegiatan.update', $kegiatan->id) }}" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
-                {!! method_field('PUT') !!}
+                @method('PUT')
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label class="control-label">Nama kegiatan</label>
-                            <input type="text" class="form-control" id="nama" name="nama"
-                                value="{{ $kegiatan->nama }}" >
+                            <input type="text" class="form-control" id="nama" name="nama" value="{{ $kegiatan->nama }}">
                             @error('nama')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
@@ -24,8 +23,7 @@
                             <select class="form-control" id="jenis" name="jenis">
                                 <option value="">- Pilih Jenis Kegiatan -</option>
                                 @foreach ($jenis as $item)
-                                    <option value="{{ $item->jenis }}"
-                                        @if ($item->jenis == $kegiatan->jenis) selected @endif>{{ $item->jenis }}</option>
+                                    <option value="{{ $item->jenis }}" @if ($item->jenis == $kegiatan->jenis) selected @endif>{{ $item->jenis }}</option>
                                 @endforeach
                             </select>
                             @error('jenis')
@@ -34,46 +32,43 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat"
-                                value="{{ $kegiatan->alamat }}" >
+                            <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $kegiatan->alamat }}">
                             @error('alamat')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">Tanggal</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal"
-                            value="{{ $kegiatan->tanggal }}" required>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $kegiatan->tanggal }}" required>
                             @error('tanggal')
-                            <small class="form-text text-danger">{{ $message }}</small>
+                                <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label class="control-label">Foto kegiatan</label>
-                            <input type="file" class="form-control" id="image_path" name="image_path"
-                            value="{{ $kegiatan->image_path }}" required>
+                            <input type="file" class="form-control" id="image_path" name="image_path">
                             @error('image_path')
-                            <small class="form-text text-danger">{{ $message }}</small>
+                                <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label class="control-label">Deskripsi</label>
-                            <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" style="height: 200px"
-                                value="{{ $kegiatan->deskripsi }}" required> {{$kegiatan->deskripsi }}</textarea>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" style="height: 200px" required>{{ $kegiatan->deskripsi }}</textarea>
                             @error('deskripsi')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                     </div>
-                        
-                        <div class="form-group row mt-3">
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-info btn-sm btn-block">Simpan</button>
-                                <a class="btn btn-sm btn-danger" href="{{ route('kegiatan.index') }}">Kembali</a>
-                            </div>
+
+                    <div class="form-group row mt-3">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-info btn-sm btn-block">Simpan</button>
+                            <a class="btn btn-sm btn-danger" href="{{ route('kegiatan.index') }}">Kembali</a>
                         </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
