@@ -6,99 +6,61 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('kegiatan.store') }}" class="form-horizontal">
+            <form method="POST" action="{{ route('kegiatan.store') }}" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label class="control-label">Nama kegiatan</label>
-                            <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan"
-                                value="{{ old('nama_kegiatan') }}" required>
-                            @error('nama_kegiatan')
+                            <input type="text" class="form-control" id="nama" name="nama"
+                                value="{{ old('nama') }}" required>
+                            @error('nama')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Kategori kegiatan</label>
-                            <select class="form-control" name="kategori_kegiatan" id="kategori_kegiatan" required>
-                                <option value="">- Pilih Kategori kegiatan -</option>
-                                @foreach ($kategori_kegiatan as $item)
+                            <label class="control-label">Jenis Kegiatan</label>
+                            <select class="form-control" name="jenis" id="jenis" required>
+                                <option value="">- Pilih Jenis Kegiatan -</option>
+                                @foreach ($jenis as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>
-                            @error('kategori_kegiatan')
+                            @error('jenis')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Nama Pemilik kegiatan</label>
-                            <input type="text" class="form-control" id="pemilik_kegiatan" name="pemilik_kegiatan"
-                                value="{{ old('pemilik_kegiatan') }}" required>
-                            @error('pemilik_kegiatan')
+                            <label class="control-label">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat"
+                                value="{{ old('alamat') }}" required>
+                            @error('alamat')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Tanggal</label>
+                            <input type="datetime-local" class="form-control" id="tanggal" name="tanggal"
+                                value="{{ old('tanggal') }}" required>
+                            @error('tanggal')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Alamat kegiatan</label>
-                            <input type="text" class="form-control" id="alamat_kegiatan" name="alamat_kegiatan"
-                                value="{{ old('alamat_kegiatan') }}" required>
-                            @error('alamat_kegiatan')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">RT</label>
-                            <select class="form-control" name="id_rt" id="id_rt" required>
-                                <option value="">- Pilih</option>
-                                @foreach ($rt as $item)
-                                    <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
-                                @endforeach
-                            </select>
-                            @error('id_rt')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">RW</label>
-                            <input type="number" class="form-control" id="rw" name="rw"
-                                value="{{ old('rw') }}" required>
-                            @error('rw')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Kel/Desa</label>
-                            <input type="text" class="form-control" id="kelurahan" name="kelurahan"
-                                value="{{ old('kelurahan') }}" required>
-                            @error('kelurahan')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Kecamatan</label>
-                            <input type="text" class="form-control" id="kecamatan" name="kecamatan"
-                                value="{{ old('kecamatan') }}" required>
-                            @error('kecamatan')
+                            <label class="control-label">Foto kegiatan</label>
+                            <input type="file" name="image_path" class="form-control @error('image_path') is-invalid @enderror">
+                            @error('image_path')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                     </div>
+
                     <div class="col-6">
                         <div class="form-group">
                             <label class="control-label">Deskripsi kegiatan</label>
-                            <textarea class="form-control @error('deskripsi_kegiatan') is-invalid @enderror" placeholder=""
-                            name="deskripsi_kegiatan" id="floatingTextarea" style="height: 200px"></textarea>
-                            @error('deskripsi_kegiatan')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label class="control-label">Foto kegiatan</label>
-                            <input type="file" name="foto_kegiatan" class="form-control @error('foto_kegiatan') is-invalid @enderror" placeholder=""
-                            name="foto_kegiatan"></input>
-                            @error('foto_kegiatan')
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="deskripsi" style="height: 200px">{{ old('deskripsi') }}</textarea>
+                            @error('deskripsi')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -107,8 +69,7 @@
                 <div class="form-group row mt-3">
                     <div class="col-12">
                         <button type="submit" class="btn btn-info btn-sm btn-block">Simpan</button>
-                        <a href="{{ route('kategori_dagang.index') }}" class="btn btn-danger btn-sm btn-block">Kembali</a">
-                        </a>
+                        <a href="{{ route('kegiatan.index') }}" class="btn btn-danger btn-sm btn-block">Kembali</a>
                     </div>
                 </div>
             </form>

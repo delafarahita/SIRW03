@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">Nama</label>
+                            <label class="control-label">Nama kegiatan</label>
                             <input type="text" class="form-control" id="nama" name="nama"
                                 value="{{ $kegiatan->nama }}" >
                             @error('nama')
@@ -20,15 +20,23 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Jenis</label>
+                            <label class="control-label">Jenis Kegiatan</label>
                             <select class="form-control" id="jenis" name="jenis">
-                                <option value="">- Pilih -</option>
+                                <option value="">- Pilih Jenis Kegiatan -</option>
                                 @foreach ($jenis as $item)
                                     <option value="{{ $item->jenis }}"
                                         @if ($item->jenis == $kegiatan->jenis) selected @endif>{{ $item->jenis }}</option>
                                 @endforeach
                             </select>
                             @error('jenis')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat"
+                                value="{{ $kegiatan->alamat }}" >
+                            @error('alamat')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -41,7 +49,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Image Path</label>
+                            <label class="control-label">Foto kegiatan</label>
                             <input type="file" class="form-control" id="image_path" name="image_path"
                                 value="{{ $kegiatan->image_path }}" required>
                             @error('image_path')
