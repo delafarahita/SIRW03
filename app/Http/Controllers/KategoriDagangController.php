@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KategoriDagangModel;
+use App\Models\UmkmModel;
 
 class KategoriDagangController extends Controller
 {
@@ -18,15 +19,18 @@ class KategoriDagangController extends Controller
         $page = (object) [
             'title' => 'Data UMKM Kategori Dagang'
         ];
+
         $dropdown = 'd_kategori_Dagang';
         $activeMenu = 'Data UMKM';
+        $kategori = UmkmModel::where('kategori_umkm', 'Dagang')->get();
         // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
 
         return view('admin.kategori_Dagang.index', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
-            'dropdown' => $dropdown
+            'dropdown' => $dropdown,
+            'kategori' => $kategori
         ]);
     }
 
