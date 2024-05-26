@@ -167,7 +167,13 @@
                     <span class="sidebar-text">Informasi Kegiatan</span>
                 </a>
             </li>
-
+            <div class="collapse {{ $dropdown == 'kegiatan' ? 'show' : '' }}" id="collapseKegiatan" style="margin-left: 2.5rem;">
+                <ul class="nav flex-column pl-5">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('kegiatan.index')}}">Kegiatan</a>
+                    </li>
+                </ul>
+            </div>
 
             <li class="nav-item {{ $activeMenu == 'inventaris' ? 'active' : '' }}">
                 <a href="{{ Route('inventaris.index') }}" class="nav-link">
