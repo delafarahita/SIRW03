@@ -32,8 +32,8 @@ class DataKriteriaController extends Controller
         return DataTables::of($kriterias)
             ->addIndexColumn()
             ->addColumn('aksi', function ($kriteria) {
-                $btn = '<a href="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria) . '" class="btn btn-info btn-sm">Detail</a> ';
-                $btn .= '<a href="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                // $btn = '<a href="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria) . '" class="btn btn-info btn-sm">Detail</a> ';
+                $btn = '<a href="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria) . '">'
                     . csrf_field() . method_field('DELETE') .
                     '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
