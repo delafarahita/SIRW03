@@ -20,7 +20,7 @@ class KegiatanController extends Controller
         ];
 
         $page = (object) [
-            'title' => 'Info Kegiatan yang terdaftar dalam sistem'
+            'title' => 'Informasi Kegiatan'
         ];
 
         $activeMenu = 'Info Kegiatan'; // set menu yang sedang aktif

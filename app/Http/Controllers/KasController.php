@@ -13,7 +13,7 @@ class KasController extends Controller
     public function index()
     {
         $page = (object)[
-            'title' => 'Kas RW 03',
+            'title' => 'Kas',
         ];
         $activeMenu = 'kas';
         $dropdown = '';
