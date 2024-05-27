@@ -47,7 +47,7 @@
                       <p class="card-text">{{ $item->deskripsi_umkm }}</p>
                       <p class="card-text">Kategori: {{ $item->kategori_umkm }}</p>
                       <p class="card-text">Nama Pemilik: {{ $item->pemilik_umkm }}</p>
-                      <p class="card-text">Alamat: {{ $item->alamat_umkm }}, RT {{ $item->id_rt }}, RW {{ $item->rw }}, Kel. {{ $item->kelurahan }}, Kec. {{ $item->kecamatan }}</p>
+                      <p class="card-text">Alamat: {{ $item->alamat_umkm }}, RT {{ $item->id_rt }}/{{ $item->rw }}, Kel. {{ $item->kelurahan }}, Kec. {{ $item->kecamatan }}</p>
                       <div class="d-flex justify-content-between mt-5">
                         <div>
                           <a href="{{ url('admin/umkm/' . $item->id_umkm . '/edit') }}" class="btn btn-warning">Edit</a>

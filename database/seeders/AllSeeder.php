@@ -23,6 +23,7 @@ class AllSeeder extends Seeder
             InventarisSeeder::class,
             PengaduanSeeder::class,
             PinjamInventarisSeeder::class,
+            UMKMSeeder::class,
         ]);
     }
 }
