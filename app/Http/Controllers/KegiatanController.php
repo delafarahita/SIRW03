@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KegiatanModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class KegiatanController extends Controller
 {
@@ -145,15 +146,17 @@ class KegiatanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, KegiatanModel $kegiatan)
+    public function update(Request $request, $id)
     {
+        $kegiatan = KegiatanModel::findOrFail($id);
+
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'jenis' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'alamat' => 'required|string',
-            'tanggal' => 'required',
-            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'tanggal' => 'required|date',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg', // Nullable karena tidak wajib
         ]);
 
         // Update data kegiatan
@@ -167,6 +170,16 @@ class KegiatanController extends Controller
         if ($request->hasFile('image_path')) {
             // Store the new image in the public directory
             $path = $request->file('image_path')->store('public/image_path');
+
+            // Hapus gambar lama jika ada
+            if ($kegiatan->image_path) {
+                // Ubah path untuk menghapus file lama
+                $oldImagePath = str_replace('storage/', 'public/', $kegiatan->image_path);
+                if (Storage::exists($oldImagePath)) {
+                    Storage::delete($oldImagePath);
+                }
+            }
+
             $kegiatan->image_path = str_replace('public/', 'storage/', $path);
         }
 
@@ -174,7 +187,6 @@ class KegiatanController extends Controller
 
         return redirect()->route('kegiatan.index')->with('success', 'Data kegiatan berhasil diperbarui');
     }
-
 
     /**
      * Remove the specified resource from storage.

@@ -12,11 +12,11 @@
         }
 
         .img-uniform {
-            width: 100%;          
-            height: auto;         
-            max-width: 300px;     
-            max-height: 200px;    
-            object-fit: cover; 
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            max-height: 200px;
+            object-fit: cover;
         }
 
     </style>
@@ -50,9 +50,6 @@
                                 <p class="card-text">{{ $item->deskripsi }}</p>
                                 <p class="card-text">{{ $item->alamat }}</p>
                                 <div class="d-flex justify-content-between mt-5">
-                                    {{-- <a href="{{ route('admin/kegiatan/' . $item->nama . '/destroy') }}" class="btn btn-danger">Hapus</a>
-                                    <a href="{{ route('admin/kegiatan/' . $item->nama . '/edit') }}" class="btn btn-warning">Edit</a> --}}
-                                    @method('DELETE')
                                     <div>
                                         <a href="{{ url('/admin/kegiatan/' . $item->id . '/edit') }}" class="btn btn-warning">Edit</a>
                                     </div>
