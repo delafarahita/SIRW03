@@ -19,9 +19,10 @@ class KegiatanModel extends Model
         'nama',
         'jenis',
         'deskripsi',
+        'alamat',
         'image_path',
         'tanggal',
-    ]; // Kolom yang dapat diisi
+    ];
 
     public static $jenis =[
         "Sosial", "Keagamaan"

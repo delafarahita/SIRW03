@@ -49,11 +49,11 @@
             </div>
             <div class="table-container table-responsive">
                 <h5>Solusi Rata-rata (AV)</h5>
-                @php
+                {{-- @php
                     $krit = $dataAvg[0];
-                @endphp
-                <p>Total Nilai untuk AV{{ $krit['id_kriteria'] }} = {{ $krit['totalNilai'] }}</p>
-                <p>Rata-rata Nilai untuk AV{{ $krit['id_kriteria'] }} = {{ $krit['rataRataNilai'] }}</p>
+                @endphp --}}
+                {{-- <p>Total Nilai untuk AV{{ $krit['id_kriteria'] }} = {{ $krit['totalNilai'] }}</p>
+                <p>Rata-rata Nilai untuk AV{{ $krit['id_kriteria'] }} = {{ $krit['rataRataNilai'] }}</p> --}}
                 <table class="table table-bordered table-striped table-hover table-sm" id="table_av">
                     <thead>
                         <tr>

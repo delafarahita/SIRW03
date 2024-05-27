@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kas;
+use App\Models\KasModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -12,11 +13,11 @@ class KasController extends Controller
     public function index()
     {
         $page = (object)[
-            'title' => 'Kas RW 03',
+            'title' => 'Kas',
         ];
         $activeMenu = 'kas';
         $dropdown = '';
-        $kas = Kas::all();
+        $kas = KasModel::all();
 
         return view('admin.kas.index', [
             'page' => $page,
@@ -41,20 +42,20 @@ class KasController extends Controller
             'jumlah' => 'required|numeric',
         ]);
 
-        Kas::create($request->all());
+        KasModel::create($request->all());
 
         return redirect()->route('kas.index')
             ->with('success', 'Data kas berhasil ditambahkan.');
     }
 
     // Menampilkan data kas yang ingin diubah
-    public function edit(Kas $kas)
+    public function edit(KasModel $kas)
     {
         return view('kas.edit', compact('kas'));
     }
 
     // Memperbarui data kas yang telah diubah
-    public function update(Request $request, Kas $kas)
+    public function update(Request $request, KasModel $kas)
     {
         $request->validate([
             'nama' => 'required',
@@ -68,7 +69,7 @@ class KasController extends Controller
     }
 
     // Menghapus data kas
-    public function destroy(Kas $kas)
+    public function destroy(KasModel $kas)
     {
         $kas->delete();
 

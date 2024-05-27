@@ -6,7 +6,7 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('umkm.store') }}" class="form-horizontal">
+            <form method="POST" action="{{ route('umkm.store') }}" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-6">
@@ -96,8 +96,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label class="control-label">Foto UMKM</label>
-                            <input type="file" name="foto_umkm" class="form-control @error('foto_umkm') is-invalid @enderror" placeholder=""
-                            name="foto_umkm"></input>
+                            <input type="file" name="foto_umkm" class="form-control @error('foto_umkm') is-invalid @enderror">
                             @error('foto_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror

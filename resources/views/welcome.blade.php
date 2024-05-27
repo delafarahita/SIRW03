@@ -57,9 +57,19 @@
             margin-bottom: 20px;
         }
 
-        .small-img {
-            height: 230px;
-            max-width: 100%;
+        .img-uniform-kegiatan {
+            width: 400px;          
+            height: 250px;         
+            max-width: 100%;     
+            max-height: 100%;    
+            object-fit: cover; 
+        }
+        .img-uniform-umkm {
+            width: 1100px;          
+            height: 800px;         
+            max-width: 100%;     
+            max-height: 100%;    
+            object-fit: cover; 
         }
 
         .hovereffect {
@@ -73,6 +83,7 @@
         }
 
         .hovereffect .overlay {
+            width: 100%;
             height: auto;
             position: absolute;
             overflow: hidden;
@@ -97,7 +108,7 @@
             text-align: center;
             position: relative;
             font-size: 17px;
-            background: rgba(0, 0, 0, 0.6);
+            background: #1F2937;
             -webkit-transform: translatey(-100px);
             -ms-transform: translatey(-100px);
             transform: translatey(-100px);
@@ -107,6 +118,7 @@
         }
 
         .hovereffect:hover img {
+            -webkit-filter: blur(2px);
             -ms-transform: scale(1.2);
             -webkit-transform: scale(1.2);
             transform: scale(1.2);
@@ -142,6 +154,25 @@
                 font-size: 2rem;
                 /* Adjusted font size for smaller screens */
             }
+
+            .img-uniform-umkm{
+                width: 400px;          
+                height: 250px;         
+                max-width: 100%;     
+                max-height: 100%;    
+                object-fit: cover;
+            }
+            
+        }
+
+        @media (min-width: 768px && max-width: 900px){
+            .img-uniform-umkm{
+                width: 600px;          
+                height: 350px;         
+                max-width: 100%;     
+                max-height: 100%;    
+                object-fit: cover;
+            }
         }
     </style>
 
@@ -152,22 +183,28 @@
     <main>
         <nav class="navbar sticky-top navbar-expand-lg bg-main "data-bs-theme="dark">
             <div class="container-fluid">
-                <div class="mx-3">
-                    <a href="" class="navbar-brand text-white fw-bolder"><img
-                            src="{{ asset('assets/img/logorw03.jpg') }}" alt="Logo" width="30" height="30"
-                            class="me-2 rounded-circle">SIRW03</a>
+                <div class="mx-3 d-flex justify-content-between align-items-center">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a href="#" class="navbar-brand text-white fw-bolder"><img src="{{ asset('assets/img/logorw03.jpg') }}" alt="Logo" width="30" height="30" class="me-2 rounded-circle">SIRW03</a>
+                  </div>
+                {{-- <div class="mx-3">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                </div>
-                <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNav">
+                    <a href="#" class="navbar-brand text-white fw-bolder"><img
+                            src="{{ asset('assets/img/logorw03.jpg') }}" alt="Logo" width="30" height="30"
+                            class="me-2 rounded-circle">SIRW03</a>
+                </div> --}}
+                <div class="collapse navbar-collapse justify-content-end container-fluid" id="navbarNav">
                     <div class="navbar-nav">
-                        <a class="nav-link me-5" aria-current="page" href="#"><span
+                        <a class="nav-link me-lg-5 text-center" aria-current="page" href="#"><span
                                 class="">ABOUT</span></a>
-                        <a class="nav-link me-5" href="#umkm">UMKM</a>
-                        <a class="nav-link me-5" href="#kegiatan">KEGIATAN</a>
-                        <a class="nav-link me-5" href="#keluhan">KELUHAN</a>
+                        <a class="nav-link me-lg-5 text-center" href="#umkm">UMKM</a>
+                        <a class="nav-link me-lg-5 text-center" href="#kegiatan">KEGIATAN</a>
+                        <a class="nav-link me-lg-5 text-center" href="#keluhan">KELUHAN</a>
                         <a href="{{ route('login') }}" class="btn btn-oren text-white px-3">LOGIN</a>
                     </div>
                 </div>
@@ -192,38 +229,22 @@
             </div>
             <div id="carouselExampleAutoPlaying" class="carousel slide my-3" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                    @foreach ($umkm as $index => $item)
+                        <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="{{ $index }}"
+                            class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                            aria-label="Slide {{ $index + 1 }}"></button>
+                    @endforeach
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ 'assets/img/umkm1.avif' }}" class="img-responsive w-100 d-block rounded"
-                            alt="slide 1">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>UMKM 1</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                    @foreach ($umkm as $index => $item)
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                            <img src="{{ asset($item->foto_umkm) }}" class="img-responsive img-uniform-umkm w-100 d-block rounded" alt="slide {{ $index + 1 }}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ $item->nama_umkm }}</h5>
+                                <p>{{ $item->deskripsi_umkm }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ 'assets/img/umkm2.jpg' }}" class="img-responsive w-100 d-block rounded"
-                            alt="slide 2">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>UMKM 2</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ 'assets/img/umkm3.jpg' }}" class="img-responsive w-100 d-block  rounded"
-                            alt="slide 3">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>UMKM 3</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoPlaying"
                     data-bs-slide="prev">
@@ -238,6 +259,7 @@
             </div>
         </div>
 
+
         {{-- kegiatan  --}}
         <div class="container my-5" id="kegiatan">
             <div>
@@ -245,31 +267,21 @@
             </div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-8 hovereffect">
-                        <img src="{{ asset('assets/img/kegiatan2.jpg') }}" alt="Activity 1"
-                            class="big-img img-responsive mb-3 rounded">
-                        <div class="overlay text-center">
-                            <h2>Minggu Bersih</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="col">
-                            <div class="col hovereffect">
-                                <img src="{{ asset('assets/img/kegiatan1.jpg') }}" alt="Activity 2"
-                                    class="small-img mb-3 rounded">
-                                <div class="overlay">
-                                    <h2>Pemungutan Suara</h2>
-                                </div>
-                            </div>
-                            <div class="col hovereffect">
-                                <img src="{{ asset('assets/img/kegiatan4.jpg') }}" alt="Activity 3"
-                                    class="small-img mb-3 rounded">
-                                <div class="overlay">
-                                    <h2>Pembersihan TPU</h2>
+                    @foreach ($kegiatan as $item)
+                        <div class="col-lg-4">
+                            <div class="col">
+                                <div class="col hovereffect my-2">
+                                    <img src="{{ asset($item->image_path) }}" alt="{{$item->nama}}"
+                                        class="img-uniform-kegiatan mb-3 rounded img-fluid">
+                                    <div class="overlay">
+                                        <h2 class="fw-bolder">{{$item->nama}}</h2>
+                                        <p class="text-white">{{$item->deskripsi}}</p>
+                                        <p class="text-white">📅{{$item->tanggal}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -344,6 +356,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     
     
 </body>

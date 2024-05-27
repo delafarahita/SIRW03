@@ -10,7 +10,6 @@ class UmkmController extends Controller
 {
     public function index()
     {
-        // $umkms = UmkmModel::all();
         $breadcrumb = (object) [
             'title' => 'Data UMKM',
             'list' => ['Home', 'Data UMKM']
@@ -20,15 +19,16 @@ class UmkmController extends Controller
             'title' => 'Data UMKM'
         ];
 
-        $dropdown = 'umkm';
         $activeMenu = 'Data UMKM';
-        // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
+        $dropdown = 'umkm';
+        $kategori = UmkmModel::all();
 
         return view('admin.umkm.index', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
-            'dropdown' => $dropdown
+            'dropdown' => $dropdown,
+            'kategori' => $kategori
         ]);
     }
 
@@ -63,8 +63,38 @@ class UmkmController extends Controller
 
     public function store(Request $request)
     {
-        UmkmModel::create($request->all());
+        $validatedData = $request->validate([
+            'nama_umkm' => 'required',
+            'kategori_umkm' => 'required',
+            'pemilik_umkm' => 'required',
+            'alamat_umkm' => 'required',
+            'id_rt' => 'required',
+            'rw' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'foto_umkm' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'deskripsi_umkm' => 'required',
+        ]);
+
+        $path = $request->file('foto_umkm')->store('public/foto_umkm');
+
+        $umkm = new UmkmModel;
+        $umkm->nama_umkm = $validatedData['nama_umkm'];
+        $umkm->kategori_umkm = $validatedData['kategori_umkm'];
+        $umkm->pemilik_umkm = $validatedData['pemilik_umkm'];
+        $umkm->alamat_umkm = $validatedData['alamat_umkm'];
+        $umkm->id_rt = $validatedData['id_rt'];
+        $umkm->rw = $validatedData['rw'];
+        $umkm->kelurahan = $validatedData['kelurahan'];
+        $umkm->kecamatan = $validatedData['kecamatan'];
+        $umkm->foto_umkm = str_replace('public/', 'storage/', $path);
+        $umkm->deskripsi_umkm = $validatedData['deskripsi_umkm'];
+        $umkm->save();
+
         return redirect()->route('umkm.index')->with('success', 'UMKM berhasil ditambahkan');
+
+        // UmkmModel::create($request->all());
+        // return redirect()->route('umkm.index')->with('success', 'UMKM berhasil ditambahkan');
     }
 
     public function show($id)
@@ -96,7 +126,7 @@ class UmkmController extends Controller
         ]);
     }
 
-    public function edit()
+    public function edit($id)
     {
         // $umkm = UmkmModel::findOrFail($id);
         $page = (object) [
@@ -104,7 +134,7 @@ class UmkmController extends Controller
         ];
         $activeMenu = 'umkm';
         $dropdown = '';
-        $umkm = UmkmModel::all();
+        $umkm = UmkmModel::find($id);
         $kategori_umkm = UmkmModel::$kategori_umkm;
         $rt = RTModel::all();
         return view('admin.umkm.edit', [
@@ -117,11 +147,43 @@ class UmkmController extends Controller
         ]);
     }
 
-    public function update(Request $request, String $id)
+    public function update(Request $request, UmkmModel $kategori)
     {
-        $umkm = UmkmModel::findOrFail($id);
-        $umkm->update($request->all());
-        return redirect()->route('umkm.index');
+        $validatedData = $request->validate([
+            'nama_umkm' => 'required|string|max:255',
+            'kategori_umkm' => 'required|string|max:255',
+            'pemilik_umkm' => 'required|string|max:255',
+            'alamat_umkm' => 'required|string|max:255',
+            'id_rt' => 'required',
+            'rw' => 'required',
+            'kelurahan' => 'required|string|max:255',
+            'kecamatan' => 'required|string|max:255',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'deskripsi_umkm' => 'required|string|max:255',
+        ]);
+
+        $kategori->nama_umkm = $validatedData['nama_umkm'];
+        $kategori->kategori_umkm = $validatedData['kategori_umkm'];
+        $kategori->pemilik_umkm = $validatedData['pemilik_umkm'];
+        $kategori->alamat_umkm = $validatedData['alamat_umkm'];
+        $kategori->id_rt = $validatedData['id_rt'];
+        $kategori->rw = $validatedData['rw'];
+        $kategori->kelurahan = $validatedData['kelurahan'];
+        $kategori->kecamatan = $validatedData['kecamatan'];
+        $kategori->deskripsi_umkm = $validatedData['deskripsi_umkm'];
+
+        if ($request->hasFile('image_path')) {
+            $path = $request->file('image_path')->store('public/image_path');
+            $kategori->image_path = str_replace('public/', 'storage/', $path);
+        }
+
+        $kategori->save();
+
+        return redirect()->route('umkm.index')->with('success', 'UMKM berhasil diperbarui');
+
+        // $umkm = UmkmModel::findOrFail($id);
+        // $umkm->update($request->all());
+        // return redirect()->route('umkm.index');
     }
 
     public function destroy($id)

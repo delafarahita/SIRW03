@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             InventarisSeeder::class,
             PengaduanSeeder::class,
             PinjamInventarisSeeder::class,
+            UMKMSeeder::class,
             // Panggil seeder lain jika ada
         ]);
     }

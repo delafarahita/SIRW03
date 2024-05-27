@@ -10,10 +10,10 @@ class UmkmModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'umkm'; // Nama tabel di database
+    protected $table = 'umkm';
 
     protected $primaryKey = 'id_umkm';
-    
+
     public $timestamps = false;
     protected $fillable = [
         'nama_umkm',
@@ -26,18 +26,14 @@ class UmkmModel extends Model
         'kecamatan',
         'foto_umkm',
         'deskripsi_umkm',
-    ]; // Kolom yang dapat diisi
+    ];
 
     public static $kategori_umkm =[
         "Dagang", "Jasa"
     ];
 
-
     public function rt(): BelongsTo
     {
         return $this->belongsTo(RtModel::class, 'id_rt', 'id');
     }
-
-
-
 }

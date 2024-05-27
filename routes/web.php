@@ -5,6 +5,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataAlternatifController;
 use App\Http\Controllers\DataKriteriaController;
+use App\Http\Controllers\MOORAController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataPendudukController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\DataPerhitunganController;
 use App\Http\Controllers\KategoriDagangController;
 use App\Http\Controllers\KategoriJasaController;
 use App\Http\Controllers\KategoriUmkmController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +41,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', [WelcomeController::class, 'index']);
+
 Route::group(['prefix'=>'login'], function(){
     Route::get('/', [LoginController::class, 'index'])->name('login');
 });
@@ -54,7 +58,7 @@ Route::group(['middleware' => ['auth']], function (){
             $activeMenu = 'dashboard';
             $dropdown = 'false';
             $page = (object) [
-                'title' => 'Dashboard Admin',
+                'title' => 'Dashboard',
             ];
 
             return view('admin.dashboard.index',[
@@ -139,11 +143,13 @@ Route::group(['middleware' => ['auth']], function (){
             Route::post('/list', [DataPerhitunganController::class, 'list'])->name('data_perhitungan.list');
             Route::get('/{id}/create', [DataPerhitunganController::class, 'create'])->name('data_perhitungan.create');
             Route::post('/', [DataPerhitunganController::class, 'store'])->name('data_perhitungan.store');
-            Route::get('/{id}', [DataPerhitunganController::class, 'show'])->name('data_perhitungan.show');
+            // Route::get('/{id}', [DataPerhitunganController::class, 'show'])->name('data_perhitungan.show');
             Route::get('/{id}/edit', [DataPerhitunganController::class, 'edit'])->name('data_perhitungan.edit');
             Route::put('/{id}', [DataPerhitunganController::class, 'update'])->name('data_perhitungan.update');
             Route::delete('/{id}', [DataPerhitunganController::class, 'destroy'])->name('data_perhitungan.destroy');
         });
+
+        Route::get('/data_perhitungan/moora', [MOORAController::class, 'index'])->name('data_perhitungan.moora');
 
         Route::group(['prefix' => 'umkm'], function(){
             Route::get('/', [UmkmController::class, 'index'])->name('umkm.index');

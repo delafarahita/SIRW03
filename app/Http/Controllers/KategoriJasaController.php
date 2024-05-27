@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KategoriJasaModel;
+use App\Models\UmkmModel;
 
 class KategoriJasaController extends Controller
 {
@@ -20,13 +21,16 @@ class KategoriJasaController extends Controller
         ];
         $dropdown = 'd_kategori_Jasa';
         $activeMenu = 'Data UMKM';
+
+        $kategoriJasa = UmkmModel::where('kategori_umkm', 'Jasa')->get();
         // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
 
         return view('admin.kategori_Jasa.index', [
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
-            'dropdown' => $dropdown
+            'dropdown' => $dropdown,
+            'kategoriJasa' => $kategoriJasa
         ]);
     }
 

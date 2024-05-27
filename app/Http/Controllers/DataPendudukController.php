@@ -20,7 +20,7 @@ class DataPendudukController extends Controller
         ];
 
         $page = (object) [
-            'title' => 'DATA PENDUDUK'
+            'title' => 'Data Penduduk'
         ];
 
         $dropdown = 'd_penduduk';
