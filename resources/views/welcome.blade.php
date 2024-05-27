@@ -154,6 +154,25 @@
                 font-size: 2rem;
                 /* Adjusted font size for smaller screens */
             }
+
+            .img-uniform-umkm{
+                width: 400px;          
+                height: 250px;         
+                max-width: 100%;     
+                max-height: 100%;    
+                object-fit: cover;
+            }
+            
+        }
+
+        @media (min-width: 768px && max-width: 900px){
+            .img-uniform-umkm{
+                width: 600px;          
+                height: 350px;         
+                max-width: 100%;     
+                max-height: 100%;    
+                object-fit: cover;
+            }
         }
     </style>
 
