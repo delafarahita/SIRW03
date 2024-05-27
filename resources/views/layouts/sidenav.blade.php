@@ -95,10 +95,10 @@
                             <a class="nav-link" href="{{ route('data_penilaian.index')}}">Data Penilaian</a>
                         </li>
                         <li class="nav-item {{ $activeMenu == 'data_perhitungan' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('data_perhitungan.index')}}">Data Perhitungan</a>
+                            <a class="nav-link" href="{{ route('data_perhitungan.index')}}">Data Perhitungan (EDAS)</a>
                         </li>
                         <li class="nav-item {{ $activeMenu == 'data_perhitungan_moora' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('data_perhitungan.moora')}}">Data Perhitungan MOORA</a>
+                            <a class="nav-link" href="{{ route('data_perhitungan.moora')}}">Data Perhitungan (MOORA)</a>
                         </li>
                     </ul>
                 </div>
