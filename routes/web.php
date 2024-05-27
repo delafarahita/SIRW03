@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth']], function (){
             $activeMenu = 'dashboard';
             $dropdown = 'false';
             $page = (object) [
-                'title' => 'Dashboard Admin',
+                'title' => 'Dashboard',
             ];
 
             return view('admin.dashboard.index',[
