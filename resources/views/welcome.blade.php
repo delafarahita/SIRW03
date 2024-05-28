@@ -204,7 +204,7 @@
                                 class="">ABOUT</span></a>
                         <a class="nav-link me-lg-5 text-center" href="#umkm">UMKM</a>
                         <a class="nav-link me-lg-5 text-center" href="#kegiatan">KEGIATAN</a>
-                        <a class="nav-link me-lg-5 text-center" href="#keluhan">KELUHAN</a>
+                        <a class="nav-link me-lg-5 text-center" href="#keluhan">LAPORAN</a>
                         <a href="{{ route('login') }}" class="btn btn-oren text-white px-3">LOGIN</a>
                     </div>
                 </div>
@@ -290,7 +290,7 @@
         <div class="container-fluid mt-5 p-5 bg-main" id="keluhan">
             <div class="container text-center">
                 <div class="my-3">
-                    <h1 class="text-white fw-bold font-s-48">KELUHAN</h1>
+                    <h1 class="text-white fw-bold font-s-48">LAPORAN</h1>
                 </div>
                 <div class="">
                     @if (session('success'))
@@ -325,7 +325,7 @@
                         <div class="form-floating">
                             <textarea class="form-control @error('keluhan') is-invalid @enderror" placeholder="" name="keluhan"
                                 id="floatingTextarea" style="height: 100px"></textarea>
-                            <label for="floatingTextarea">Pengaduan</label>
+                            <label for="floatingTextarea">Isi Laporan</label>
                         </div>
                         @error('keluhan')
                             <span class="invalid-feedback" role="alert">
@@ -336,7 +336,7 @@
                             {{-- <textarea class="form-control @error('foto_peng') is-invalid @enderror" placeholder="" name="keluhan"
                             id="floatingTextarea" style="height: 100px"></textarea> --}}
                             <input type="file" class="form-control my-2 @error('berkas') is-invalid @enderror" id="berkas" name="berkas" placeholder="Upload Foto">
-                            <label for="berkas">Foto Pengaduan</label>
+                            <label for="berkas">Foto Laporan</label>
                         </div>
                         @error('berkas')
                             <span class="invalid-feedback" role="alert">

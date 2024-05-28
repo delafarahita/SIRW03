@@ -153,7 +153,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </span>
-                    <span class="sidebar-text">Pengaduan</span>
+                    <span class="sidebar-text">Laporan</span>
                 </a>
             </li>
 
