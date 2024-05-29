@@ -61,7 +61,7 @@ class KKController extends Controller
     {
         $validated = $request->validate([
             'no_kk' => 'required|unique:kk',
-            'kepala_keluarga' => 'required',
+            'kepala_keluarga' => 'required|string',
         ]);
 
         KKModel::create([
