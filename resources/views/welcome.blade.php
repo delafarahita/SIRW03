@@ -361,9 +361,9 @@
             </div>
         </div>
 
-        <div class="container-fluid mt-5 p-5 bg-main" id="keluhan">
-            <div class="container text-center">
-                <div class="my-3">
+        <div class="container-fluid mt-5 p-5 " id="keluhan">
+            <div class="container text-center bg-main rounded ">
+                <div class="my-3 py-3">
                     <h1 class="text-white fw-bold font-s-48">LAPORAN</h1>
                 </div>
                 <div class="pb-3">
