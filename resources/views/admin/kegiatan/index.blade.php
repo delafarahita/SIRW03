@@ -46,9 +46,10 @@
 
                             <div class="card-body">
                                 <h5 class="card-title">{{ $item->nama }}</h5>
-                                <p class="card-text">{{ $item->jenis }}</p>
-                                <p class="card-text">{{ $item->deskripsi }}</p>
-                                <p class="card-text">{{ $item->alamat }}</p>
+                                <p class="card-text">Jenis Kegiatan: {{ $item->jenis }}</p>
+                                <p class="card-text">Tanggal Pelaksanaan: {{ $item->tanggal }}</p>
+                                <p class="card-text">Deskripsi: {{ $item->deskripsi }}</p>
+                                <p class="card-text">Alamat: {{ $item->alamat }}</p>
                                 <div class="d-flex justify-content-between mt-5">
                                     <div>
                                         <a href="{{ url('/admin/kegiatan/' . $item->id . '/edit') }}" class="btn btn-warning">Edit</a>
