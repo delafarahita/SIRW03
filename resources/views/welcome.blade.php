@@ -47,6 +47,7 @@
             background-image: url("{{ asset('assets/img/landing-image.png') }}");
             background-repeat: no-repeat;
             background-size: cover;
+            background-position: center;
             height: 100vh;
             width: 100%;
             /* -webkit-filter: blur(2px); */
