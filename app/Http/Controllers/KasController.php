@@ -86,17 +86,14 @@ class KasController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required',
             'id_rt' => 'required',
-            'keterangan' => 'required',
-            'tanggal' => 'required',
-            'pemasukan' => 'required',
-            'pengeluaran' => 'required',
+            'keterangan' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'pemasukan' => 'required|numeric|min:0',
+            'pengeluaran' => 'required|numeric|min:0',
         ]);
 
-        KasModel::create([
-
-        ]);
+        KasModel::create($validated);
 
         return redirect('/admin/kas')->with('success', 'Data Kas berhasil disimpan');
     }
@@ -114,7 +111,6 @@ class KasController extends Controller
         $page = (object) [
             'title' => 'Detail Data Kas'
         ];
-
 
         $dropdown = 'd_kas';
 
@@ -150,13 +146,9 @@ class KasController extends Controller
 
     public function update(Request $request, String $id)
     {
-        $validated = $request->validate([
+        $validated = $request->validate([]);
 
-        ]);
-
-        KasModel::find($id)->update([
-
-        ]);
+        KasModel::find($id)->update([]);
 
         return redirect('/admin/kas')->with('success', 'Data Kas berhasil diubah');
     }
