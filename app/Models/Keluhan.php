@@ -12,8 +12,9 @@ class Keluhan extends Model
     public $table = 'keluhans';
     public $primaryKey = 'id';
     protected $fillable = [
-        'nama_penduduk', 
-        'rt', 
-        'keluhan'
+        'nama_penduduk',
+        'rt',
+        'keluhan',
+        'foto'
     ];
 }
