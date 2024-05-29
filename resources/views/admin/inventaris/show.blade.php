@@ -15,7 +15,7 @@
                             <p><strong>Jenis Barang:</strong> {{ $inventaris->jenis_barang }}</p>
                         </div>
                         <div class="col-md-6">
-                            <p><strong>Jumlah Barang:</strong> {{ $inventaris->jumlah_barang }}</p>
+                            {{-- <p><strong>Jumlah Barang:</strong> {{ $inventaris->jumlah_barang }}</p> --}}
                             <p><strong>Status Barang:</strong> {{ $inventaris->status_barang }}</p>
                         </div>
                     </div>
@@ -40,9 +40,9 @@
                                     <td>{{ $peminjaman->tanggal_pinjam }}</td>
                                     <td>{{ $peminjaman->tanggal_kembali }}</td>
                                     <td>
-                                        <a href="{{ url('admin/pinjam/' . $peminjaman->id . '/edit') }}"
+                                        <a href="{{ url('admin/pinjam/' . $peminjaman->pinjam_inventaris_id . '/edit') }}"
                                             class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        <form action="{{ url('admin/pinjam/' . $peminjaman->id . '/delete') }}"
+                                        <form action="{{ url('admin/pinjam/' . $peminjaman->id ) }}"
                                             method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')

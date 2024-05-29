@@ -1,34 +1,73 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <h2>Data Transaksi</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Tanggal Pemasukan</th>
-                    <th>Tanggal Pengeluaran</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($kas as $key => $kas)
-                    <tr>
-                        <td>{{ $key + 1 }}</td>
-                        <td>{{ $kas->tanggal_pemasukan }}</td>
-                        <td>{{ $kas->tanggal_pengeluaran }}</td>
-                        <td>
-                            <a href="{{ route('kas.edit', $kas->id) }}" class="btn btn-primary">Edit</a>
-                            <form action="{{ route('kas.destroy', $kas->id) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                            </form>
-                            <a href="{{ route('kas.show', $kas->id) }}" class="btn btn-info">Detail</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <style>
+        .custom-color-btn {
+            background-color: #FFA63E;
+            color: #fff;
+            border-color: #FFA63E;
+        }
+
+        .table-container {
+            margin-bottom: 20px;
+        }
+    </style>
+    <div class="card card-outline card-primary">
+        <div class="card-header">
+            <h3 class="card-title">{{ $page->title }}</h3>
+        </div>
+        <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+
+            <div class="table-container table-responsive">
+                <table class="table table-bordered table-striped table-hover table-sm" id="table_kas">
+                    <thead>
+                        <tr>
+                            <th>RT</th>
+                            <th>Keterangan</th>
+                            <th>Tanggal</th>
+                            <th>Pemasukan</th>
+                            <th>Pengeluaran</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="card-tools d-flex justify-content-between">
+                <a class="btn-sm custom-color-btn mt-1" href="{{ route('kas.create') }}">Tambah Data Kas</a>
+            </div>
+        </div>
     </div>
 @endsection
+@push('css')
+@endpush
+@push('js')
+    <script>
+        $(document).ready(function() {
+            var kas = $('#table_kas').DataTable({
+                serverSide: true,
+                ajax: {
+                    url: "{{ url('admin/kas/list') }}",
+                    type: "POST",
+                    data: function(d) {
+                        d._token = "{{ csrf_token() }}"; // Add CSRF token
+                    },
+                    dataType: "json",
+                },
+                columns: [
+                    { data: "id_rt", className: "text-center", orderable: true, searchable: true },
+                    { data: "keterangan", className: "text-center", orderable: true, searchable: true },
+                    { data: "tanggal", className: "text-center", orderable: true, searchable: true },
+                    { data: "pemasukan", className: "text-center", orderable: true, searchable: true },
+                    { data: "pengeluaran", className: "text-center", orderable: true, searchable: true },
+                    { data: "aksi", className: "text-center", orderable: false, searchable: false }
+                ]
+            });
+        });
+    </script>
+@endpush

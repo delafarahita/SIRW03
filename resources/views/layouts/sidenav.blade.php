@@ -95,10 +95,10 @@
                             <a class="nav-link" href="{{ route('data_penilaian.index')}}">Data Penilaian</a>
                         </li>
                         <li class="nav-item {{ $activeMenu == 'data_perhitungan' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('data_perhitungan.index')}}">Data Perhitungan</a>
+                            <a class="nav-link" href="{{ route('data_perhitungan.index')}}">Data Perhitungan (EDAS)</a>
                         </li>
                         <li class="nav-item {{ $activeMenu == 'data_perhitungan_moora' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('data_perhitungan.moora')}}">Data Perhitungan MOORA</a>
+                            <a class="nav-link" href="{{ route('data_perhitungan.moora')}}">Data Perhitungan (MOORA)</a>
                         </li>
                     </ul>
                 </div>
@@ -153,7 +153,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </span>
-                    <span class="sidebar-text">Pengaduan</span>
+                    <span class="sidebar-text">Laporan</span>
                 </a>
             </li>
 
@@ -181,26 +181,24 @@
             <li class="nav-item {{ $activeMenu == 'inventaris' ? 'active' : '' }}">
                 <a href="{{ Route('inventaris.index') }}" class="nav-link">
                     <span class="sidebar-icon">
-                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d=""></path>
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 3H16C17.1046 3 18 3.89543 18 5V15C18 16.1046 17.1046 17 16 17H4C2.89543 17 2 16.1046 2 15V5C2 3.89543 2.89543 3 4 3ZM4 5V15H16V5H4ZM8 7H12V9H8V7ZM8 11H12V13H8V11Z"></path>
                         </svg>
                     </span>
                     <span class="sidebar-text">Inventaris</span>
                 </a>
             </li>
-
             <li class="nav-item {{ $activeMenu == 'kas' ? 'active' : '' }}">
                 <a href="{{ Route('kas.index') }}" class="nav-link">
                     <span class="sidebar-icon">
-                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d=""></path>
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 2C5 1.44772 5.44772 1 6 1H14C14.5523 1 15 1.44772 15 2V3H17C17.5523 3 18 3.44772 18 4V6C18 6.55228 17.5523 7 17 7H16.9431C17.1373 7.31108 17.2712 7.66388 17.3329 8.03745L18 10.5582V16C18 17.1046 17.1046 18 16 18H4C2.89543 18 2 17.1046 2 16V10.5582L2.66711 8.03745C2.72882 7.66388 2.86274 7.31108 3.05694 7H3C2.44772 7 2 6.55228 2 6V4C2 3.44772 2.44772 3 3 3H5V2ZM6 3V4H14V3H6ZM8.39645 7H11.6036C11.839 6.3959 12.3987 6 13 6H14.7778L14.1316 8.56814C13.744 8.22109 13.2576 8 12.7372 8H7.26284C6.74241 8 6.25602 8.22109 5.8684 8.56814L5.22216 6H7C7.60134 6 8.16104 6.3959 8.39645 7ZM12.7372 10C12.3775 10 12.0438 10.1589 11.8284 10.4142L10.4142 12H9.58579L8.17157 10.4142C7.95622 10.1589 7.62246 10 7.26284 10H4.86612L4.19775 12H15.8023L15.1339 10H12.7372ZM10 15C10.5523 15 11 14.5523 11 14C11 13.4477 10.5523 13 10 13C9.44772 13 9 13.4477 9 14C9 14.5523 9.44772 15 10 15Z"></path>
                         </svg>
                     </span>
                     <span class="sidebar-text">Kas</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="{{ Route('logout') }}" class="nav-link">
                     <span class="sidebar-icon">

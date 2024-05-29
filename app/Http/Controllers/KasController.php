@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kas;
 use App\Models\KasModel;
+use App\Models\RTModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -12,68 +12,175 @@ class KasController extends Controller
 
     public function index()
     {
-        $page = (object)[
-            'title' => 'Kas',
+        $breadcrumb = (object) [
+            'title' => 'Data Kas',
+            'list' => ['Home', 'Data Kas']
         ];
+
+        $page = (object) [
+            'title' => 'Data Kas'
+        ];
+
+        $dropdown = 'd_kas';
+
         $activeMenu = 'kas';
-        $dropdown = '';
-        $kas = KasModel::all();
+        $rt = RTModel::all();
 
         return view('admin.kas.index', [
+            'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
             'dropdown' => $dropdown,
-            'kas' => $kas,
+            'rt' => $rt
         ]);
-        // return view('kas.index', ['kas' => $kas]);
     }
 
-    // Menampilkan form untuk menambahkan data kas
+    public function list(Request $request)
+    {
+        $kas = KasModel::select(
+            'id',
+            'id_rt',
+            'keterangan',
+            'tanggal',
+            'pemasukan',
+            'pengeluaran',
+        );
+
+        return DataTables::of($kas)
+            ->addColumn('aksi', function ($kas) {
+                $btn = '<a href="' . url('/admin/kas/' . $kas->id . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
+                $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/kas/' . $kas->id) . '">'
+                    . csrf_field() . method_field('DELETE') .
+                    '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
+                return $btn;
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
+    }
+
     public function create()
     {
-        return view('kas.create');
+        $rt = RTModel::all();
+        $breadcrumb = (object) [
+            'title' => 'Data Kas',
+            'list' => ['Home', 'Data Kas', 'Tambah']
+        ];
+
+        $page = (object) [
+            'title' => 'Tambah Data Kas Baru'
+        ];
+
+        $activeMenu = 'kas';
+        $dropdown = 'd_kas';
+
+        return view('admin.kas.create', [
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
+            'rt' => $rt,
+        ]);
     }
 
-    // Menyimpan data kas baru
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required',
-            'jumlah' => 'required|numeric',
+        $validated = $request->validate([
+            'id_rt' => 'required',
+            'keterangan' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'pemasukan' => 'required|numeric|min:0',
+            'pengeluaran' => 'required|numeric|min:0',
         ]);
 
-        KasModel::create($request->all());
+        KasModel::create($validated);
 
-        return redirect()->route('kas.index')
-            ->with('success', 'Data kas berhasil ditambahkan.');
+        return redirect('/admin/kas')->with('success', 'Data Kas berhasil disimpan');
     }
 
-    // Menampilkan data kas yang ingin diubah
-    public function edit(KasModel $kas)
+    public function show(string $id)
     {
-        return view('kas.edit', compact('kas'));
+        //$kas = KasModel::with('kas')->find($id);
+        $kas = KasModel::find($id);
+
+        $breadcrumb = (object) [
+            'title' => 'Detail Data Kas',
+            'list' => ['Home', 'Data Kas', 'Detail']
+        ];
+
+        $page = (object) [
+            'title' => 'Detail Data Kas'
+        ];
+
+        $dropdown = 'd_kas';
+
+        $activeMenu = 'kas';
+
+        return view('admin.kas.show', ['kas' => $kas, 'breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'dropdown' => $dropdown]);
     }
 
-    // Memperbarui data kas yang telah diubah
-    public function update(Request $request, KasModel $kas)
+    public function edit(string $id)
     {
-        $request->validate([
-            'nama' => 'required',
-            'jumlah' => 'required|numeric',
+        $kas = KasModel::findOrFail($id);
+        $rt = RTModel::all();
+
+        $breadcrumb = (object) [
+            'title' => 'Edit Data Kas',
+            'list' => ['Home', 'Data Kas', 'Edit']
+        ];
+
+        $page = (object) [
+            'title' => 'Edit Data Kas'
+        ];
+        $activeMenu = 'kas';
+        $dropdown = 'd_kas';
+
+        return view('admin.kas.edit', [
+            'kas' => $kas,
+            'breadcrumb' => $breadcrumb,
+            'page' => $page,
+            'activeMenu' => $activeMenu,
+            'dropdown' => $dropdown,
+            'rt' => $rt,
+        ]);
+    }
+
+
+    public function update(Request $request, string $id)
+    {
+        $validated = $request->validate([
+            'id_rt' => 'required',
+            'keterangan' => 'required',
+            'tanggal' => 'required',
+            'pemasukan' => 'required',
+            'pengeluaran' => 'required',
         ]);
 
-        $kas->update($request->all());
+        $kas = KasModel::findOrFail($id);
 
-        return redirect()->route('kas.index')
-            ->with('success', 'Data kas berhasil diperbarui.');
+        $kas->id_rt = $request->id_rt;
+        $kas->keterangan = $request->keterangan;
+        $kas->tanggal = $request->tanggal;
+        $kas->pemasukan = $request->pemasukan;
+        $kas->pengeluaran = $request->pengeluaran;
+
+        $kas->save();
+
+        return redirect('/admin/kas')->with('success', 'Data Kas berhasil diubah');
     }
 
-    // Menghapus data kas
-    public function destroy(KasModel $kas)
-    {
-        $kas->delete();
 
-        return redirect()->route('kas.index')
-            ->with('success', 'Data kas berhasil dihapus.');
+    public function destroy(String $id)
+    {
+        $check = KasModel::find($id);
+        if (!$check) {  // untuk mengecek apakah data kas dengan id yang dimaksud ada atau tidak
+            return redirect('/admin/kas')->with('error', 'Data Kas tidak ditemukan');
+        }
+        try {
+            KasModel::destroy($id);
+            return redirect('/admin/kas')->with('success', 'Data Kas berhasil dihapus');
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Jika terjadi error ketika menghapus data, redirect kembali ke halaman dengan membawa pesan error
+            return redirect('/admin/kas')->with('error', 'Data Kas gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+        }
     }
 }

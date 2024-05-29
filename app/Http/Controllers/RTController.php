@@ -59,7 +59,7 @@ class RTController extends Controller
     {
         $validated = $request->validate([
             'id_rt' => 'required|unique:rt',
-            'nama_rt' => 'required',
+            'nama_rt' => 'required|string|alpha',
         ]);
         RTModel::create([
             'id_rt' => $request->id_rt,
