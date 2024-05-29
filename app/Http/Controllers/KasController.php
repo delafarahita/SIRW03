@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kas;
 use App\Models\KasModel;
 use App\Models\RTModel;
 use Illuminate\Http\Request;
@@ -24,7 +23,7 @@ class KasController extends Controller
 
         $dropdown = 'd_kas';
 
-        $activeMenu = 'kas'; 
+        $activeMenu = 'kas';
         $rt = RTModel::all();
 
         return view('admin.kas.index', [
@@ -173,7 +172,7 @@ class KasController extends Controller
     public function destroy(String $id)
     {
         $check = KasModel::find($id);
-        if (!$check) {  // untuk mengecek apakah data user dengan id yang dimaksud ada atau tidak
+        if (!$check) {  // untuk mengecek apakah data kas dengan id yang dimaksud ada atau tidak
             return redirect('/admin/kas')->with('error', 'Data Kas tidak ditemukan');
         }
         try {
