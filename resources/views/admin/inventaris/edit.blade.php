@@ -5,7 +5,7 @@
         <div class="card-header">Edit Inventaris</div>
 
         <div class="card-body">
-            <form method="POST" action="{{ url('admin/inventaris/' . $inventaris->id) }}">
+            <form method="POST" action="{{ url('admin/inventaris/' . $inventaris->inventaris_id) }}">
 
                 @csrf
                 {!! method_field('PUT') !!}
@@ -28,20 +28,21 @@
                     @enderror
                 </div>
 
-                <div class="form-group row">
+                {{-- <div class="form-group row">
                     <label for="jumlah_barang" class="col-sm-2 col-form-label">Jumlah Barang</label>
                     <input type="text" class="form-control col-sm-10" id="jumlah_barang" name="jumlah_barang"
                         value="{{ $inventaris->jumlah_barang }}">
                     @error('jumlah_barang')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
-                </div>
+                </div> --}}
 
                 <div class="form-group row">
                     <label for="status_barang" class="col-sm-2 col-form-label">Status Barang</label>
                     <select class="form-control col-sm-10" id="status_barang" name="status_barang">
-                        <option value="ada" {{ $inventaris->status_barang == 'ada' ? 'selected' : '' }}>Ada</option>
-                        <option value="dipinjam" {{ $inventaris->status_barang == 'dipinjam' ? 'selected' : '' }}>Dipinjam
+                        <option value="Tersedia" {{ $inventaris->status_barang == 'Tersedia' ? 'selected' : '' }}>Tersedia
+                        </option>
+                        <option value="Dipinjam" {{ $inventaris->status_barang == 'Dipinjam' ? 'selected' : '' }}>Dipinjam
                         </option>
                     </select>
                     @error('status_barang')

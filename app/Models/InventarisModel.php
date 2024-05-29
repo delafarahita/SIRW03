@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class InventarisModel extends Model
 {
@@ -15,11 +16,10 @@ class InventarisModel extends Model
     protected $fillable = [
         'nama_barang',
         'jenis_barang',
-        'jumlah_barang',
         'status_barang',
     ];
 
-    public function pinjamInventaris()
+    public function pinjamInventaris():HasMany
     {
         return $this->hasMany(PinjamInventarisModel::class);
     }

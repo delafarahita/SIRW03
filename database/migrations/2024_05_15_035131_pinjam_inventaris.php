@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::dropIfExists('pinjam_inventaris');
 
         Schema::create('pinjam_inventaris', function (Blueprint $table) {
-            $table->id();
+            $table->id('pinjam_inventaris_id');
             $table->unsignedBigInteger('inventaris_id');
             $table->string('peminjam');
             $table->date('tanggal_pinjam');

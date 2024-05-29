@@ -18,22 +18,19 @@ class InventarisSeeder extends Seeder
                 'inventaris_id' => 1,
                 'nama_barang' => 'Komputer',
                 'jenis_barang' => 'Elektronik',
-                'jumlah_barang' => 15,
-                'status_barang' => 'ada',
+                'status_barang' => 'Tersedia',
             ],
             [
                 'inventaris_id' => 2,
                 'nama_barang' => 'Printer',
                 'jenis_barang' => 'Elektronik',
-                'jumlah_barang' => 5,
-                'status_barang' => 'ada',
+                'status_barang' => 'Tersedia',
             ],
             [
                 'inventaris_id' => 3,
                 'nama_barang' => 'Meja Kantor',
                 'jenis_barang' => 'Furniture',
-                'jumlah_barang' => 20,
-                'status_barang' => 'ada',
+                'status_barang' => 'Tersedia',
             ],
         ];
 
