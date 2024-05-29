@@ -194,13 +194,13 @@ Route::group(['middleware' => ['auth']], function (){
 
         Route::group(['prefix' => 'kas'], function(){
             Route::get('/', [KasController::class, 'index'])->name('kas.index');
-            Route::post('/list', [KasController::class, 'list']);
-            Route::get('/create', [KasController::class, 'create']);
-            Route::post('/', [KasController::class, 'store']);
-            Route::get('/{id}', [KasController::class, 'show']);
-            Route::get('/{id}/edit', [KasController::class, 'edit']);
-            Route::put('/{id}', [KasController::class, 'update']);
-            Route::delete('/{id}', [KasController::class, 'destroy']);
+            Route::post('/list', [KasController::class, 'list'])->name('kas.list');
+            Route::get('/create', [KasController::class, 'create'])->name('kas.create');
+            Route::post('/', [KasController::class, 'store'])->name('kas.store');
+            Route::get('/{id}', [KasController::class, 'show'])->name('kas.show');
+            Route::get('/{id}/edit', [KasController::class, 'edit'])->name('kas.edit');
+            Route::put('/{id}', [KasController::class, 'update'])->name('kas.update');
+            Route::delete('/{id}', [KasController::class, 'destroy'])->name('kas.destroy');
         });
         Route::group(['prefix' => 'kategori_dagang'], function(){
             Route::get('/', [KategoriDagangController::class, 'index'])->name('kategori_dagang.index');
