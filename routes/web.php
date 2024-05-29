@@ -180,7 +180,7 @@ Route::group(['middleware' => ['auth']], function (){
             Route::post('/', [InventarisController::class, 'store']);
             Route::get('/{id}', [InventarisController::class, 'show']);
             Route::get('/{id}/edit', [InventarisController::class, 'edit']);
-            Route::put('/{id}', [InventarisController::class, 'update']);
+            Route::put('/{id}', [InventarisController::class, 'update'])->name('inventaris.update');
             Route::delete('/{id}', [InventarisController::class, 'destroy']);
         });
 

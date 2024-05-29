@@ -22,8 +22,7 @@ return new class extends Migration
             $table->id('inventaris_id');
             $table->string('nama_barang');
             $table->string('jenis_barang');
-            $table->string('jumlah_barang');
-            $table->enum('status_barang',['Ada', 'Dipinjam']);
+            $table->enum('status_barang',['Tersedia', 'Dipinjam']);
             $table->timestamps();
         });
     }

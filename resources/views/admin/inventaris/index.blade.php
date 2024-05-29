@@ -31,7 +31,7 @@
                             <th>ID</th>
                             <th>Nama Barang</th>
                             <th>Jenis Barang</th>
-                            <th>Jumlah Barang</th>
+                            {{-- <th>Jumlah Barang</th> --}}
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -59,18 +59,18 @@
                     type: "POST",
                 },
                 columns: [{
-                        data: 'inventaris_id',
+                        data: 'DT_RowIndex',
+                        className: "text-center",
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'nama_barang',
-
+                        orderable: true,
+                        searchable: true
                     },
                     {
                         data: 'jenis_barang',
-
-                    },
-                    {
-                        data: 'jumlah_barang',
 
                     },
                     {
