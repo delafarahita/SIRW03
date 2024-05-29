@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kas;
 use App\Models\KasModel;
 use App\Models\RTModel;
 use Illuminate\Http\Request;
@@ -24,7 +23,7 @@ class KasController extends Controller
 
         $dropdown = 'd_kas';
 
-        $activeMenu = 'kas'; // set menu yang sedang aktif
+        $activeMenu = 'kas';
         $rt = RTModel::all();
 
         return view('admin.kas.index', [
@@ -86,17 +85,14 @@ class KasController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required',
             'id_rt' => 'required',
-            'keterangan' => 'required',
-            'tanggal' => 'required',
-            'pemasukan' => 'required',
-            'pengeluaran' => 'required',
+            'keterangan' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'pemasukan' => 'required|numeric|min:0',
+            'pengeluaran' => 'required|numeric|min:0',
         ]);
 
-        KasModel::create([
-
-        ]);
+        KasModel::create($validated);
 
         return redirect('/admin/kas')->with('success', 'Data Kas berhasil disimpan');
     }
@@ -115,17 +111,16 @@ class KasController extends Controller
             'title' => 'Detail Data Kas'
         ];
 
-
         $dropdown = 'd_kas';
 
-        $activeMenu = 'kas'; // set menu yang sedang aktif
+        $activeMenu = 'kas';
 
         return view('admin.kas.show', ['kas' => $kas, 'breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'dropdown' => $dropdown]);
     }
 
     public function edit(string $id)
     {
-        $kas = KasModel::find($id);
+        $kas = KasModel::findOrFail($id);
         $rt = RTModel::all();
 
         $breadcrumb = (object) [
@@ -140,6 +135,7 @@ class KasController extends Controller
         $dropdown = 'd_kas';
 
         return view('admin.kas.edit', [
+            'kas' => $kas,
             'breadcrumb' => $breadcrumb,
             'page' => $page,
             'activeMenu' => $activeMenu,
@@ -148,23 +144,35 @@ class KasController extends Controller
         ]);
     }
 
-    public function update(Request $request, String $id)
+
+    public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-
+            'id_rt' => 'required',
+            'keterangan' => 'required',
+            'tanggal' => 'required',
+            'pemasukan' => 'required',
+            'pengeluaran' => 'required',
         ]);
 
-        KasModel::find($id)->update([
+        $kas = KasModel::findOrFail($id);
 
-        ]);
+        $kas->id_rt = $request->id_rt;
+        $kas->keterangan = $request->keterangan;
+        $kas->tanggal = $request->tanggal;
+        $kas->pemasukan = $request->pemasukan;
+        $kas->pengeluaran = $request->pengeluaran;
+
+        $kas->save();
 
         return redirect('/admin/kas')->with('success', 'Data Kas berhasil diubah');
     }
 
+
     public function destroy(String $id)
     {
         $check = KasModel::find($id);
-        if (!$check) {  // untuk mengecek apakah data user dengan id yang dimaksud ada atau tidak
+        if (!$check) {  // untuk mengecek apakah data kas dengan id yang dimaksud ada atau tidak
             return redirect('/admin/kas')->with('error', 'Data Kas tidak ditemukan');
         }
         try {
