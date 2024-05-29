@@ -32,7 +32,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="form-group row">
+                {{-- <div class="form-group row">
                     <label for="jumlah_barang" class="col-sm-2 col-form-label">Jumlah Barang</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control @error('jumlah_barang') is-invalid @enderror"
@@ -43,14 +43,14 @@
                             </span>
                         @enderror
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-group row">
                     <label for="status_barang" class="col-sm-2 col-form-label">Status Barang</label>
                     <div class="col-sm-10">
                         <select class="form-control @error('status_barang') is-invalid @enderror" id="status_barang"
                             name="status_barang" required>
-                            <option value="ada" {{ old('status_barang') == 'ada' ? 'selected' : '' }}>Ada</option>
-                            <option value="dipinjam" {{ old('status_barang') == 'dipinjam' ? 'selected' : '' }}>Dipinjam
+                            <option value="Tersedia" {{ old('status_barang') == 'Tersedia' ? 'selected' : '' }}>Ada</option>
+                            <option value="Dipinjam" {{ old('status_barang') == 'Dipinjam' ? 'selected' : '' }}>Dipinjam
                             </option>
                         </select>
                         @error('status_barang')

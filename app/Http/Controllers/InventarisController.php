@@ -28,13 +28,13 @@ class InventarisController extends Controller
     public function list(Request $request)
     {
         $inventaris = InventarisModel::select(
-            'inventaris_id',
+            // 'inventaris_id',
             'nama_barang',
             'jenis_barang',
-            'jumlah_barang',
             'status_barang',
         );
         return DataTables::of($inventaris)
+            ->addIndexColumn()
             ->addColumn('aksi', function ($inventaris) {
                 $btn = '<a href="' . url('/admin/inventaris/' . $inventaris->inventaris_id) . '" class="btn btn-info btn-sm">Detail</a> ';
                 $btn .= '<a href="' . url('/admin/inventaris/' . $inventaris->inventaris_id . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
@@ -83,13 +83,11 @@ class InventarisController extends Controller
         $validated = $request->validate([
             'nama_barang' => 'required',
             'jenis_barang' => 'required',
-            'jumlah_barang' => 'required',
             'status_barang' => 'required',
         ]);
         InventarisModel::create([
             'nama_barang' => $request->nama_barang,
             'jenis_barang' => $request->jenis_barang,
-            'jumlah_barang' => $request->jumlah_barang,
             'status_barang' => $request->status_barang,
         ]);
         return redirect('/admin/inventaris')->with('success', 'Data inventaris berhasil ditambahkan');
@@ -172,14 +170,12 @@ class InventarisController extends Controller
         $validated = $request->validate([
             'nama_barang' => 'required',
             'jenis_barang' => 'required',
-            'jumlah_barang' => 'required',
             'status_barang' => 'required',
         ]);
         $inventaris = InventarisModel::findOrFail($id);
         $inventaris->update([
             'nama_barang' => $request->nama_barang,
             'jenis_barang' => $request->jenis_barang,
-            'jumlah_barang' => $request->jumlah_barang,
             'status_barang' => $request->status_barang,
         ]);
         return redirect('/admin/inventaris')->with('success', 'Data inventaris berhasil diubah');
@@ -206,10 +202,13 @@ class InventarisController extends Controller
 
     public function destroy(string $id)
     {
+        PinjamInventarisModel::where('inventaris_id',$id)->delete();
+
         $inventaris = InventarisModel::findOrFail($id);
         $inventaris->delete();
-        return redirect('/admin/inventaris')->with('success', 'Data inventaris berhasil dihapus');
+        return redirect('/admin/inventaris')->with('success', 'Data inventaris dan peminjam berhasil dihapus');
     }
+
 
     public function destroyPinjam(string $id)
     {

@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('kas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_rt')->index();
+            $table->string('keterangan');
+            $table->string('tanggal');
+            $table->string('pemasukan');
+            $table->string('pengeluaran');
             $table->timestamps();
         });
     }
