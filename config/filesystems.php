@@ -44,6 +44,20 @@ return [
             'throw' => false,
         ],
 
+        'img_kegiatan' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/image_path'),
+            'url' => env('APP_URL').'/storage/image_path',
+            'visibility' => 'public',
+        ],
+
+        'img_umkm' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/foto_umkm'),
+            'url' => env('APP_URL').'/storage/foto_umkm',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

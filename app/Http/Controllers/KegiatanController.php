@@ -82,15 +82,27 @@ class KegiatanController extends Controller
         ]);
 
         // Store the image in the public directory
-        $path = $request->file('image_path')->store('public/image_path');
+        // $path = $request->file('image_path')->store('public/image_path');
+        if ($request->hasFile('image_path')) {
+            $imageFile = $request->file('image_path');
+            $hashedName = $imageFile->hashName(); // Generate a unique file name
 
+            // Store the file on the specified disk
+            Storage::disk('img_kegiatan')->put($hashedName, file_get_contents($imageFile));
+
+            // Save the hashed file name in the database
+            $validatedData['image_path'] = $hashedName;
+        }
+
+        // Storage::disk('img_kegiatan')->put($request->file('image_path')->hashName(), $request->file('image_path'));
+        
         $kegiatan = new KegiatanModel;
         $kegiatan->nama = $validatedData['nama'];
         $kegiatan->jenis = $validatedData['jenis'];
         $kegiatan->deskripsi = $validatedData['deskripsi'];
         $kegiatan->alamat = $validatedData['alamat'];
         $kegiatan->tanggal = $validatedData['tanggal'];
-        $kegiatan->image_path = str_replace('public/', 'storage/', $path);
+        $kegiatan->image_path = $validatedData['image_path'];
 
         $kegiatan->save();
 

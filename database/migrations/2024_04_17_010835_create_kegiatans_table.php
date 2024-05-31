@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("jenis");
             $table->string("deskripsi");
             $table->string("alamat");
-            $table->string("image_path");
+            $table->string("image_path")->nullable();
             $table->date("tanggal");
             $table->timestamps();
         });
