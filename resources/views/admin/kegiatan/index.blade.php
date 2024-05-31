@@ -40,7 +40,7 @@
                     <div class="col-md-6">
                         <div class="card rounded-3 text-white" style="background-color: #1F2937;">
                             @if ($item->image_path)
-                                <img src="{{ asset($item->image_path) }}" class="card-img-top rounded-3 img-uniform img-fluid"
+                                <img src="{{ asset('storage/image_path/' . $item->image_path) }}" class="card-img-top rounded-3 img-uniform img-fluid"
                                     alt="{{ $item->nama }}">
                             @endif
 
