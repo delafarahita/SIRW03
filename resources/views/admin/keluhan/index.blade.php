@@ -39,6 +39,7 @@
                             <h6 class="card-subtitle mb-2 text-muted">Asal RT: {{ $keluhan->rt }}</h6>
                             <p class="card-text">{{ $keluhan->keluhan }}</p>
                             <P class="card-text">{{ $keluhan->created_at }}</P>
+                            <img style="width: 100px; height:100px" src="{{asset('storage/img_keluhan/' . $keluhan->foto)}}" alt="{{$keluhan->keluhan}}">
                             <!-- Tambahkan tombol untuk melihat detail jika diperlukan -->
                             <!-- <a href="{{ route('keluhan.show', $keluhan->id) }}" class="card-link">Lihat Detail</a> -->
                         </div>

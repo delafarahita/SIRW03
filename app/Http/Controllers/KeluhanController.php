@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Keluhan;
+use Illuminate\Support\Facades\Storage;
 
 class KeluhanController extends Controller
 {
@@ -45,25 +46,53 @@ class KeluhanController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validatedData = $request->validate([
             'nama_penduduk' => 'required',
             'rt' => 'required',
             'keluhan' => 'required',
-            'foto' => 'nullable|file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        if ($request->hasFile('foto')) {
-            $imagePath = $request->foto->store('public/images');
-            $imageName = basename($imagePath);
-        } else {
-            $imageName = null;
-        }
+        // if ($request->hasFile('foto')) {
+        //     $imagePath = $request->foto->store('public/images');
+        //     $imageName = basename($imagePath);
+        // } else {
+        //     $imageName = null;
+        // }
 
-        Keluhan::create([
-            'nama_penduduk' => $request->nama_penduduk,
-            'rt' => $request->rt,
-            'keluhan' => $request->keluhan,
-            'foto' => $imageName ? '/storage/images/' . $imageName : null
-        ]);
+        // dd($request->foto);
+
+        if ($request->hasFile('foto')) {
+            $imageFile = $request->file('foto');
+            $hashedName = $imageFile->hashName(); // Generate a unique file name
+
+            // Store the file on the specified disk
+            Storage::disk('img_keluhan')->put($hashedName, file_get_contents($imageFile));
+
+            // Save the hashed file name in the database
+            $validatedData['foto'] = $hashedName;
+        }
+        // else {
+        //     $validatedData['foto'] = null;
+        // }
+
+        $keluhan = new Keluhan();
+        $keluhan->nama_penduduk = $validatedData['nama_penduduk'];
+        $keluhan->rt = $validatedData['rt'];
+        $keluhan->keluhan = $validatedData['keluhan'];
+        $keluhan->foto = $validatedData['foto'];
+        // $keluhan->tanggal = $validatedData['tanggal'];
+        // $keluhan->image_path = $validatedData['image_path'];
+
+        $keluhan->save();
+
+        // Keluhan::create([
+        //     'nama_penduduk' => $request->nama_penduduk,
+        //     'rt' => $request->rt,
+        //     'keluhan' => $request->keluhan,
+        //     'foto' => $imageName ? '/storage/images/' . $imageName : null
+        // ]);
+
+
         return redirect('/')->with('success', 'saran / keluhan anda berhasil dikirim');
     }
 }

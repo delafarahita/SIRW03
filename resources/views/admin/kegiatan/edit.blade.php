@@ -21,9 +21,11 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Kegiatan</label>
                             <select class="form-control" id="jenis" name="jenis">
+                                {{-- <option value="">{{$jenis}}</option> --}}
                                 <option value="">- Pilih Jenis Kegiatan -</option>
                                 @foreach ($jenis as $item)
-                                    <option value="{{ $item->jenis }}" @if ($item->jenis == $kegiatan->jenis) selected @endif>{{ $item->jenis }}</option>
+                                    <option value="{{ $item }}"
+                                        @if ($item == $kegiatan->jenis) selected @endif>{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('jenis')

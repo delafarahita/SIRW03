@@ -39,7 +39,7 @@
             <div class="col-md-6">
                 <div class="card rounded-3 text-white" style="background-color: #1F2937;">
                     @if ($item->foto_umkm)
-                        <img src="{{ asset($item->foto_umkm) }}" class="card-img-top img-uniform rounded-3 img-fluid" alt="{{ $item->nama }}">
+                        <img src="{{ asset('storage/foto_umkm/' . $item->foto_umkm) }}" class="card-img-top img-uniform rounded-3 img-fluid" alt="{{ $item->nama }}">
                     @endif
                 
                     <div class="card-body">
