@@ -57,9 +57,8 @@ class KegiatanSeeder extends Seeder
 
     private function storeImage(string $filename): string
     {
-        $imagePath = public_path("assets/img/{$filename}");
+        $imagePath = public_path("assets/img/". $filename);
         $imageContent = file_get_contents($imagePath);
-        // $hashedName = 'web-' . time() . '.jpg';
         Storage::disk('img_kegiatan')->put($filename, $imageContent);
         return $filename;
     }

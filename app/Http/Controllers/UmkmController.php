@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UmkmModel;
 use App\Models\RTModel;
+use Illuminate\Support\Facades\Storage;
 
 class UmkmController extends Controller
 {
@@ -76,7 +77,18 @@ class UmkmController extends Controller
             'deskripsi_umkm' => 'required',
         ]);
 
-        $path = $request->file('foto_umkm')->store('public/foto_umkm');
+        if ($request->hasFile('foto_umkm')) {
+            $imageFile = $request->file('foto_umkm');
+            $hashedName = $imageFile->hashName(); // Generate a unique file name
+
+            // Store the file on the specified disk
+            Storage::disk('img_umkm')->put($hashedName, file_get_contents($imageFile));
+
+            // Save the hashed file name in the database
+            $validatedData['foto_umkm'] = $hashedName;
+        }
+
+        // $path = $request->file('foto_umkm')->store('public/foto_umkm');
 
         $umkm = new UmkmModel;
         $umkm->nama_umkm = $validatedData['nama_umkm'];
@@ -87,7 +99,8 @@ class UmkmController extends Controller
         $umkm->rw = $validatedData['rw'];
         $umkm->kelurahan = $validatedData['kelurahan'];
         $umkm->kecamatan = $validatedData['kecamatan'];
-        $umkm->foto_umkm = str_replace('public/', 'storage/', $path);
+        // $umkm->foto_umkm = str_replace('public/', 'storage/', $path);
+        $umkm->foto_umkm = $validatedData['foto_umkm'];
         $umkm->deskripsi_umkm = $validatedData['deskripsi_umkm'];
         $umkm->save();
 
@@ -147,8 +160,10 @@ class UmkmController extends Controller
         ]);
     }
 
-    public function update(Request $request, UmkmModel $kategori)
+    public function update(Request $request, $id)
     {
+        $umkm = UmkmModel::findOrFail($id);
+
         $validatedData = $request->validate([
             'nama_umkm' => 'required|string|max:255',
             'kategori_umkm' => 'required|string|max:255',
@@ -158,26 +173,37 @@ class UmkmController extends Controller
             'rw' => 'required',
             'kelurahan' => 'required|string|max:255',
             'kecamatan' => 'required|string|max:255',
-            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'foto_umkm' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'deskripsi_umkm' => 'required|string|max:255',
         ]);
 
-        $kategori->nama_umkm = $validatedData['nama_umkm'];
-        $kategori->kategori_umkm = $validatedData['kategori_umkm'];
-        $kategori->pemilik_umkm = $validatedData['pemilik_umkm'];
-        $kategori->alamat_umkm = $validatedData['alamat_umkm'];
-        $kategori->id_rt = $validatedData['id_rt'];
-        $kategori->rw = $validatedData['rw'];
-        $kategori->kelurahan = $validatedData['kelurahan'];
-        $kategori->kecamatan = $validatedData['kecamatan'];
-        $kategori->deskripsi_umkm = $validatedData['deskripsi_umkm'];
+        $umkm->nama_umkm = $validatedData['nama_umkm'];
+        $umkm->kategori_umkm = $validatedData['kategori_umkm'];
+        $umkm->pemilik_umkm = $validatedData['pemilik_umkm'];
+        $umkm->alamat_umkm = $validatedData['alamat_umkm'];
+        $umkm->id_rt = $validatedData['id_rt'];
+        $umkm->rw = $validatedData['rw'];
+        $umkm->kelurahan = $validatedData['kelurahan'];
+        $umkm->kecamatan = $validatedData['kecamatan'];
+        $umkm->deskripsi_umkm = $validatedData['deskripsi_umkm'];
 
-        if ($request->hasFile('image_path')) {
-            $path = $request->file('image_path')->store('public/image_path');
-            $kategori->image_path = str_replace('public/', 'storage/', $path);
+        if ($request->hasFile('foto_umkm')) {
+            // Store the new image in the public directory
+            $path = $request->file('foto_umkm')->store('public/foto_umkm');
+
+            // Hapus gambar lama jika ada
+            if ($umkm->foto_umkm) {
+                // Ubah path untuk menghapus file lama
+                $oldImagePath = str_replace('storage/', 'public/', $umkm->foto_umkm);
+                if (Storage::exists($oldImagePath)) {
+                    Storage::delete($oldImagePath);
+                }
+            }
+
+            $umkm->foto_umkm = str_replace('public/', 'storage/', $path);
         }
 
-        $kategori->save();
+        $umkm->save();
 
         return redirect()->route('umkm.index')->with('success', 'UMKM berhasil diperbarui');
 

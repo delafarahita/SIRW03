@@ -255,7 +255,7 @@
                 <div class="carousel-inner">
                     @foreach ($umkm as $index => $item)
                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                            <img src="{{ asset($item->foto_umkm) }}" class="img-responsive img-uniform-umkm w-100 d-block rounded" alt="slide {{ $index + 1 }}">
+                            <img src="{{ asset('/assets/img/'.$item->foto_umkm) }}" class="img-responsive img-uniform-umkm w-100 d-block rounded" alt="slide {{ $index + 1 }}">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>{{ $item->nama_umkm }}</h5>
                                 <p>{{ $item->deskripsi_umkm }}</p>
@@ -288,7 +288,7 @@
                         <div class="col-lg-4">
                             <div class="col">
                                 <div class="col hovereffect my-2">
-                                    <img src="{{ asset($item->image_path) }}" alt="{{$item->nama}}"
+                                    <img src="{{ asset('/assets/img/'.$item->image_path) }}" alt="{{$item->nama}}"
                                         class="img-uniform-kegiatan mb-3 rounded img-fluid">
                                     <div class="overlay">
                                         <h2 class="fw-bolder">{{$item->nama}}</h2>
@@ -374,7 +374,7 @@
                     @if (session('error'))
                         <div class="alert alert-success">{{ session('error') }}</div>
                     @endif
-                    <form class="mx-1 mx-lg-5" action="{{ route('store_keluhan') }}" method="POST">
+                    <form class="mx-1 mx-lg-5" action="{{ route('store_keluhan') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-floating">
                             <input type="text"
@@ -410,10 +410,10 @@
                         <div class="form-floating">
                             {{-- <textarea class="form-control @error('foto_peng') is-invalid @enderror" placeholder="" name="keluhan"
                             id="floatingTextarea" style="height: 100px"></textarea> --}}
-                            <input type="file" class="form-control my-2 @error('berkas') is-invalid @enderror" id="berkas" name="berkas" placeholder="Upload Foto">
-                            <label for="berkas">Foto Laporan</label>
+                            <input type="file" class="form-control my-2 @error('foto') is-invalid @enderror" id="foto" name="foto" placeholder="Upload Foto">
+                            <label for="foto">Foto Laporan</label>
                         </div>
-                        @error('berkas')
+                        @error('foto')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

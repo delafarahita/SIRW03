@@ -130,7 +130,7 @@ class KegiatanController extends Controller
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
 
-        $jenis = KegiatanModel::all();
+        $jenis = KegiatanModel::$jenis;
 
         $breadcrumb = (object) [
             'title' => 'Edit Kegiatan',
