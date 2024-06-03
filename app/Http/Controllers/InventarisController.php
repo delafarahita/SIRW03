@@ -148,7 +148,8 @@ class InventarisController extends Controller
 
     public function editPinjam(string $id)
     {
-        $pinjam = PinjamInventarisModel::find($id);
+        // $pinjam = PinjamInventarisModel::where("pinjam_inventaris_id",$id)->get();
+        $pinjam = PinjamInventarisModel::findOrFail($id);
         $inventaris = InventarisModel::all();
         $page = (object) [
             'title' => 'PINJAM INVENTARIS'
