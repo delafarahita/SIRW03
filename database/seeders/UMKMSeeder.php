@@ -14,6 +14,8 @@ class UMKMSeeder extends Seeder
      */
     public function run(): void
     {
+        Storage::disk('img_umkm')->delete(Storage::disk('img_umkm')->allFiles());
+
         $umkm = [
             [
                 'id_umkm' => '1',
@@ -61,7 +63,8 @@ class UMKMSeeder extends Seeder
         DB::table('umkm')->insert($umkm);
     }
 
-    public function storeImage(string $filename): string{
+    public function storeImage(string $filename): string
+    {
         $imagePath = public_path("assets/img/". $filename);
         $imageContent = file_get_contents($imagePath);
         Storage::disk('img_umkm')->put($filename, $imageContent);
