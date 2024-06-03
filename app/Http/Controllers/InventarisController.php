@@ -28,7 +28,7 @@ class InventarisController extends Controller
     public function list(Request $request)
     {
         $inventaris = InventarisModel::select(
-            // 'inventaris_id',
+            'inventaris_id',
             'nama_barang',
             'jenis_barang',
             'status_barang',
