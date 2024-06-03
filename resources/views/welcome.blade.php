@@ -255,7 +255,7 @@
                 <div class="carousel-inner">
                     @foreach ($umkm as $index => $item)
                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                            <img src="{{ asset('/assets/img/'.$item->foto_umkm) }}" class="img-responsive img-uniform-umkm w-100 d-block rounded" alt="slide {{ $index + 1 }}">
+                            <img src="{{ asset('/storage/foto_umkm/'. $item->foto_umkm) }}" class="img-responsive img-uniform-umkm w-100 d-block rounded" alt="slide {{ $index + 1 }}">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>{{ $item->nama_umkm }}</h5>
                                 <p>{{ $item->deskripsi_umkm }}</p>
@@ -288,7 +288,7 @@
                         <div class="col-lg-4">
                             <div class="col">
                                 <div class="col hovereffect my-2">
-                                    <img src="{{ asset('/assets/img/'.$item->image_path) }}" alt="{{$item->nama}}"
+                                    <img src="{{ asset('/storage/image_path/'.$item->image_path) }}" alt="{{$item->nama}}"
                                         class="img-uniform-kegiatan mb-3 rounded img-fluid">
                                     <div class="overlay">
                                         <h2 class="fw-bolder">{{$item->nama}}</h2>
