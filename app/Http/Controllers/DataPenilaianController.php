@@ -160,16 +160,25 @@ class DataPenilaianController extends Controller
             if (isset($request->nilai[$index])) {
                 $nilai = $request->nilai[$index];
 
-                $penilaian = DataPenilaianModel::where('id_alternatif', $alternatif->id_alternatif)
-                                               ->where('id_kriteria', $item->id_kriteria)
-                                               ->first();
-
-                // Update the penilaian if it exists, otherwise create a new one
-                if ($penilaian) {
-                    $penilaian->update([
+                $penilaian = DataPenilaianModel::updateOrCreate(
+                    [
+                        'id_alternatif' => $alternatif->id_alternatif,
+                        'id_kriteria' => $item->id_kriteria,
+                    ],
+                    [
                         'nilai' => $nilai,
-                    ]);
-                }
+                    ]
+                );
+                // $penilaian = DataPenilaianModel::where('id_alternatif', $alternatif->id_alternatif)
+                //                                ->where('id_kriteria', $item->id_kriteria)
+                //                                ->first();
+
+                // // Update the penilaian if it exists, otherwise create a new one
+                // if ($penilaian) {
+                //     $penilaian->update([
+                //         'nilai' => $nilai,
+                //     ]);
+                // }
             }
         }
 
