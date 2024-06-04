@@ -64,6 +64,11 @@
                                 value="{{ $penduduk->id_rt }}" required disabled style="background-color: #f2f2f2; color: #777;">
                         </div>
                         <div class="form-group">
+                            <label class="control-label">Status Perkawinan</label>
+                            <input type="text" class="form-control" id="" name=""
+                                value="{{ $penduduk->status_perkawinan }}" required disabled style="background-color: #f2f2f2; color: #777;">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Kel/Desa</label>
                             <input type="text" class="form-control" id="" name=""
                                 value="{{ $penduduk->kelurahan }}" required disabled style="background-color: #f2f2f2; color: #777;">

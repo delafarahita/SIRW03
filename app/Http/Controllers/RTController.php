@@ -58,7 +58,7 @@ class RTController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id_rt' => 'required|unique:rt',
+            'id_rt' => 'required|unique:rt|numeric',
             'nama_rt' => 'required|string|alpha',
         ]);
         RTModel::create([
@@ -89,8 +89,8 @@ class RTController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'id_rt' => 'required',
-            'nama_rt' => 'required',
+            'id_rt' => 'required|numeric',
+            'nama_rt' => 'required|alpha',
         ]);
         $rt = RTModel::find($id)->update([
             'id_rt' => $request->id_rt,

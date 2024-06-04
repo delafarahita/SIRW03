@@ -115,6 +115,14 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label class="control-label">Status Perkawinan</label>
+                            <input type="text" class="form-control" id="status_perkawinan" name="status_perkawinan"
+                                value="{{ $penduduk->status_perkawinan }}" required>
+                            @error('status_perkawinan')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Kel/Desa</label>
                             <input type="text" class="form-control" id="kelurahan" name="kelurahan"
                                 value="{{ $penduduk->kelurahan }}" required>
