@@ -187,20 +187,40 @@ class UmkmController extends Controller
         $umkm->kecamatan = $validatedData['kecamatan'];
         $umkm->deskripsi_umkm = $validatedData['deskripsi_umkm'];
 
-        if ($request->hasFile('foto_umkm')) {
-            // Store the new image in the public directory
-            $path = $request->file('foto_umkm')->store('public/foto_umkm');
+        // if ($request->hasFile('foto_umkm')) {
+        //     // Store the new image in the public directory
+        //     $path = $request->file('foto_umkm')->store('public/foto_umkm');
 
+        //     // Hapus gambar lama jika ada
+        //     if ($umkm->foto_umkm) {
+        //         // Ubah path untuk menghapus file lama
+        //         $oldImagePath = str_replace('storage/', 'public/', $umkm->foto_umkm);
+        //         if (Storage::exists($oldImagePath)) {
+        //             Storage::delete($oldImagePath);
+        //         }
+        //     }
+
+        //     $umkm->foto_umkm = str_replace('public/', 'storage/', $path);
+        // }
+
+        if ($request->hasFile('foto_umkm')) {
+            $imageFile = $request->file('foto_umkm');
+            $hashedName = $imageFile->hashName(); // Generate a unique file name
+        
+            // Store the file on the specified disk
+            Storage::disk('img_umkm')->put($hashedName, file_get_contents($imageFile));
+        
             // Hapus gambar lama jika ada
             if ($umkm->foto_umkm) {
                 // Ubah path untuk menghapus file lama
-                $oldImagePath = str_replace('storage/', 'public/', $umkm->foto_umkm);
-                if (Storage::exists($oldImagePath)) {
-                    Storage::delete($oldImagePath);
+                $oldImagePath = 'img_umkm/' . $umkm->foto_umkm;
+                if (Storage::disk('img_umkm')->exists($oldImagePath)) {
+                    Storage::disk('img_umkm')->delete($oldImagePath);
                 }
             }
-
-            $umkm->foto_umkm = str_replace('public/', 'storage/', $path);
+            $validatedData['foto_umkm'] = $hashedName; 
+            // Save the hashed file name in the database
+            $umkm->foto_umkm = $validatedData['foto_umkm'];
         }
 
         $umkm->save();

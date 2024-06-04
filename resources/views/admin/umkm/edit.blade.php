@@ -6,7 +6,7 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url('admin/umkm/'.$umkm->id_umkm) }}" class="form-horizontal">
+            <form method="POST" action="{{ url('admin/umkm/'.$umkm->id_umkm) }}" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 {!! method_field('PUT') !!}
                 <div class="row">
@@ -97,7 +97,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label class="control-label">Foto UMKM</label>
-                            <input type="file" name="foto_umkm" class="form-control @error('foto_umkm') is-invalid @enderror" placeholder=""
+                            <input type="file" id="foto_umkm" class="form-control @error('foto_umkm') is-invalid @enderror" placeholder=""
                             name="foto_umkm"></input>
                             @error('foto_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
