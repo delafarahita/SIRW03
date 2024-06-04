@@ -11,7 +11,7 @@ class PinjamInventarisModel extends Model
     use HasFactory;
 
     public $table = 'pinjam_inventaris';
-    public $primaryKey = 'id';
+    public $primaryKey = 'pinjam_inventaris_id';
     protected $fillable = [
         'inventaris_id',
         'peminjam',
