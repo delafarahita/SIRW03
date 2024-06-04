@@ -66,65 +66,34 @@ class DataPenilaianController extends Controller
         ]);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'id_alternatif' => 'required',
-    //         'id_kriteria' => 'required',
-    //         'nilai' => 'required'
-    //     ]);
-
-    //     DataPenilaianModel::create([
-    //         'id_alternatif' => $request->id_alternatif,
-    //         'id_kriteria' => $request->id_kriteria,
-    //         'nilai' => $request->nilai
-    //     ]);
-
-    //     return redirect('admin/data_penilaian')->with('success', 'Data penilaian berhasil ditambahkan!');
-    // }
 
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'id_alternatif' => 'required',
-        'nilai.*' => 'required|numeric',
-    ]);
+    {
+        $validated = $request->validate([
+            'id_alternatif' => 'required',
+            'nilai.*' => 'required|numeric',
+        ]);
 
-    try {
-        $alternatif = DataAlternatifModel::findOrFail($request->id_alternatif);
+        try {
+            $alternatif = DataAlternatifModel::findOrFail($request->id_alternatif);
 
-        $kriteria = DataKriteriaModel::all(); // Ambil semua kriteria
+            $kriteria = DataKriteriaModel::all(); // Ambil semua kriteria
 
-        foreach ($kriteria as $index => $item) {
-            $nilai = $request->nilai[$index];
+            foreach ($kriteria as $index => $item) {
+                $nilai = $request->nilai[$index];
 
-            $penilaian = new DataPenilaianModel();
-            $penilaian->id_alternatif = $alternatif->id_alternatif;
-            $penilaian->id_kriteria = $item->id_kriteria;
-            $penilaian->nilai = $nilai;
-            $penilaian->save();
+                $penilaian = new DataPenilaianModel();
+                $penilaian->id_alternatif = $alternatif->id_alternatif;
+                $penilaian->id_kriteria = $item->id_kriteria;
+                $penilaian->nilai = $nilai;
+                $penilaian->save();
+            }
+
+            return redirect('admin/data_penilaian')->with('success', 'Data penilaian berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
         }
-
-        return redirect('admin/data_penilaian')->with('success', 'Data penilaian berhasil ditambahkan!');
-    } catch (\Exception $e) {
-        dd($e->getMessage());
     }
-}
-
-    // public function show($id){
-    //     $page = (object) [
-    //         'title' => 'Detail Kartu Keluarga',
-    //     ];
-    //     $activeMenu = 'kartu_keluarga';
-    //     $dropdown = 'd_penduduk';
-    //     $kk = DataPenilaianModel::find($id);
-    //     return view('admin.kk.show', [
-    //         'page' => $page,
-    //         'kk' => $kk,
-    //         'activeMenu' => $activeMenu,
-    //         'dropdown' => $dropdown
-    //     ]);
-    // }
 
     public function edit(string $id)
     {

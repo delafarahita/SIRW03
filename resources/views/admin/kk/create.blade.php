@@ -8,8 +8,8 @@
         <div class="card-body">
             <form method="POST" action="{{ url('admin/data_kk/') }}" class="form-horizontal">
                 @csrf
-                <div class="form-group row">
-                    <label for="no_kk" class="col-sm-2 col-form-label">Nomor KK</label>
+                <div class="form-group row mb-2">
+                    <label for="no_kk" class="col-sm-2 col-form-label">Nomor KK<small class="text-danger">*</small></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control @error('no_kk') is-invalid @enderror" id="no_kk" name="no_kk" value="{{ old('no_kk') }}" required>
                         @error('no_kk')
@@ -17,10 +17,11 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                        <small class="form-text text-muted">*16 Angka pada kartu keluarga</small>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="kepala_keluarga" class="col-sm-2 col-form-label">Kepala Keluarga</label>
+                    <label for="kepala_keluarga" class="col-sm-2 col-form-label">Kepala Keluarga<small class="text-danger">*</small></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control @error('kepala_keluarga') is-invalid @enderror" id="kepala_keluarga" name="kepala_keluarga" value="{{ old('kepala_keluarga') }}" required>
                         @error('kepala_keluarga')

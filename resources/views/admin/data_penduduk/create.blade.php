@@ -11,15 +11,16 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">NIK</label>
+                            <label class="control-label">NIK<small class="text-danger">*</small></label>
                             <input type="number" class="form-control" id="nik" name="nik"
                                 value="{{ old('nik') }}" required>
                             @error('nik')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
+                            <small class="form-text text-muted">16 angka pada KTP</small>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">No. KK</label>
+                            <label class="control-label">No. KK<small class="text-danger">*</small></label>
                             <select class="form-control" id="no_kk" name="no_kk" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($kk as $item)
@@ -31,7 +32,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Nama</label>
+                            <label class="control-label">Nama<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="nama" name="nama"
                                 value="{{ old('nama') }}" required>
                             @error('nama')
@@ -39,7 +40,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Tempat Lahir</label>
+                            <label class="control-label">Tempat Lahir<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
                                 value="{{ old('tempat_lahir') }}" required>
                             @error('tempat_lahir')
@@ -47,7 +48,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Tanggal Lahir</label>
+                            <label class="control-label">Tanggal Lahir<small class="text-danger">*</small></label>
                             <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
                                 value="{{ old('tanggal_lahir') }}" required>
                             @error('tanggal_lahir')
@@ -55,7 +56,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Gol. Darah</label>
+                            <label class="control-label">Gol. Darah<small class="text-danger">*</small></label>
                             <select class="form-control" id="gol_darah" name="gol_darah" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($gol_darah as $item)
@@ -67,7 +68,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Jenis Kelamin</label>
+                            <label class="control-label">Jenis Kelamin<small class="text-danger">*</small></label>
                             <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($jenis_kelamin as $item)
@@ -79,7 +80,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Alamat</label>
+                            <label class="control-label">Alamat<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="alamat" name="alamat"
                                 value="{{ old('alamat') }}" required>
                             @error('alamat')
@@ -89,15 +90,15 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">RW</label>
+                            <label class="control-label">RW<small class="text-danger">*</small></label>
                             <input type="number" class="form-control" id="rw" name="rw"
-                                value="{{ old('rw') }}" required>
+                                value="3" required>
                             @error('rw')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">RT</label>
+                            <label class="control-label">RT<small class="text-danger">*</small></label>
                             <select class="form-control" name="id_rt" id="id_rt" required>
                                 <option value="">- Pilih -</option>
                                 @foreach ($rt as $item)
@@ -109,7 +110,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Status Perkawinan</label>
+                            <label class="control-label">Status Perkawinan<small class="text-danger">*</small></label>
                             <select class="form-control" name="status_perkawinan" id="status_perkawinan" required>
                                 <option value="">- Pilih -</option>
                                 @foreach ($status_perkawinan as $item)
@@ -121,7 +122,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Kel/Desa</label>
+                            <label class="control-label">Kel/Desa<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="kelurahan" name="kelurahan"
                                 value="{{ old('kelurahan') }}" required>
                             @error('kelurahan')
@@ -129,7 +130,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Kecamatan</label>
+                            <label class="control-label">Kecamatan<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="kecamatan" name="kecamatan"
                                 value="{{ old('kecamatan') }}" required>
                             @error('kecamatan')
@@ -137,7 +138,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Kewarganegaraan</label>
+                            <label class="control-label">Kewarganegaraan<small class="text-danger">*</small></label>
                             <select class="form-control" id="kewarganegaraan" name="kewarganegaraan" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($kewarganegaraan as $item)
@@ -149,7 +150,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Pekerjaan</label>
+                            <label class="control-label">Pekerjaan<small class="text-danger">*</small></label>
                             <select class="form-control" id="pekerjaan" name="pekerjaan" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($pekerjaan as $item)
@@ -162,7 +163,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Agama</label>
+                            <label class="control-label">Agama<small class="text-danger">*</small></label>
                             <select class="form-control" id="agama" name="agama" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($agama as $item)
@@ -174,7 +175,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Domisili</label>
+                            <label class="control-label">Domisili<small class="text-danger">*</small></label>
                             <select class="form-control" id="domisili" name="domisili" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($domisili as $item)

@@ -32,7 +32,6 @@ class DataKriteriaController extends Controller
         return DataTables::of($kriterias)
             ->addIndexColumn()
             ->addColumn('aksi', function ($kriteria) {
-                // $btn = '<a href="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria) . '" class="btn btn-info btn-sm">Detail</a> ';
                 $btn = '<a href="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_kriteria/' . $kriteria->id_kriteria) . '">'
                     . csrf_field() . method_field('DELETE') .
@@ -65,8 +64,8 @@ class DataKriteriaController extends Controller
     {
         $validated = $request->validate([
             'kode_kriteria' => 'required|unique:data_kriteria',
-            'nama_kriteria' => 'required',
-            'bobot' => 'required',
+            'nama_kriteria' => 'required|alpha',
+            'bobot' => 'required|numeric',
             'jenis' => 'required',
         ]);
 
@@ -79,21 +78,6 @@ class DataKriteriaController extends Controller
 
         return redirect('admin/data_kriteria')->with('success', 'Data Kriteria berhasil ditambahkan!');
     }
-
-    // public function show($id){
-    //     $page = (object) [
-    //         'title' => 'Detail Kartu Keluarga',
-    //     ];
-    //     $activeMenu = 'kartu_keluarga';
-    //     $dropdown = 'd_penduduk';
-    //     $kk = DataKriteriaModel::find($id);
-    //     return view('admin.kk.show', [
-    //         'page' => $page,
-    //         'kk' => $kk,
-    //         'activeMenu' => $activeMenu,
-    //         'dropdown' => $dropdown
-    //     ]);
-    // }
 
     public function edit(string $id)
     {
@@ -116,7 +100,7 @@ class DataKriteriaController extends Controller
         $validated = $request->validate([
             'kode_kriteria' => 'required',
             'nama_kriteria' => 'required',
-            'bobot' => 'required',
+            'bobot' => 'required|decimal',
             'jenis' => 'required'
         ]);
         $kriteria = DataKriteriaModel::find($id)->update([

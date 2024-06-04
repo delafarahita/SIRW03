@@ -75,14 +75,12 @@ class KegiatanController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'jenis' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'alamat' => 'required|string',
+            'deskripsi' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
             'tanggal' => 'required',
-            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // Store the image in the public directory
-        // $path = $request->file('image_path')->store('public/image_path');
         if ($request->hasFile('image_path')) {
             $imageFile = $request->file('image_path');
             $hashedName = $imageFile->hashName(); // Generate a unique file name
@@ -94,7 +92,6 @@ class KegiatanController extends Controller
             $validatedData['image_path'] = $hashedName;
         }
 
-        // Storage::disk('img_kegiatan')->put($request->file('image_path')->hashName(), $request->file('image_path'));
         
         $kegiatan = new KegiatanModel;
         $kegiatan->nama = $validatedData['nama'];

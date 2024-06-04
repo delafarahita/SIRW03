@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">Nama kegiatan</label>
+                            <label class="control-label">Nama kegiatan<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="nama" name="nama"
                                 value="{{ old('nama') }}" required>
                             @error('nama')
@@ -19,7 +19,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Jenis Kegiatan</label>
+                            <label class="control-label">Jenis Kegiatan<small class="text-danger">*</small></label>
                             <select class="form-control" name="jenis" id="jenis" required>
                                 <option value="">- Pilih Jenis Kegiatan -</option>
                                 @foreach ($jenis as $item)
@@ -31,7 +31,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Alamat</label>
+                            <label class="control-label">Alamat<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="alamat" name="alamat"
                                 value="{{ old('alamat') }}" required>
                             @error('alamat')
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Tanggal</label>
+                            <label class="control-label">Tanggal<small class="text-danger">*</small></label>
                             <input type="datetime-local" class="form-control" id="tanggal" name="tanggal"
                                 value="{{ old('tanggal') }}" required>
                             @error('tanggal')
@@ -48,17 +48,18 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Foto kegiatan</label>
+                            <label class="control-label">Foto kegiatan<small class="text-danger">*</small></label>
                             <input type="file" name="image_path" class="form-control @error('image_path') is-invalid @enderror">
                             @error('image_path')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
+                            <small class="form-text text-muted">Maksimal ukuran:2MB, Format file:jpg, jpeg, png, svg, gif</small>
                         </div>
                     </div>
 
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">Deskripsi kegiatan</label>
+                            <label class="control-label">Deskripsi kegiatan<small class="text-danger">*</small></label>
                             <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="deskripsi" style="height: 200px">{{ old('deskripsi') }}</textarea>
                             @error('deskripsi')
                                 <small class="form-text text-danger">{{ $message }}</small>

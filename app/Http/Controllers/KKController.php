@@ -60,7 +60,7 @@ class KKController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'no_kk' => 'required|unique:kk|numeric',
+            'no_kk' => 'required|unique:kk|numeric|regex:/^[0-9]{16}$/',
             'kepala_keluarga' => 'required|string|alpha',
         ]);
 
