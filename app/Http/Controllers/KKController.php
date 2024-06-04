@@ -60,7 +60,7 @@ class KKController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'no_kk' => 'required|unique:kk',
+            'no_kk' => 'required|unique:kk|numeric',
             'kepala_keluarga' => 'required|string|alpha',
         ]);
 
@@ -71,21 +71,6 @@ class KKController extends Controller
 
         return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil ditambahkan!');
     }
-
-    // public function show($id){
-    //     $page = (object) [
-    //         'title' => 'Detail Kartu Keluarga',
-    //     ];
-    //     $activeMenu = 'kartu_keluarga';
-    //     $dropdown = 'd_penduduk';
-    //     $kk = KKModel::find($id);
-    //     return view('admin.kk.show', [
-    //         'page' => $page,
-    //         'kk' => $kk,
-    //         'activeMenu' => $activeMenu,
-    //         'dropdown' => $dropdown
-    //     ]);
-    // }
 
     public function edit($id)
     {
@@ -106,8 +91,8 @@ class KKController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'no_kk' => 'required',
-            'kepala_keluarga' => 'required',
+            'no_kk' => 'required|numeric',
+            'kepala_keluarga' => 'required|alpha',
         ]);
         $kk = KKModel::find($id)->update([
             'no_kk' => $request->no_kk,
