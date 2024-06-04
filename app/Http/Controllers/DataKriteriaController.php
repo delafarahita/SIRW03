@@ -121,7 +121,7 @@ class DataKriteriaController extends Controller
             $penilaianTerkait = DataPenilaianModel::where('id_kriteria', $id)->exists();
     
             if ($penilaianTerkait) {
-                return redirect('admin/data_kriteria')->with('error', 'Data Kriteria tidak dapat dihapus karena masih digunakan pada data penilaian!');
+                return redirect('admin/data_kriteria')->with('warning', 'Data Kriteria tidak dapat dihapus karena masih digunakan pada data penilaian!');
             }
     
             $kriteria->delete();
