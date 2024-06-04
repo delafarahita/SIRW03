@@ -49,7 +49,7 @@
                     <div class="col-sm-10">
                         <select class="form-control @error('status_barang') is-invalid @enderror" id="status_barang"
                             name="status_barang" required>
-                            <option value="Tersedia" {{ old('status_barang') == 'Tersedia' ? 'selected' : '' }}>Ada</option>
+                            <option value="Tersedia" {{ old('status_barang') == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
                             <option value="Dipinjam" {{ old('status_barang') == 'Dipinjam' ? 'selected' : '' }}>Dipinjam
                             </option>
                         </select>
