@@ -106,7 +106,7 @@ class DataAlternatifController extends Controller
             $penilaianTerkait = DataPenilaianModel::where('id_alternatif', $id)->exists();
     
             if ($penilaianTerkait) {
-                return redirect('admin/data_alternatif')->with('error', 'Data Alternatif tidak dapat dihapus karena masih digunakan pada data penilaian!');
+                return redirect('admin/data_alternatif')->with('warning', 'Data Alternatif tidak dapat dihapus karena masih digunakan pada data penilaian!');
             }
     
             $alternatif->delete();
