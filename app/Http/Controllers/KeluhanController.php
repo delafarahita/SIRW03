@@ -71,9 +71,9 @@ class KeluhanController extends Controller
             // Save the hashed file name in the database
             $validatedData['foto'] = $hashedName;
         }
-        // else {
-        //     $validatedData['foto'] = null;
-        // }
+        else {
+            $validatedData['foto'] = null;
+        }
 
         $keluhan = new Keluhan();
         $keluhan->nama_penduduk = $validatedData['nama_penduduk'];
