@@ -14,14 +14,18 @@
     <div class="card card-outline card-primary">
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
- 
         </div>
         <div class="card-body">
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
+            @if (isset($warning))
+                <div class="alert alert-warning">
+                    {{ $warning }}
+                </div>
+            @endif
             @if (session('error'))
-                <div class="alert alert-success">{{ session('error') }}</div>
+                <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
 
             <div class="table-container table-responsive">
@@ -35,10 +39,6 @@
                     </thead>
                 </table>
             </div>
-{{-- 
-            <div class="card-tools d-flex justify-content-between">
-                <a class="btn-sm custom-color-btn mt-1" href="{{ route('data_alternatif.create') }}">Tambah Alternatif</a>
-            </div> --}}
         </div>
     </div>
 @endsection
@@ -63,6 +63,13 @@
                     data: "nama_alternatif",
                     orderable: true,
                     searchable: true
+                    // render: function(data, type, row) {
+                    //     if (type === 'display' && uniqueAlternatifNames.includes(data)) {
+                    //         return '';
+                    //     }
+                    //     uniqueAlternatifNames.push(data);
+                    //     return data;
+                    // }
                 }, {
                     data: "aksi",
                     orderable: false,

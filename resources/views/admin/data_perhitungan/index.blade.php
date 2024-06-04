@@ -77,9 +77,11 @@
                     <thead>
                         <tr>
                             <th>Alternative</th>
-                            @foreach($dataPDA[0]['penilaians'] as $penilaian)
-                                <th>C{{ $penilaian['id_kriteria'] }}</th>
-                            @endforeach
+                            @if ($dataPDA[0]['penilaians'])
+                                @foreach($dataPDA[0]['penilaians'] as $penilaian)
+                                    <th>C{{ $penilaian['id_kriteria'] }}</th>
+                                @endforeach
+                            @endif
                             {{-- <th>SP</th> --}}
                         </tr>
                     </thead>
@@ -101,9 +103,11 @@
                     <thead>
                         <tr>
                             <th>Alternatif</th>
-                            @foreach($dataSP[0]['penilaians'] as $penilaian)
-                                <th>C{{ $penilaian['id_kriteria'] }}</th>
-                            @endforeach
+                            @if ($dataSP[0]['penilaians'])
+                                @foreach($dataSP[0]['penilaians'] as $penilaian)
+                                    <th>C{{ $penilaian['id_kriteria'] }}</th>
+                                @endforeach
+                            @endif
                             <th>SP</th>
                         </tr>
                     </thead>
@@ -127,9 +131,11 @@
                     <thead>
                         <tr>
                             <th>Alternatif</th>
-                            @foreach($dataNDA[0]['penilaians'] as $penilaian)
-                                <th>C{{ $penilaian['id_kriteria'] }}</th>
-                            @endforeach
+                            @if ($dataNDA[0]['penilaians'])
+                                @foreach($dataNDA[0]['penilaians'] as $penilaian)
+                                    <th>C{{ $penilaian['id_kriteria'] }}</th>
+                                @endforeach
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -150,9 +156,11 @@
                     <thead>
                         <tr>
                             <th>Alternatif</th>
-                            @foreach($dataSN[0]['penilaians'] as $penilaian)
-                                <th>C{{ $penilaian['id_kriteria'] }}</th>
-                            @endforeach
+                            @if ($dataSN[0]['penilaians'])
+                                @foreach($dataSN[0]['penilaians'] as $penilaian)
+                                    <th>C{{ $penilaian['id_kriteria'] }}</th>
+                                @endforeach
+                            @endif
                             <th>SP</th>
                         </tr>
                     </thead>
