@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             // DomisiliSeeder::class,
             PendudukSeeder::class,
             KegiatanSeeder::class,
+            KasSeeder::class,
             InventarisSeeder::class,
             PengaduanSeeder::class,
             PinjamInventarisSeeder::class,

@@ -10,7 +10,7 @@
             <form method="POST" action="{{ url('admin/data_rt/') }}" class="form-horizontal">
                 @csrf
                 <div class="form-group row">
-                    <label for="id_rt" class="col-sm-2 col-form-label">Nomor RT</label>
+                    <label for="id_rt" class="col-sm-2 col-form-label">Nomor RT<small class="text-danger">*</small></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control @error('id_rt') is-invalid @enderror" id="id_rt" name="id_rt" value="{{ old('id_rt') }}" required>
                         @error('id_rt')
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="nama_rt" class="col-sm-2 col-form-label">Nama RT</label>
+                    <label for="nama_rt" class="col-sm-2 col-form-label">Nama RT<small class="text-danger">*</small></label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control @error('nama_rt') is-invalid @enderror" id="nama_rt" name="nama_rt" value="{{ old('nama_rt') }}" required>
                         @error('nama_rt')

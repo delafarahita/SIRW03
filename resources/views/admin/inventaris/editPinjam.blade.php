@@ -6,7 +6,7 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url('admin/pinjam/'.$pinjam->id) }}" class="form-horizontal">
+            <form method="POST" action="{{ url('admin/pinjam/'.$pinjam->pinjam_inventaris_id) }}" class="form-horizontal">
                 @csrf
                 {!! method_field('PUT') !!}
 

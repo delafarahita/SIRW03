@@ -173,7 +173,7 @@ class UmkmController extends Controller
             'rw' => 'required',
             'kelurahan' => 'required|string|max:255',
             'kecamatan' => 'required|string|max:255',
-            'foto_umkm' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'foto_umkm' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'deskripsi_umkm' => 'required|string|max:255',
         ]);
 
@@ -188,19 +188,23 @@ class UmkmController extends Controller
         $umkm->deskripsi_umkm = $validatedData['deskripsi_umkm'];
 
         if ($request->hasFile('foto_umkm')) {
-            // Store the new image in the public directory
-            $path = $request->file('foto_umkm')->store('public/foto_umkm');
-
+            $imageFile = $request->file('foto_umkm');
+            $hashedName = $imageFile->hashName();
+        
+            // menyimpan gambar ke dalam storage
+            Storage::disk('img_umkm')->put($hashedName, file_get_contents($imageFile));
+        
             // Hapus gambar lama jika ada
             if ($umkm->foto_umkm) {
                 // Ubah path untuk menghapus file lama
-                $oldImagePath = str_replace('storage/', 'public/', $umkm->foto_umkm);
-                if (Storage::exists($oldImagePath)) {
-                    Storage::delete($oldImagePath);
+                $oldImagePath = 'img_umkm/' . $umkm->foto_umkm;
+                if (Storage::disk('img_umkm')->exists($oldImagePath)) {
+                    Storage::disk('img_umkm')->delete($oldImagePath);
                 }
             }
-
-            $umkm->foto_umkm = str_replace('public/', 'storage/', $path);
+            $validatedData['foto_umkm'] = $hashedName; 
+            
+            $umkm->foto_umkm = $validatedData['foto_umkm'];
         }
 
         $umkm->save();

@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">Nama Usaha</label>
+                            <label class="control-label">Nama Usaha<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="nama_umkm" name="nama_umkm"
                                 value="{{ old('nama_umkm') }}" required>
                             @error('nama_umkm')
@@ -19,7 +19,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Kategori Usaha</label>
+                            <label class="control-label">Kategori Usaha<small class="text-danger">*</small></label>
                             <select class="form-control" name="kategori_umkm" id="kategori_umkm" required>
                                 <option value="">- Pilih Kategori umkm -</option>
                                 @foreach ($kategori_umkm as $item)
@@ -31,7 +31,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Nama Pemilik Usaha</label>
+                            <label class="control-label">Nama Pemilik Usaha<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="pemilik_umkm" name="pemilik_umkm"
                                 value="{{ old('pemilik_umkm') }}" required>
                             @error('pemilik_umkm')
@@ -39,7 +39,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Alamat Usaha</label>
+                            <label class="control-label">Alamat Usaha<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="alamat_umkm" name="alamat_umkm"
                                 value="{{ old('alamat_umkm') }}" required>
                             @error('alamat_umkm')
@@ -47,7 +47,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">RT</label>
+                            <label class="control-label">RT<small class="text-danger">*</small></label>
                             <select class="form-control" name="id_rt" id="id_rt" required>
                                 <option value="">- Pilih</option>
                                 @foreach ($rt as $item)
@@ -59,7 +59,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">RW</label>
+                            <label class="control-label">RW<small class="text-danger">*</small></label>
                             <input type="number" class="form-control" id="rw" name="rw"
                                 value="{{ old('rw') }}" required>
                             @error('rw')
@@ -67,7 +67,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Kel/Desa</label>
+                            <label class="control-label">Kel/Desa<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="kelurahan" name="kelurahan"
                                 value="{{ old('kelurahan') }}" required>
                             @error('kelurahan')
@@ -75,7 +75,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Kecamatan</label>
+                            <label class="control-label">Kecamatan<small class="text-danger">*</small></label>
                             <input type="text" class="form-control" id="kecamatan" name="kecamatan"
                                 value="{{ old('kecamatan') }}" required>
                             @error('kecamatan')
@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">Deskripsi Usaha</label>
+                            <label class="control-label">Deskripsi Usaha<small class="text-danger">*</small></label>
                             <textarea class="form-control @error('deskripsi_umkm') is-invalid @enderror" placeholder=""
                             name="deskripsi_umkm" id="floatingTextarea" style="height: 200px"></textarea>
                             @error('deskripsi_umkm')
@@ -95,11 +95,12 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="control-label">Foto UMKM</label>
+                            <label class="control-label">Foto UMKM<small class="text-danger">*</small></label>
                             <input type="file" name="foto_umkm" class="form-control @error('foto_umkm') is-invalid @enderror">
                             @error('foto_umkm')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
+                            <small class="form-text text-muted">Maksimal ukuran:2MB, Format file:jpg, jpeg, png, svg, gif</small>
                         </div>
                     </div>
                 </div>

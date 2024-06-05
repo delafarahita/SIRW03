@@ -57,7 +57,7 @@
                     <label for="tanggal_kembali" class="col-sm-2 col-form-label">Tanggal Kembali</label>
                     <div class="col-sm-10">
                         <input type="date" class="form-control @error('tanggal_kembali') is-invalid @enderror"
-                            id="tanggal_kembali" name="tanggal_kembali" value="{{ old('tanggal_kembali') }}" required>
+                            id="tanggal_kembali" name="tanggal_kembali" value="{{ old('tanggal_kembali') }}" >
                         @error('tanggal_kembali')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

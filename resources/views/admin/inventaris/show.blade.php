@@ -42,7 +42,7 @@
                                     <td>
                                         <a href="{{ url('admin/pinjam/' . $peminjaman->pinjam_inventaris_id . '/edit') }}"
                                             class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                        <form action="{{ url('admin/pinjam/' . $peminjaman->id ) }}"
+                                        <form action="{{ url('admin/pinjam/' . $peminjaman->pinjam_inventaris_id ) }}"
                                             method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')

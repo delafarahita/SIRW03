@@ -32,7 +32,6 @@ class DataAlternatifController extends Controller
         return DataTables::of($alternatifs)
             ->addIndexColumn()
             ->addColumn('aksi', function ($alternatif) {
-                // $btn = '<a href="' . url('admin/data_alternatif/' . $alternatif->id_alternatif) . '" class="btn btn-info btn-sm">Detail</a> ';
                 $btn = '<a href="' . url('admin/data_alternatif/' . $alternatif->id_alternatif . '/edit') . '" class="btn btn-warning btn-sm">Edit</a> ';
                 $btn .= '<form class="d-inline-block" method="POST" action="' . url('/admin/data_alternatif/' . $alternatif->id_alternatif) . '">'
                     . csrf_field() . method_field('DELETE') .
@@ -72,21 +71,6 @@ class DataAlternatifController extends Controller
         return redirect('admin/data_alternatif')->with('success', 'Data Alternatif berhasil ditambahkan!');
     }
 
-    // public function show($id){
-    //     $page = (object) [
-    //         'title' => 'Detail Kartu Keluarga',
-    //     ];
-    //     $activeMenu = 'kartu_keluarga';
-    //     $dropdown = 'd_penduduk';
-    //     $kk = DataAlternatifModel::find($id);
-    //     return view('admin.kk.show', [
-    //         'page' => $page,
-    //         'kk' => $kk,
-    //         'activeMenu' => $activeMenu,
-    //         'dropdown' => $dropdown
-    //     ]);
-    // }
-
     public function edit($id)
     {
         $page = (object) [
@@ -119,11 +103,10 @@ class DataAlternatifController extends Controller
         try {
             $alternatif = DataAlternatifModel::findOrFail($id);
     
-            // Periksa apakah ada data penilaian yang terkait dengan alternatif ini
             $penilaianTerkait = DataPenilaianModel::where('id_alternatif', $id)->exists();
     
             if ($penilaianTerkait) {
-                return redirect('admin/data_alternatif')->with('error', 'Data Alternatif tidak dapat dihapus karena masih digunakan pada data penilaian!');
+                return redirect('admin/data_alternatif')->with('warning', 'Data Alternatif tidak dapat dihapus karena masih digunakan pada data penilaian!');
             }
     
             $alternatif->delete();

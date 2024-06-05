@@ -75,14 +75,12 @@ class KegiatanController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'jenis' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'alamat' => 'required|string',
+            'deskripsi' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
             'tanggal' => 'required',
-            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // Store the image in the public directory
-        // $path = $request->file('image_path')->store('public/image_path');
         if ($request->hasFile('image_path')) {
             $imageFile = $request->file('image_path');
             $hashedName = $imageFile->hashName(); // Generate a unique file name
@@ -94,7 +92,6 @@ class KegiatanController extends Controller
             $validatedData['image_path'] = $hashedName;
         }
 
-        // Storage::disk('img_kegiatan')->put($request->file('image_path')->hashName(), $request->file('image_path'));
         
         $kegiatan = new KegiatanModel;
         $kegiatan->nama = $validatedData['nama'];
@@ -178,21 +175,41 @@ class KegiatanController extends Controller
         $kegiatan->alamat = $validatedData['alamat'];
         $kegiatan->tanggal = $validatedData['tanggal'];
 
-        // Jika ada gambar baru di-upload
-        if ($request->hasFile('image_path')) {
-            // Store the new image in the public directory
-            $path = $request->file('image_path')->store('public/image_path');
+        // // Jika ada gambar baru di-upload
+        // if ($request->hasFile('image_path')) {
+        //     // Store the new image in the public directory
+        //     $path = $request->file('image_path')->store('public/image_path');
 
+        //     // Hapus gambar lama jika ada
+        //     if ($kegiatan->image_path) {
+        //         // Ubah path untuk menghapus file lama
+        //         $oldImagePath = str_replace('storage/', 'public/', $kegiatan->image_path);
+        //         if (Storage::exists($oldImagePath)) {
+        //             Storage::delete($oldImagePath);
+        //         }
+        //     }
+
+        //     $kegiatan->image_path = str_replace('public/', 'storage/', $path);
+        // }
+
+        if ($request->hasFile('image_path')) {
+            $imageFile = $request->file('image_path');
+            $hashedName = $imageFile->hashName(); // Generate a unique file name
+        
+            // Store the file on the specified disk
+            Storage::disk('img_kegiatan')->put($hashedName, file_get_contents($imageFile));
+        
             // Hapus gambar lama jika ada
             if ($kegiatan->image_path) {
                 // Ubah path untuk menghapus file lama
-                $oldImagePath = str_replace('storage/', 'public/', $kegiatan->image_path);
-                if (Storage::exists($oldImagePath)) {
-                    Storage::delete($oldImagePath);
+                $oldImagePath = 'img_kegiatan/' . $kegiatan->image_path;
+                if (Storage::disk('img_kegiatan')->exists($oldImagePath)) {
+                    Storage::disk('img_kegiatan')->delete($oldImagePath);
                 }
             }
-
-            $kegiatan->image_path = str_replace('public/', 'storage/', $path);
+            $validatedData['image_path'] = $hashedName; 
+            // Save the hashed file name in the database
+            $kegiatan->image_path = $validatedData['image_path'];
         }
 
         $kegiatan->save();
