@@ -31,7 +31,7 @@ class KeluhanController extends Controller
         //     (object) ['nama_penduduk' => 'Alice Smith', 'rt' => 'RT 03', 'keluhan' => 'Lorem ipsum dolor sit amet consectetur.', 'is_private' => false, 'reply' => 'Balasan 3', 'id' => 3],
         // ];
 
-        $keluhans = Keluhan::all();
+        $keluhans = Keluhan::orderBy('created_at', 'desc')->paginate(8);
 
         return view('admin.keluhan.index', [
             'breadcrumb' => $breadcrumb,

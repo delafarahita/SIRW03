@@ -20,6 +20,7 @@
         .bg-font-primary {
             color: #1F2937;
         }
+
         .bg-font-oren {
             color: white;
             text-shadow: -2px -2px 0 #1F2937, 2px -2px 0 #1F2937, -2px 2px 0 #1F2937, 2px 2px 0 #1F2937;
@@ -28,11 +29,13 @@
         .btn-oren {
             background-color: #FFA63E
         }
+
         .btn-oren-keluhan {
             background-color: #FFA63E;
             border: 1px solid #1F2937;
 
         }
+
         .btn-oren-keluhan:hover {
             background-color: #1F2937;
             border: 1px solid #FFA63E;
@@ -73,18 +76,33 @@
         }
 
         .img-uniform-kegiatan {
-            width: 400px;          
-            height: 250px;         
-            max-width: 100%;     
-            max-height: 100%;    
-            object-fit: cover; 
+            width: 400px;
+            height: 250px;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
         }
+
+        .overlay {
+            position: relative;
+            /* Atur tinggi overlay sesuai kebutuhan */
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .overlay .overflow-auto {
+            max-height: 100px;
+            /* Atur tinggi maksimal deskripsi */
+            overflow-y: auto;
+            /* Aktifkan scroll vertikal */
+        }
+
         .img-uniform-umkm {
-            width: 1000px;          
-            height: 600px;         
-            max-width: 100%;     
-            max-height: 100%;    
-            object-fit: cover; 
+            width: 1000px;
+            height: 600px;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
         }
 
         .hovereffect {
@@ -170,22 +188,22 @@
                 /* Adjusted font size for smaller screens */
             }
 
-            .img-uniform-umkm{
-                width: 400px;          
-                height: 250px;         
-                max-width: 100%;     
-                max-height: 100%;    
+            .img-uniform-umkm {
+                width: 400px;
+                height: 250px;
+                max-width: 100%;
+                max-height: 100%;
                 object-fit: cover;
             }
-            
+
         }
 
-        @media (min-width: 768px && max-width: 900px){
-            .img-uniform-umkm{
-                width: 600px;          
-                height: 350px;         
-                max-width: 100%;     
-                max-height: 100%;    
+        @media (min-width: 768px && max-width: 900px) {
+            .img-uniform-umkm {
+                width: 600px;
+                height: 350px;
+                max-width: 100%;
+                max-height: 100%;
                 object-fit: cover;
             }
         }
@@ -199,11 +217,14 @@
         <nav class="navbar sticky-top navbar-expand-lg bg-main "data-bs-theme="dark">
             <div class="container-fluid">
                 <div class="mx-3 d-flex justify-content-between align-items-center">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a href="#" class="navbar-brand text-white fw-bolder"><img src="{{ asset('assets/img/logorw03.jpg') }}" alt="Logo" width="30" height="30" class="me-2 rounded-circle">SIRW03</a>
-                  </div>
+                    <a href="#" class="navbar-brand text-white fw-bolder"><img
+                            src="{{ asset('assets/img/logorw03.jpg') }}" alt="Logo" width="30" height="30"
+                            class="me-2 rounded-circle">SIRW03</a>
+                </div>
                 {{-- <div class="mx-3">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -247,15 +268,18 @@
             <div id="carouselExampleAutoPlaying" class="carousel slide my-3" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     @foreach ($umkm as $index => $item)
-                        <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="{{ $index }}"
-                            class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                        <button type="button" data-bs-target="#carouselExampleAutoPlaying"
+                            data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
+                            aria-current="{{ $index === 0 ? 'true' : 'false' }}"
                             aria-label="Slide {{ $index + 1 }}"></button>
                     @endforeach
                 </div>
                 <div class="carousel-inner">
                     @foreach ($umkm as $index => $item)
                         <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                            <img src="{{ asset('storage/foto_umkm/'. $item->foto_umkm) }}" class="img-responsive img-uniform-umkm w-100 d-block rounded" alt="slide {{ $index + 1 }}">
+                            <img src="{{ asset('storage/foto_umkm/' . $item->foto_umkm) }}"
+                                class="img-responsive img-uniform-umkm w-100 d-block rounded"
+                                alt="slide {{ $index + 1 }}">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>{{ $item->nama_umkm }}</h5>
                                 <p>{{ $item->deskripsi_umkm }}</p>
@@ -292,7 +316,7 @@
                                         class="img-uniform-kegiatan mb-3 rounded img-fluid">
                                     <div class="overlay">
                                         <h2 class="fw-bolder">{{$item->nama}}</h2>
-                                        <p class="text-white">{{$item->deskripsi}}</p>
+                                        <p class="text-white overflow-auto">{{$item->deskripsi}}</p>
                                         <p class="text-white">📅{{$item->tanggal}}</p>
                                     </div>
                                 </div>
@@ -300,9 +324,34 @@
                         </div>
                     @endforeach
                 </div>
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination d-flex justify-content-center">
+                      {{-- Previous Page Link --}}
+                      @if ($kegiatan->onFirstPage())
+                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                      @else
+                        <li class="page-item"><a class="page-link" href="{{ $kegiatan->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                      @endif
+
+                      {{-- Pagination Elements --}}
+                      @foreach ($kegiatan->getUrlRange(1, $kegiatan->lastPage()) as $page => $url)
+                        @if ($page == $kegiatan->currentPage())
+                          <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
+                        @else
+                          <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
+                        @endif
+                      @endforeach
+
+                      {{-- Next Page Link --}}
+                      @if ($kegiatan->hasMorePages())
+                        <li class="page-item"><a class="page-link" href="{{ $kegiatan->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                      @else
+                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                      @endif
+                    </ul>
+                  </nav>
             </div>
         </div>
-
         <div id="faq" class="container-fluid mt-5 p-5">
             <div class="container">
                 <div class="row pt-5 bg-body-tertiary rounded-2 px-2">
@@ -312,8 +361,10 @@
                     </div>
                     <div class="col-lg-4 my-1">
                         <p class="d-inline-flex gap-1">
-                            <a class="text-decoration-none text-black" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                Apa yang perlu disiapkan untuk pembuatan surat keterangan KTP atau KK?
+                            <a class="text-decoration-none text-black" data-bs-toggle="collapse"
+                                href="#collapseExample2" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                Apa yang perlu disiapkan untuk pembuatan surat pengantar RW?
                             </a>
                         </p>
                         <div class="collapse" id="collapseExample2">
@@ -329,8 +380,10 @@
                         </div>
                         <hr>
                         <p class="d-inline-flex gap-1">
-                            <a class="text-decoration-none text-black" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
-                              Apa yang harus disiapkan untuk membuat KTP?
+                            <a class="text-decoration-none text-black" data-bs-toggle="collapse"
+                                href="#collapseExample1" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                Apa yang harus disiapkan untuk membuat KTP?
                             </a>
                         </p>
                         <div class="collapse" id="collapseExample1">
@@ -346,13 +399,21 @@
                         </div>
                         <hr class="bg-white">
                         <p class="d-inline-flex gap-1">
-                            <a class="text-decoration-none text-black" data-bs-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                              Apa yang harus disiapkan untuk membuat KTP?
+                            <a class="text-decoration-none text-black" data-bs-toggle="collapse"
+                                href="#collapseExample3" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                Perpindahan Penduduk (Datang & Keluar)
                             </a>
                         </p>
                         <div class="collapse" id="collapseExample3">
-                            <div class="">
-                                Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                            <div class="text-black">
+                                <ul>
+                                    <li>Pindah masuk bagi yang belum mempunyai surat pindah (perbantuan pindah antar dinas)</li>
+                                    <li>Pindah masuk bagi yang sudah mempunyai surat</li>
+                                    <li>Fotokopi Surat Nikah (jika sudah menikah)</li>
+                                    <li>Fotokopi KTP lama (jika ada perubahan data atau perpanjangan)</li>
+                                    <li>Pas foto (jika diperlukan)</li>
+                                </ul>
                             </div>
                         </div>
                         <hr class="bg-white">
@@ -374,7 +435,8 @@
                     @if (session('error'))
                         <div class="alert alert-success">{{ session('error') }}</div>
                     @endif
-                    <form class="mx-1 mx-lg-5" action="{{ route('store_keluhan') }}" method="POST" enctype="multipart/form-data">
+                    <form class="mx-1 mx-lg-5" action="{{ route('store_keluhan') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-floating">
                             <input type="text"
@@ -410,7 +472,8 @@
                         <div class="form-floating">
                             {{-- <textarea class="form-control @error('foto_peng') is-invalid @enderror" placeholder="" name="keluhan"
                             id="floatingTextarea" style="height: 100px"></textarea> --}}
-                            <input type="file" class="form-control my-2 @error('foto') is-invalid @enderror" id="foto" name="foto" placeholder="Upload Foto">
+                            <input type="file" class="form-control my-2 @error('foto') is-invalid @enderror"
+                                id="foto" name="foto" placeholder="Upload Foto">
                             <label for="foto">Foto Laporan</label>
                         </div>
                         @error('foto')
@@ -418,7 +481,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        
+
                         <div class="my-2">
                             <button type="submit" class="btn btn-oren-keluhan text-white px-5">KIRIM</button>
                         </div>
@@ -432,14 +495,20 @@
                     <div class="col-lg-4 text-center text-lg-end">
                         <p class="text-center text-lg-end fw-bolder">Kontak</p>
                         <div>
-                                                        
-                            <a class="text-decoration-none text-secondary" target="_blank" href="https://wa.me/+628563354473">
-                                <svg class="me-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
+
+                            <a class="text-decoration-none text-secondary" target="_blank"
+                                href="https://wa.me/+628563354473">
+                                <svg class="me-1" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier"> 
-                                        <path d="M6.014 8.00613C6.12827 7.1024 7.30277 5.87414 8.23488 6.01043L8.23339 6.00894C9.14051 6.18132 9.85859 7.74261 10.2635 8.44465C10.5504 8.95402 10.3641 9.4701 10.0965 9.68787C9.7355 9.97883 9.17099 10.3803 9.28943 10.7834C9.5 11.5 12 14 13.2296 14.7107C13.695 14.9797 14.0325 14.2702 14.3207 13.9067C14.5301 13.6271 15.0466 13.46 15.5548 13.736C16.3138 14.178 17.0288 14.6917 17.69 15.27C18.0202 15.546 18.0977 15.9539 17.8689 16.385C17.4659 17.1443 16.3003 18.1456 15.4542 17.9421C13.9764 17.5868 8 15.27 6.08033 8.55801C5.97237 8.24048 5.99955 8.12044 6.014 8.00613Z" fill="#a3a3a3"></path>
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 23C10.7764 23 10.0994 22.8687 9 22.5L6.89443 23.5528C5.56462 24.2177 4 23.2507 4 21.7639V19.5C1.84655 17.492 1 15.1767 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23ZM6 18.6303L5.36395 18.0372C3.69087 16.4772 3 14.7331 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C11.0143 21 10.552 20.911 9.63595 20.6038L8.84847 20.3397L6 21.7639V18.6303Z" fill="#a3a3a3"></path>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M6.014 8.00613C6.12827 7.1024 7.30277 5.87414 8.23488 6.01043L8.23339 6.00894C9.14051 6.18132 9.85859 7.74261 10.2635 8.44465C10.5504 8.95402 10.3641 9.4701 10.0965 9.68787C9.7355 9.97883 9.17099 10.3803 9.28943 10.7834C9.5 11.5 12 14 13.2296 14.7107C13.695 14.9797 14.0325 14.2702 14.3207 13.9067C14.5301 13.6271 15.0466 13.46 15.5548 13.736C16.3138 14.178 17.0288 14.6917 17.69 15.27C18.0202 15.546 18.0977 15.9539 17.8689 16.385C17.4659 17.1443 16.3003 18.1456 15.4542 17.9421C13.9764 17.5868 8 15.27 6.08033 8.55801C5.97237 8.24048 5.99955 8.12044 6.014 8.00613Z"
+                                            fill="#a3a3a3"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 23C10.7764 23 10.0994 22.8687 9 22.5L6.89443 23.5528C5.56462 24.2177 4 23.2507 4 21.7639V19.5C1.84655 17.492 1 15.1767 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23ZM6 18.6303L5.36395 18.0372C3.69087 16.4772 3 14.7331 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C11.0143 21 10.552 20.911 9.63595 20.6038L8.84847 20.3397L6 21.7639V18.6303Z"
+                                            fill="#a3a3a3"></path>
                                     </g>
                                 </svg>
                                 Whatsapp
@@ -448,26 +517,49 @@
                     </div>
                     <div class="col-lg-4 text-center text-lg-center my-3 m-lg-0">
                         <p class="text-center fw-bolder">Lokasi</p>
-                        <a href="https://maps.app.goo.gl/ovt2ioGYrTvcyRdk9" class="text-decoration-none text-secondary" target="_blank">
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px;">
+                        <a href="https://maps.app.goo.gl/ovt2ioGYrTvcyRdk9"
+                            class="text-decoration-none text-secondary" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                style="width: 20px; height: 20px;">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier"> 
-                                    <g id="Navigation / Map_Pin"> 
-                                        <g id="Vector"> 
-                                            <path d="M5 9.92285C5 14.7747 9.24448 18.7869 11.1232 20.3252C11.3921 20.5454 11.5281 20.6568 11.7287 20.7132C11.8849 20.7572 12.1148 20.7572 12.271 20.7132C12.472 20.6567 12.6071 20.5463 12.877 20.3254C14.7557 18.7871 18.9999 14.7751 18.9999 9.9233C18.9999 8.08718 18.2625 6.32605 16.9497 5.02772C15.637 3.72939 13.8566 3 12.0001 3C10.1436 3 8.36301 3.7295 7.05025 5.02783C5.7375 6.32616 5 8.08674 5 9.92285Z" stroke="#a3a3a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
-                                            <path d="M10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7C10.8954 7 10 7.89543 10 9Z" stroke="#a3a3a3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
-                                        </g> 
-                                    </g> 
+                                <g id="SVGRepo_iconCarrier">
+                                    <g id="Navigation / Map_Pin">
+                                        <g id="Vector">
+                                            <path
+                                                d="M5 9.92285C5 14.7747 9.24448 18.7869 11.1232 20.3252C11.3921 20.5454 11.5281 20.6568 11.7287 20.7132C11.8849 20.7572 12.1148 20.7572 12.271 20.7132C12.472 20.6567 12.6071 20.5463 12.877 20.3254C14.7557 18.7871 18.9999 14.7751 18.9999 9.9233C18.9999 8.08718 18.2625 6.32605 16.9497 5.02772C15.637 3.72939 13.8566 3 12.0001 3C10.1436 3 8.36301 3.7295 7.05025 5.02783C5.7375 6.32616 5 8.08674 5 9.92285Z"
+                                                stroke="#a3a3a3" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                            <path
+                                                d="M10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7C10.8954 7 10 7.89543 10 9Z"
+                                                stroke="#a3a3a3" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                        </g>
+                                    </g>
                                 </g>
-                            </svg>                            
+                            </svg>
                             Jl. Mergosono RW 03, Kota Malang, Jawa Timur.
                         </a>
                     </div>
                     <div class="col-lg-4 text-center text-lg-start">
                         <p class="text-center text-lg-start fw-bolder">Ikuti Kami</p>
                         <p>
-                            <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="#a3a3a3"></path> <path d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z" fill="#a3a3a3"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z" fill="#a3a3a3"></path> </g></svg>
+                            <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                                        fill="#a3a3a3"></path>
+                                    <path
+                                        d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
+                                        fill="#a3a3a3"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z"
+                                        fill="#a3a3a3"></path>
+                                </g>
+                            </svg>
                             Instagram
                         </p>
                     </div>
@@ -483,11 +575,11 @@
     <script>
         // Mendapatkan tahun saat ini
         var year = new Date().getFullYear();
-        
+
         // Menetapkan tahun ke elemen dengan id "year"
         document.getElementById("year").innerHTML = year;
     </script>
-    
+
 </body>
 
 </html>

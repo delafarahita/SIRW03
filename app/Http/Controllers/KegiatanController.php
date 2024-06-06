@@ -25,7 +25,7 @@ class KegiatanController extends Controller
 
         $activeMenu = 'Info Kegiatan'; // set menu yang sedang aktif
         $dropdown = '';
-        $kegiatan = KegiatanModel::all(); // ambil data level untuk filter level
+        $kegiatan = KegiatanModel::orderBy('tanggal', 'desc')->paginate(4); // ambil data level untuk filter level
 
         return view('admin.kegiatan.index', [
             'breadcrumb' => $breadcrumb,
@@ -92,7 +92,7 @@ class KegiatanController extends Controller
             $validatedData['image_path'] = $hashedName;
         }
 
-        
+
         $kegiatan = new KegiatanModel;
         $kegiatan->nama = $validatedData['nama'];
         $kegiatan->jenis = $validatedData['jenis'];
@@ -195,10 +195,10 @@ class KegiatanController extends Controller
         if ($request->hasFile('image_path')) {
             $imageFile = $request->file('image_path');
             $hashedName = $imageFile->hashName(); // Generate a unique file name
-        
+
             // Store the file on the specified disk
             Storage::disk('img_kegiatan')->put($hashedName, file_get_contents($imageFile));
-        
+
             // Hapus gambar lama jika ada
             if ($kegiatan->image_path) {
                 // Ubah path untuk menghapus file lama
@@ -207,7 +207,7 @@ class KegiatanController extends Controller
                     Storage::disk('img_kegiatan')->delete($oldImagePath);
                 }
             }
-            $validatedData['image_path'] = $hashedName; 
+            $validatedData['image_path'] = $hashedName;
             // Save the hashed file name in the database
             $kegiatan->image_path = $validatedData['image_path'];
         }

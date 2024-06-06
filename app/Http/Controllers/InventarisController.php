@@ -95,12 +95,29 @@ class InventarisController extends Controller
 
     public function storePinjam(Request $request)
     {
+        $inventaris = InventarisModel::find($request->inventaris_id);
+
+        if ($inventaris->status_barang == 'Dipinjam') {
+            return redirect('/admin/inventaris')->with('error', 'Inventaris sudah dipinjam');
+        }
+
         $validated = $request->validate([
             'peminjam' => 'required',
             'inventaris_id' => 'required',
             'tanggal_pinjam' => 'required',
-            'tanggal_kembali' => 'required',
+            'tanggal_kembali' => 'nullable',
         ]);
+
+        if (is_null($request->tanggal_kembali)) {
+            InventarisModel::where('inventaris_id', $request->inventaris_id)->update([
+                'status_barang' => 'Dipinjam'
+            ]);
+        }else {
+            InventarisModel::where('inventaris_id', $request->inventaris_id)->update([
+                'status_barang' => 'Tersedia'
+            ]);
+        }
+
         PinjamInventarisModel::create([
             'inventaris_id'     => $request->inventaris_id,
             'peminjam'          => $request->peminjam,
@@ -183,21 +200,30 @@ class InventarisController extends Controller
     }
 
 
-    public function updatePinjam(Request $request,string $id)
+    public function updatePinjam(Request $request, string $id)
     {
         $validated = $request->validate([
             'peminjam' => 'required',
             'inventaris_id' => 'required',
             'tanggal_pinjam' => 'required',
-            'tanggal_kembali' => 'required',
+            'tanggal_kembali' => '',
         ]);
+
         $pinjam = PinjamInventarisModel::findOrFail($id);
+        $inventaris = InventarisModel::findOrFail($pinjam->inventaris_id);
+
         $pinjam->update([
             'inventaris_id'     => $request->inventaris_id,
             'peminjam'          => $request->peminjam,
             'tanggal_pinjam'    => $request->tanggal_pinjam,
             'tanggal_kembali'   => $request->tanggal_kembali,
         ]);
+
+        if ($request->tanggal_kembali) {
+            $inventaris->status_barang = 'Tersedia';
+            $inventaris->save();
+        }
+
         return redirect('/admin/inventaris')->with('success', 'Data peminjam berhasil diubah');
     }
 
