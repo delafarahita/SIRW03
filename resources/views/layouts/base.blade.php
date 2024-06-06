@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#563d7c">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <link rel="icon" href="{{ asset('assets/img/logorw03.jpg') }}">
-    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Apex Charts -->
     {{-- <link type="text/css" href="{{asset('/vendor/apexcharts/apexcharts.css')}}" rel="stylesheet"> --}}
     
@@ -59,6 +59,7 @@
     <!-- Charts -->
     <script src="{{asset('/assets/js/chartist.min.js')}}"></script>
     <script src="{{asset('/assets/js/chartist-plugin-tooltip.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Datepicker -->
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker.min.js"></script>
@@ -80,7 +81,7 @@
 
     <!-- Volt JS -->
     <script src="{{asset('/assets/js/volt.js')}}"></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     {{-- data tables --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/2.0.5/js/jquery.dataTables.min.js"></script>

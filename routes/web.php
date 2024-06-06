@@ -19,6 +19,7 @@ use App\Http\Controllers\KKController;
 use App\Http\Controllers\RTController;
 use App\Http\Controllers\RWController;
 use App\Http\Controllers\BantuanSosialController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataPenilaianController;
 use App\Http\Controllers\DataPerhitunganController;
 use App\Http\Controllers\KategoriDagangController;
@@ -54,19 +55,10 @@ Route::post('proses_login', [AuthController::class, 'proses_login'])->name('pros
 
 Route::group(['middleware' => ['auth']], function (){
     Route::group(['middleware' => ['cek_login:1,2']  , 'prefix'=>'admin'], function(){
-        Route::get('/dashboard', function () {
-            $activeMenu = 'dashboard';
-            $dropdown = 'false';
-            $page = (object) [
-                'title' => 'Dashboard',
-            ];
-
-            return view('admin.dashboard.index',[
-                'activeMenu' => $activeMenu,
-                'dropdown' => $dropdown,
-                'page' => $page,
-            ]);
-        })->name('dashboard');
+        Route::group(['prefix' => 'dashboard'], function () {
+            
+            Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        });
 
         Route::group(['prefix' => 'data_penduduk'], function(){
             Route::get('/', [DataPendudukController::class, 'index'])->name('data_penduduk.index');
