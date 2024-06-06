@@ -66,6 +66,32 @@
                         </div>
                     </div>
                 @endforeach
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination d-flex justify-content-center">
+                      {{-- Previous Page Link --}}
+                      @if ($kegiatan->onFirstPage())
+                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                      @else
+                        <li class="page-item"><a class="page-link" href="{{ $kegiatan->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                      @endif
+
+                      {{-- Pagination Elements --}}
+                      @foreach ($kegiatan->getUrlRange(1, $kegiatan->lastPage()) as $pagination => $url)
+                        @if ($pagination == $kegiatan->currentPage())
+                          <li class="page-item active"><span class="page-link">{{ $pagination }}</span></li>
+                        @else
+                          <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $pagination }}</a></li>
+                        @endif
+                      @endforeach
+
+                      {{-- Next Page Link --}}
+                      @if ($kegiatan->hasMorePages())
+                        <li class="page-item"><a class="page-link" href="{{ $kegiatan->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                      @else
+                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                      @endif
+                    </ul>
+                  </nav>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@ class KategoriJasaController extends Controller
         $dropdown = 'd_kategori_Jasa';
         $activeMenu = 'Data UMKM';
 
-        $kategoriJasa = UmkmModel::where('kategori_umkm', 'Jasa')->get();
+        $kategoriJasa = UmkmModel::where('kategori_umkm', 'Jasa')->paginate(4);
         // $dataPenduduk = DataPendudukModel::all(); // ambil data level untuk filter level
 
         return view('admin.kategori_Jasa.index', [
