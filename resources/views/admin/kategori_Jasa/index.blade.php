@@ -12,11 +12,11 @@
     }
 
     .img-uniform {
-            width: 100%;          
-            height: auto;         
-            max-width: 300px;     
-            max-height: 200px;    
-            object-fit: cover; 
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            max-height: 200px;
+            object-fit: cover;
         }
 </style>
     <div class="card card-outline card-primary">
@@ -41,7 +41,7 @@
                     @if ($item->foto_umkm)
                         <img src="{{ asset('storage/foto_umkm/'. $item->foto_umkm) }}" class="card-img-top img-uniform rounded-3 img-fluid" alt="{{ $item->nama }}">
                     @endif
-                
+
                     <div class="card-body">
                       <h5 class="card-title">{{ $item->nama_umkm }}</h5>
                       <p class="card-text">{{ $item->deskripsi_umkm }}</p>
@@ -64,6 +64,32 @@
                 </div>
             </div>
         @endforeach
+        <nav aria-label="Page navigation example ">
+            <ul class="pagination d-flex justify-content-center">
+              {{-- Previous Page Link --}}
+              @if ($kategoriJasa->onFirstPage())
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+              @else
+                <li class="page-item"><a class="page-link" href="{{ $kategoriJasa->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+              @endif
+
+              {{-- Pagination Elements --}}
+              @foreach ($kategoriJasa->getUrlRange(1, $kategoriJasa->lastPage()) as $pagination => $url)
+                @if ($pagination == $kategoriJasa->currentPage())
+                  <li class="page-item active"><span class="page-link">{{ $pagination }}</span></li>
+                @else
+                  <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $pagination }}</a></li>
+                @endif
+              @endforeach
+
+              {{-- Next Page Link --}}
+              @if ($kategoriJasa->hasMorePages())
+                <li class="page-item"><a class="page-link" href="{{ $kategoriJasa->nextPageUrl() }}" rel="next">&raquo;</a></li>
+              @else
+                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+              @endif
+            </ul>
+          </nav>
     </div>
     </div>
     </div>

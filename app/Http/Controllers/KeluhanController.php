@@ -31,7 +31,7 @@ class KeluhanController extends Controller
         //     (object) ['nama_penduduk' => 'Alice Smith', 'rt' => 'RT 03', 'keluhan' => 'Lorem ipsum dolor sit amet consectetur.', 'is_private' => false, 'reply' => 'Balasan 3', 'id' => 3],
         // ];
 
-        $keluhans = Keluhan::all();
+        $keluhans = Keluhan::orderBy('created_at', 'desc')->paginate(8);
 
         return view('admin.keluhan.index', [
             'breadcrumb' => $breadcrumb,
@@ -52,14 +52,7 @@ class KeluhanController extends Controller
             'keluhan' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        // if ($request->hasFile('foto')) {
-        //     $imagePath = $request->foto->store('public/images');
-        //     $imageName = basename($imagePath);
-        // } else {
-        //     $imageName = null;
-        // }
-
-        // dd($request->foto);
+        
 
         if ($request->hasFile('foto')) {
             $imageFile = $request->file('foto');
