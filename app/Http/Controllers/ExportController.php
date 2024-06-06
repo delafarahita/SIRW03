@@ -6,6 +6,7 @@ use App\Models\DataPendudukModel;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use App\Models\Penduduk; // Assuming you have a model named Penduduk
 
 class ExportController extends Controller
@@ -40,8 +41,8 @@ class ExportController extends Controller
         // Add data to the sheet
         $rowNumber = 2;
         foreach ($data as $row) {
-            $sheet->setCellValue('A' . $rowNumber, $row->nik);
-            $sheet->setCellValue('B' . $rowNumber, $row->no_kk);
+            $sheet->setCellValueExplicit('A' . $rowNumber, $row->nik, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+            $sheet->setCellValueExplicit('B' . $rowNumber, $row->no_kk, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
             $sheet->setCellValue('C' . $rowNumber, $row->nama);
             $sheet->setCellValue('D' . $rowNumber, $row->tempat_lahir);
             $sheet->setCellValue('E' . $rowNumber, $row->tanggal_lahir);
@@ -59,7 +60,7 @@ class ExportController extends Controller
             $rowNumber++;
         }
 
-        
+
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="Data_Penduduk.xlsx"');
         header('Cache-Control: max-age=0');
