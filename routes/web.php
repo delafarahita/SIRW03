@@ -213,6 +213,13 @@ Route::group(['middleware' => ['auth']], function (){
             Route::delete('/{id}', [KategoriDagangController::class, 'destroy'])->name('kategori_dagang.destroy');
         });
 
+        Route::group(['prefix' => '/keluhan'], function () {
+            Route::get('/', [KeluhanController::class, 'index'])->name('keluhan.index');
+            Route::get('/list', [KeluhanController::class, 'list'])->name('keluhan.list');
+            Route::get('/create', [KeluhanController::class, 'create'])->name('keluhan.create');
+            Route::get('/{id}', [KeluhanController::class, 'show'])->name('keluhan.show');
+        });
+
         Route::group(['prefix' => 'kategori_jasa'], function(){
             Route::get('/', [KategoriJasaController::class, 'index'])->name('kategori_jasa.index');
             Route::post('/list', [KategoriJasaController::class, 'list'])->name('kategori_jasa.list');
@@ -238,17 +245,10 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/export', [ExportController::class, 'exportToExcel'])->name('data_penduduk.export');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-
 });
 
 Route::post('/', [KeluhanController::class, 'store'])->name('store_keluhan');
 
-Route::group(['prefix' => '/keluhan'], function () {
-    Route::get('/', [KeluhanController::class, 'index'])->name('keluhan.index');
-    Route::get('/list', [KeluhanController::class, 'list'])->name('keluhan.list');
-    Route::get('/create', [KeluhanController::class, 'create'])->name('keluhan.create');
-    Route::get('/{id}', [KeluhanController::class, 'show'])->name('keluhan.show');
-});
 
 Route::prefix('kas')->group(function () {
     Route::get('/', [KasController::class, 'index'])->name('kas.index');

@@ -52,14 +52,7 @@ class KeluhanController extends Controller
             'keluhan' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        // if ($request->hasFile('foto')) {
-        //     $imagePath = $request->foto->store('public/images');
-        //     $imageName = basename($imagePath);
-        // } else {
-        //     $imageName = null;
-        // }
-
-        // dd($request->foto);
+        
 
         if ($request->hasFile('foto')) {
             $imageFile = $request->file('foto');
