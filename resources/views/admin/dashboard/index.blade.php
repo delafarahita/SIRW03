@@ -20,16 +20,28 @@
             }
         }
         .container-kegiatan {
-            max-width: 1180px;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-        .item {
-            display: inline-block;
-            width: 270px; /* Adjust the width to match your layout */
-            height: 100%;
-            margin-right: 10px;
-        }
+        max-height: 200px; /* Set your desired max height */
+        overflow-y: auto;
+        border: 1px solid #ccc; /* Optional: for visual separation */
+        padding: 10px;
+    }
+
+    .kegiatan-item {
+        margin-bottom: 10px; /* Optional: for spacing between items */
+    }
+
+    .iframe-card {
+        background-color: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+    }
+
+    .iframe-container {
+        width: 100%;
+        overflow-x: auto; /* Enables horizontal scrolling if needed */
+    }
         .bg-white {
             background-color: white;
             border-radius: 10px;
@@ -129,28 +141,33 @@
                 </div> --}}
             </div>
         </div>
+
+        <div class="iframe-card">
+            <p class="fs-5 text-center fw-bold p-2">Jumlah Penduduk Menurut Jenis Kelamin (Looker Studio)</p>
+            <div class="iframe-container">
+                <iframe width="100%" height="100%"
+                    src="https://lookerstudio.google.com/embed/reporting/6c48cf5d-a032-4416-8149-828aae71cd4a/page/tiJ2D"
+                    frameborder="0" style="border:0" allowfullscreen
+                    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+            </div>
+        </div>
+
         <div class="row bg-white shadow-sm mx-2 my-2 rounded-2">
             <div class="col">
                 <p class="fs-5 text-center fw-bold p-2">Kegiatan akan datang</p>
                 <div class="container-kegiatan my-2">
                     @foreach ($kegiatan as $item)
-                        <div class="item">
-                            <div class="bg-white rounded-2 text-wrap container  me-1 p-1 ">
-                                <p class="fw-bolder">{{$item->nama}}</p>
-                                <p>{{$item->tanggal}}</p>
+                        <div class="kegiatan-item">
+                            <div class="bg-white rounded-2 text-wrap container me-1 p-1">
+                                <p class="fw-bolder">{{ $item->nama }}</p>
+                                <p>{{ $item->tanggal }}</p>
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
         </div>
-        
 
-    {{-- <h4>Jumlah Penduduk Menurut Jenis Kelamin</h4>
-    <iframe width="600" height="400"
-        src="https://lookerstudio.google.com/embed/reporting/6c48cf5d-a032-4416-8149-828aae71cd4a/page/tiJ2D" frameborder="0"
-        style="border:0" allowfullscreen
-        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe> --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         window.addEventListener('load', function() {
@@ -173,7 +190,7 @@
     </script>
     <script>
         const ctx = document.getElementById('myChart');
-      
+
         var chartData = <?php echo json_encode($chartData); ?>;
 
             new Chart(ctx, {
