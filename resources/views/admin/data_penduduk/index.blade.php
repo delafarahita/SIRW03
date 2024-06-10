@@ -10,18 +10,39 @@
         .table-container {
             margin-bottom: 20px;
         }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-icon {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .btn-icon i {
+            font-size: 24px;
+            color: blue;
+        }
     </style>
     <div class="card card-outline card-primary">
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
-
+            <button type="button" class="btn-icon" id="modalButton" data-bs-toggle="modal"
+                data-bs-target="#petunjukModal">
+                <i class="fa fa-exclamation-circle"></i>
+            </button>
         </div>
         <div class="card-body">
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
             @if (session('error'))
-                <div class="alert alert-success">{{ session('error') }}</div>
+                <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
 
             <div class="table-container table-responsive">
@@ -42,15 +63,36 @@
 
             <div class="card-tools d-flex justify-content-between">
                 <a class="btn-sm custom-color-btn mt-1" href="{{ route('data_penduduk.create') }}">Tambah Penduduk</a>
-                <form action="{{route('data_penduduk.export')}}" method="get">
+                <form action="{{ route('data_penduduk.export') }}" method="get">
                     <button class="btn-sm custom-color-btn mt-1" type="submit">Download Seluruh Data</button>
-                 </form>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="petunjukModal" tabindex="-1" aria-labelledby="petunjukModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="petunjukModalLabel">Panduan Pengisian Data Penduduk</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Untuk mengisi data penduduk pastikan sudah mengisi terlebih dahulu untuk data KK dan data RT</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
 @endsection
+
 @push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 @endpush
+
 @push('js')
     <script>
         $(document).ready(function() {
@@ -97,6 +139,13 @@
                     orderable: false,
                     searchable: false
                 }]
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var petunjukModal = new bootstrap.Modal(document.getElementById('petunjukModal'));
+            document.getElementById('modalButton').addEventListener('click', function() {
+                petunjukModal.show();
             });
         });
     </script>
