@@ -443,44 +443,44 @@
                                 class="form-control my-2 @error('nama_penduduk') is-invalid @enderror"
                                 name="nama_penduduk" id="floatingInput" placeholder="">
                             <label for="floatingInput">Nama</label>
+                            @error('nama_penduduk')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error('nama_penduduk')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                         <div class="form-floating">
                             <input type="text" class="form-control my-2 @error('rt') is-invalid @enderror"
                                 name="rt" id="floatingInput" placeholder="">
                             <label for="floatingInput">RT</label>
+                            @error('rt')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error('rt')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                         <div class="form-floating">
                             <textarea class="form-control @error('keluhan') is-invalid @enderror" placeholder="" name="keluhan"
                                 id="floatingTextarea" style="height: 100px"></textarea>
                             <label for="floatingTextarea">Isi Laporan</label>
+                            @error('keluhan')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error('keluhan')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                         <div class="form-floating">
                             {{-- <textarea class="form-control @error('foto_peng') is-invalid @enderror" placeholder="" name="keluhan"
                             id="floatingTextarea" style="height: 100px"></textarea> --}}
                             <input type="file" class="form-control my-2 @error('foto') is-invalid @enderror"
                                 id="foto" name="foto" placeholder="Upload Foto">
                             <label for="foto">Foto Laporan</label>
+                            @error('foto')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error('foto')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
 
                         <div class="my-2">
                             <button type="submit" class="btn btn-oren-keluhan text-white px-5">KIRIM</button>
