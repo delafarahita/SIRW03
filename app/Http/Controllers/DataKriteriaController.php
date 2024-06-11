@@ -64,7 +64,7 @@ class DataKriteriaController extends Controller
     {
         $validated = $request->validate([
             'kode_kriteria' => 'required|unique:data_kriteria',
-            'nama_kriteria' => 'required|alpha',
+            'nama_kriteria' => 'required|alpha_spaces',
             'bobot' => 'required|numeric',
             'jenis' => 'required',
         ]);
@@ -99,8 +99,8 @@ class DataKriteriaController extends Controller
     {
         $validated = $request->validate([
             'kode_kriteria' => 'required',
-            'nama_kriteria' => 'required',
-            'bobot' => 'required|decimal',
+            'nama_kriteria' => 'required|alpha_spaces',
+            'bobot' => 'required|decimal:2',
             'jenis' => 'required'
         ]);
         $kriteria = DataKriteriaModel::find($id)->update([

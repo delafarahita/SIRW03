@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataPendudukModel;
 use Illuminate\Http\Request;
 use App\Models\KKModel;
 use Yajra\DataTables\Facades\DataTables;
@@ -60,8 +61,8 @@ class KKController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'no_kk' => 'required|unique:kk|numeric|regex:/^[0-9]{16}$/',
-            'kepala_keluarga' => 'required|string|alpha',
+            'no_kk' => 'required|unique:kk|numeric|number_sixteen',
+            'kepala_keluarga' => 'required|string|alpha_spaces',
         ]);
 
         KKModel::create([
@@ -91,8 +92,8 @@ class KKController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'no_kk' => 'required|numeric',
-            'kepala_keluarga' => 'required|alpha',
+            'no_kk' => 'required|numeric|number_sixteen',
+            'kepala_keluarga' => 'required|alpha_spaces',
         ]);
         $kk = KKModel::find($id)->update([
             'no_kk' => $request->no_kk,
@@ -103,8 +104,17 @@ class KKController extends Controller
 
     public function destroy($id)
     {
-        $kk = KKModel::find($id);
-        $kk->delete();
-        return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil dihapus!');
+        try {
+            $kk = KKModel::find($id);
+            $pendudukTerkait = DataPendudukModel::where('no_kk', $id);
+
+            if ($pendudukTerkait) {
+                return redirect('admin/data_kk')->with('error', 'Data Kartu Keluarga tidak dapat dihapus karena masih digunakan pada data penduduk!');
+            }
+            $kk->delete();
+            return redirect('admin/data_kk')->with('success', 'Data Kartu Keluarga berhasil dihapus!');
+        } catch (\Exception $e) {
+            //throw $th;
+        }
     }
 }

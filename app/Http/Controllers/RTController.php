@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataPendudukModel;
 use Illuminate\Http\Request;
 use App\Models\RTModel;
 use Yajra\DataTables\Facades\DataTables;
@@ -59,7 +60,7 @@ class RTController extends Controller
     {
         $validated = $request->validate([
             'id_rt' => 'required|unique:rt|numeric',
-            'nama_rt' => 'required|string|alpha',
+            'nama_rt' => 'required|string|alpha_spaces',
         ]);
         RTModel::create([
             'id_rt' => $request->id_rt,
@@ -90,7 +91,7 @@ class RTController extends Controller
     {
         $validated = $request->validate([
             'id_rt' => 'required|numeric',
-            'nama_rt' => 'required|alpha',
+            'nama_rt' => 'required|alpha_spaces',
         ]);
         $rt = RTModel::find($id)->update([
             'id_rt' => $request->id_rt,
@@ -101,9 +102,19 @@ class RTController extends Controller
 
     public function destroy($id)
     {
-        $rt = RTModel::find($id);
-        $rt->delete();
-        return redirect('/admin/data_rt')->with('success', 'Data RT baru berhasil ditambahkan');
+        try {
+            $rt = RTModel::findOrFail($id);
+            $rtTerkait = DataPendudukModel::where('id_rt', $id)->exists();
+    
+            if ($rtTerkait) {
+                return redirect('/admin/data_rt')->with('error', 'Data RT tidak dapat dihapus karena masih digunakan pada data penduduk');
+            }
+    
+            $rt->delete();
+            return redirect('/admin/data_rt')->with('success', 'Data RT berhasil dihapus');
+        } catch (\Exception $e) {
+            return redirect('admin/data_rt')->with('error', 'Data RT tidak dapat dihapus karena masih digunakan pada fitur lain');
+        }
     }
 
 }

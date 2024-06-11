@@ -78,7 +78,7 @@
                 </div>
                 <div class="modal-body">
                     <ul>
-                        <li>Untuk mengisi data penduduk pastikan sudah mengisi terlebih dahulu untuk data KK dan data RT</li>
+                        <li>Untuk mengisi data penduduk pastikan sudah mengisi terlebih dahulu untuk <span class="fw-bolder">data KK</span> dan <span class="fw-bolder">data RT</span></li>
                     </ul>
                 </div>
                 <div class="modal-footer">

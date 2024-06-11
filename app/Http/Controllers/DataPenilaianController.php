@@ -95,7 +95,7 @@ class DataPenilaianController extends Controller
         }
     }
 
-    public function edit(string $id)
+    public function edit($id)
     {
         $page = (object) [
             'title' => 'Edit penilaian',
@@ -104,20 +104,21 @@ class DataPenilaianController extends Controller
         $dropdown = 'd_bansos';
         try {
             $penilaian = DataPenilaianModel::find($id);
+            $Editpenilaian = DataPenilaianModel::where('id_alternatif', $id)->first();
             $alternatif = DataAlternatifModel::find($id);
             $kriteria = DataKriteriaModel::all();
 
-            if ($penilaian) {
+            if ($penilaian && $Editpenilaian && $alternatif) {
                 return view('admin.data_penilaian.edit', [
                     'page' => $page,
                     'penilaian' => $penilaian,
+                    // 'Editpenilaian' => $Editpenilaian,
                     'activeMenu' => $activeMenu,
                     'dropdown' => $dropdown,
                     'alternatif' => $alternatif,
                     'kriteria' => $kriteria
                 ]);
             }
-            
             return view('admin.data_penilaian.index', [
                 'page' => $page,
                 'activeMenu' => $activeMenu,

@@ -220,7 +220,7 @@ class UmkmController extends Controller
     {
         $umkm = UmkmModel::findOrFail($id);
         $umkm->delete();
-        return redirect()->route('umkm.index');
+        return redirect()->route('umkm.index')->with('success', 'UMKM berhasil dihapus');
     }
 }
 
