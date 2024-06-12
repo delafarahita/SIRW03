@@ -48,10 +48,10 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <a href="#" class="text-white"
                             style="text-decoration: none; font-style: italic; font-size: 0.8rem;">Lupa Password?</a>
-                    </div>
+                    </div> --}}
                     <div class="d-flex justify-content-center align-items-center mt-3">
                         <div class="d-grid gap-2 col-6 justify-content-center">
                             <button type="submit" class="btn btn-warning text-white fw-bold"

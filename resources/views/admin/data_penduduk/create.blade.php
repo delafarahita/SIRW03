@@ -22,9 +22,9 @@
                         <div class="form-group">
                             <label class="control-label">No. KK<small class="text-danger">*</small></label>
                             <select class="form-control" id="no_kk" name="no_kk" required>
-                                <option value="">- PILIH -</option>
+                                <option value="{{ old('no_kk') }}">- PILIH -</option>
                                 @foreach ($kk as $item)
-                                    <option value="{{ $item->no_kk }}">{{ $item->no_kk }}</option>
+                                    <option value="{{ $item->no_kk }}" {{ old('no_kk') == $item->no_kk ? 'selected' : '' }}>{{ $item->no_kk }}</option>
                                 @endforeach
                             </select>
                             @error('no_kk')
@@ -60,7 +60,7 @@
                             <select class="form-control" id="gol_darah" name="gol_darah" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($gol_darah as $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item }}" {{ old('gol_darah') == $item ? 'selected' : '' }}>{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('gol_darah')
@@ -72,7 +72,7 @@
                             <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($jenis_kelamin as $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item }}" {{ old('jenis_kelamin') == $item ? 'selected' : '' }}>{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('jenis_kelamin')
@@ -102,7 +102,7 @@
                             <select class="form-control" name="id_rt" id="id_rt" required>
                                 <option value="">- Pilih -</option>
                                 @foreach ($rt as $item)
-                                    <option value="{{ $item->id_rt }}">{{ $item->id_rt }}</option>
+                                    <option value="{{ $item->id_rt }}"  {{ old('id_rt') == $item->id_rt ? 'selected' : '' }}>{{ $item->id_rt }}</option>
                                 @endforeach
                             </select>
                             @error('id_rt')
@@ -114,7 +114,7 @@
                             <select class="form-control" name="status_perkawinan" id="status_perkawinan" required>
                                 <option value="">- Pilih -</option>
                                 @foreach ($status_perkawinan as $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item }}" {{ old('status_perkawinan') == $item ? 'selected' : '' }}>{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('status_perkawinan')
@@ -140,9 +140,9 @@
                         <div class="form-group">
                             <label class="control-label">Kewarganegaraan<small class="text-danger">*</small></label>
                             <select class="form-control" id="kewarganegaraan" name="kewarganegaraan" required>
-                                <option value="">- PILIH -</option>
+                                <option value="{{ old('kewarganegaraan') }}">- PILIH -</option>
                                 @foreach ($kewarganegaraan as $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item }}" {{ old('kewarganegaraan') == $item ? 'selected' : '' }}>{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('kewarganegaraan')
@@ -152,9 +152,9 @@
                         <div class="form-group">
                             <label class="control-label">Pekerjaan<small class="text-danger">*</small></label>
                             <select class="form-control" id="pekerjaan" name="pekerjaan" required>
-                                <option value="">- PILIH -</option>
+                                <option value="{{ old('pekerjaan') }}">- PILIH -</option>
                                 @foreach ($pekerjaan as $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item }}" {{ old('pekerjaan') == $item ? 'selected' : '' }}>{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('pekerjaan')
@@ -167,7 +167,7 @@
                             <select class="form-control" id="agama" name="agama" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($agama as $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item }} " {{ old('agama') == $item ? 'selected' : '' }}>{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('agama')
@@ -179,7 +179,7 @@
                             <select class="form-control" id="domisili" name="domisili" required>
                                 <option value="">- PILIH -</option>
                                 @foreach ($domisili as $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item }}" {{ old('domisili') == $item ? 'selected' : '' }}>{{ $item }}</option>
                                 @endforeach
                             </select>
                             @error('domisili')

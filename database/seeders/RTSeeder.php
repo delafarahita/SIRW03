@@ -15,11 +15,11 @@ class RTSeeder extends Seeder
         $rt = [
             [
                 'id_rt'=> 1,
-                'nama_rt' => 'RT 001',
+                'nama_rt' => 'Aziz',
             ],
             [
                 'id_rt'=> 2,
-                'nama_rt' => 'RT 002',
+                'nama_rt' => 'Halur',
             ],
         ];
 

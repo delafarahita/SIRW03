@@ -106,9 +106,9 @@ class DataPendudukController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nik' => 'required|regex:/^[0-9]{16}$/|unique:data_penduduk',
+            'nik' => 'required|number_sixteen|unique:data_penduduk',
             'no_kk' => 'required',
-            'nama' => 'required|string',
+            'nama' => 'required|string|alpha_spaces',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'gol_darah' => 'required',
@@ -215,7 +215,7 @@ class DataPendudukController extends Controller
     public function update(Request $request, String $id)
     {
         $validated = $request->validate([
-            'nik'               => 'required',
+            'nik'               => 'required|number_sixteen',
             'no_kk'             => 'required',
             'nama'              => 'required',
             'tempat_lahir'      => 'required',

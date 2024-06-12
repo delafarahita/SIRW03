@@ -61,7 +61,7 @@ class DataAlternatifController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_alternatif' => 'required',
+            'nama_alternatif' => 'required|alpha_spaces',
         ]);
 
         DataAlternatifModel::create([
@@ -90,7 +90,7 @@ class DataAlternatifController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'nama_alternatif' => 'required'
+            'nama_alternatif' => 'required|alpha_spaces'
         ]);
         $alternatif = DataAlternatifModel::find($id)->update([
             'nama_alternatif' => $request->nama_alternatif
