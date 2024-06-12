@@ -377,7 +377,8 @@ class DataPerhitunganController extends Controller
         $rank = 1;
         foreach ($rankedMatrix as &$alternative) {
             $alternative['rank'] = $rank++;
-            $alternative['nama_alternatif'] =  $nama_alternatif[$alternative['id_alternatif'] - 1]->nama_alternatif;
+            // $alternative['nama_alternatif'] =  $nama_alternatif[$alternative['id_alternatif'] - 1]->nama_alternatif;
+            $alternative['nama_alternatif'] = isset($nama_alternatif[$alternative['id_alternatif'] - 1]) ? $nama_alternatif[$alternative['id_alternatif'] - 1]->nama_alternatif : '';
         }
 
         return $rankedMatrix;

@@ -90,8 +90,8 @@ class DataPenilaianController extends Controller
             }
 
             return redirect('admin/data_penilaian')->with('success', 'Data penilaian berhasil ditambahkan!');
-        } catch (\Exception $e) {
-            dd($e->getMessage());
+            } catch (\Exception $e) {
+            return redirect('admin/data_penilaian')->with('error', $e);    
         }
     }
 
