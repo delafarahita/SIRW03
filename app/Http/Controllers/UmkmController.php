@@ -20,7 +20,7 @@ class UmkmController extends Controller
             'title' => 'Data UMKM'
         ];
 
-        $activeMenu = 'Data UMKM';
+        $activeMenu = 'umkm';
         $dropdown = 'umkm';
         $kategori = UmkmModel::all();
 

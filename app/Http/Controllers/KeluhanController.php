@@ -21,7 +21,7 @@ class KeluhanController extends Controller
             'title' => 'Keluhan Penduduk'
         ];
 
-        $activeMenu = 'Keluhan Penduduk'; // set menu yang sedang aktif
+        $activeMenu = 'keluhan'; // set menu yang sedang aktif
         $dropdown = '';
 
         // Simulasi data keluhan (Anda akan menggantinya dengan data sebenarnya)
