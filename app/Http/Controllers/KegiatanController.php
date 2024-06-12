@@ -23,7 +23,7 @@ class KegiatanController extends Controller
             'title' => 'Informasi Kegiatan'
         ];
 
-        $activeMenu = 'Info Kegiatan'; // set menu yang sedang aktif
+        $activeMenu = 'kegiatan'; // set menu yang sedang aktif
         $dropdown = '';
         $kegiatan = KegiatanModel::orderBy('tanggal', 'desc')->paginate(4); // ambil data level untuk filter level
 
